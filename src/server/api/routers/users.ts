@@ -55,4 +55,19 @@ export const usersRouter = createTRPCRouter({
 
       return { success: true };
     }),
+  getUserById: publicProcedure
+    .input(z.string())
+    .output(userSelectSchema)
+    .query(async ({ ctx, input }) => {
+      const user = (
+        await ctx.db
+          .select()
+          .from(users)
+          .where(eq(users.id, input))
+      ).at(0);
+      if (!user) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "User not found" });
+      }
+      return user;
+    }),
 });
