@@ -30,7 +30,6 @@ export const WelcomeForm = () => {
   const { update } = useSession();
   const { mutate, isPending, isSuccess } = api.users.onboardUser.useMutation({
     onSuccess: (data, { username }) => {
-      console.log({ data });
       update({ user: { username } });
       toast({
         title: "Account created successfully",

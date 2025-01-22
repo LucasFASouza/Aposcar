@@ -22,7 +22,7 @@ export default async function WelcomePage() {
     <Card>
       <CardHeader>
         <CardTitle>Welcome aboard</CardTitle>
-        <CardDescription>we need to see some id</CardDescription>
+        <CardDescription>We need to see some id</CardDescription>
       </CardHeader>
       <CardContent>
         <WelcomeForm />

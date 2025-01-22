@@ -40,7 +40,7 @@ export const usersRouter = createTRPCRouter({
       z.object({
         username: z.string(),
         profilePic: z.string().optional(),
-        favoriteMovie: z.string().optional(),
+        favoriteMovie: z.string().uuid().optional(),
         letterboxdUsername: z.string().optional(),
         twitterUsername: z.string().optional(),
         bskyUsername: z.string().optional(),
@@ -60,10 +60,7 @@ export const usersRouter = createTRPCRouter({
     .output(userSelectSchema)
     .query(async ({ ctx, input }) => {
       const user = (
-        await ctx.db
-          .select()
-          .from(users)
-          .where(eq(users.id, input))
+        await ctx.db.select().from(users).where(eq(users.id, input))
       ).at(0);
       if (!user) {
         throw new TRPCError({ code: "BAD_REQUEST", message: "User not found" });

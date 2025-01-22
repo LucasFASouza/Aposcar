@@ -149,7 +149,7 @@ export const nominationsRouter = createTRPCRouter({
         nominations: nominations,
       };
     }),
-  
+
   getCategories: publicProcedure
     .output(categorySchema.array())
     .query(async ({ ctx }) => {
@@ -193,5 +193,11 @@ export const nominationsRouter = createTRPCRouter({
         .orderBy(dbtNomination.isWinnerLastUpdate);
 
       return winningNominations;
+    }),
+
+  getMovies: publicProcedure
+    .output(moviesSchema.array())
+    .query(async ({ ctx }) => {
+      return await ctx.db.select().from(dbtMovie);
     }),
 });

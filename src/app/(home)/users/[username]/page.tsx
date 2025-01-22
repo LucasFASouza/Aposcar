@@ -15,7 +15,7 @@ import { notFound } from "next/navigation";
 import PhTrophy from "~icons/ph/trophy";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/server/auth";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
@@ -76,10 +76,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
             </div>
 
             {userData?.id === session?.user.id && (
-              <Link href={`/users/${userData?.username}/edit`}>
-                <Button variant="outline" size="sm">
+              <Link
+                className={buttonVariants({ variant: "outline", size: "sm" })}
+                href={`/users/${userData?.username}/edit`}
+              >
                   Edit profile
-                </Button>
               </Link>
             )}
           </div>
