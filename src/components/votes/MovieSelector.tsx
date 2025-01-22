@@ -63,8 +63,8 @@ export function MovieSelector({
                   height={180}
                   className={cn(
                     "h-full cursor-pointer rounded-md object-cover outline",
-                    nomination.isUserVote && "outline-primary",
                     selectedId === nomination.id && "outline-foreground",
+                    nomination.isUserVote && "outline-primary",
                   )}
                   onClick={() => onSelect(nomination)}
                 />
@@ -90,8 +90,8 @@ export function MovieSelector({
             key={nomination.id}
             className={cn(
               `relative aspect-[2/3] flex-1 cursor-pointer rounded-md outline outline-transparent transition-all`,
-              nomination.isUserVote && "outline-primary",
               selectedId === nomination.id && "outline-foreground",
+              nomination.isUserVote && "outline-primary",
             )}
             onClick={() => onSelect(nomination)}
           >

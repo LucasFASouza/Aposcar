@@ -19,7 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import PhCircleNotch from "~icons/ph/circle-notch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Select,
@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
   username: z
@@ -38,37 +39,46 @@ const formSchema = z.object({
       "Only letters, numbers and underscores are allowed",
     )
     .max(20, "Username must be at most 20 characters"),
-  profilePic: z.string().url("Invalid URL").optional().or(z.literal("")),
+  image: z.string().url("Invalid URL").optional().or(z.literal("")),
   favoriteMovie: z.string().uuid().optional().or(z.literal("")),
   letterboxdUsername: z.string().optional().or(z.literal("")),
   twitterUsername: z.string().optional().or(z.literal("")),
   bskyUsername: z.string().optional().or(z.literal("")),
 });
 
-const EditUserPage = ({ params }: { params: { username: string } }) => {
+type UserFormData = z.infer<typeof formSchema>;
+
+const EditUserPage = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const [previewUrl, setPreviewUrl] = useState("");
 
-  const { data: userData, isLoading } = api.users.getUserFromSession.useQuery();
-  const { data: movies } = api.nominations.getMovies.useQuery();
+  const { data: session } = useSession();
+
+  const { data: userData, isLoading: isUserLoading } =
+    api.users.getUserById.useQuery(session?.user?.id ?? "", {
+      enabled: !!session?.user?.id,
+    });
+
+  const { data: movies, isLoading: isMoviesLoading } =
+    api.nominations.getMovies.useQuery();
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
     onSuccess: () => {
       toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully",
+        title: "Profile updated!",
+        description:
+          "Your profile has been updated successfully. It may take a few minutes to reflect the changes.",
       });
-      router.push(`/users/${userData?.username}`);
+      router.push("/");
     },
   });
 
-  const [previewUrl, setPreviewUrl] = useState(userData?.image || "");
-
-  const form = useForm({
+  const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: params.username,
-      profilePic: userData?.image ?? "",
+      username: userData?.username ?? "",
+      image: userData?.image ?? "",
       favoriteMovie: userData?.favoriteMovie ?? "",
       letterboxdUsername: userData?.letterboxdUsername ?? "",
       twitterUsername: userData?.twitterUsername ?? "",
@@ -76,9 +86,15 @@ const EditUserPage = ({ params }: { params: { username: string } }) => {
     },
   });
 
-  if (isLoading || !movies) return <div>Loading...</div>;
+  useEffect(() => {
+    if (userData?.image) {
+      setPreviewUrl(userData.image);
+    }
+  }, [userData]);
 
-  const onSubmit = (data: any) => {
+  if (isUserLoading || isMoviesLoading || !movies) return <div>Loading...</div>;
+
+  const onSubmit = (data: UserFormData) => {
     mutate(data);
   };
 
@@ -120,7 +136,7 @@ const EditUserPage = ({ params }: { params: { username: string } }) => {
 
                 <FormField
                   control={form.control}
-                  name="profilePic"
+                  name="image"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Profile Picture URL</FormLabel>

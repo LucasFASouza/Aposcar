@@ -77,9 +77,9 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
             {userData?.id === session?.user.id && (
               <Link
                 className={buttonVariants({ variant: "outline", size: "sm" })}
-                href={`/users/${userData?.username}/edit`}
+                href="/users/edit"
               >
-                  Edit profile
+                Edit profile
               </Link>
             )}
           </div>

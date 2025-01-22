@@ -39,7 +39,7 @@ export const usersRouter = createTRPCRouter({
     .input(
       z.object({
         username: z.string(),
-        profilePic: z.string().optional(),
+        image: z.string().optional(),
         favoriteMovie: z.string().uuid().optional(),
         letterboxdUsername: z.string().optional(),
         twitterUsername: z.string().optional(),
