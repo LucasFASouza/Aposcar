@@ -68,7 +68,7 @@ export const votesRouter = createTRPCRouter({
       .select({
         role: users.role,
         username: users.username,
-        profilePic: users.image,
+        image: users.image,
         position:
           sql<number>`RANK() OVER (ORDER BY COALESCE(SUM(CASE WHEN ${dbtNomination.isWinner} THEN ${dbtCategoryTypesPoints.points} ELSE 0 END), 0) DESC)`.as(
             "position",
@@ -187,7 +187,7 @@ export const votesRouter = createTRPCRouter({
         .select({
           id: users.id,
           username: users.username,
-          profilePic: users.image,
+          image: users.image,
           role: users.role,
           favoriteMovie: dbtMovie.name,
           backdrop: dbtMovie.backdrop,

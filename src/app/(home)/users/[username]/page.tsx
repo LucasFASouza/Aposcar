@@ -64,7 +64,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                     : ""
                 }`}
               >
-                <AvatarImage src={userData?.profilePic ?? ""} />
+                <AvatarImage src={userData?.image ?? ""} />
                 <AvatarFallback className="text-2xl font-bold lg:text-4xl">
                   {userData?.username?.[0]?.toUpperCase() ?? "@"}
                 </AvatarFallback>

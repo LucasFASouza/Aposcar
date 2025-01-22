@@ -36,7 +36,7 @@ export const AvatarDropdown: React.FC = () => {
 
   const content = useMemo(() => {
     if (status === "loading" || isLoading) {
-      return <Skeleton className="w-32 h-10" />;
+      return <Skeleton className="h-10 w-32" />;
     }
 
     if (!session) {
@@ -44,6 +44,7 @@ export const AvatarDropdown: React.FC = () => {
     }
 
     if (error) {
+      signOut();
       return <div>Error loading user data</div>;
     }
 

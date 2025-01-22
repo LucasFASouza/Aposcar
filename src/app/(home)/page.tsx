@@ -26,7 +26,7 @@ export default async function Home() {
     <div className="flex h-full flex-col justify-between gap-6 lg:flex-row">
       {winningNominations.length === 0 && (
         <div className="my-4 flex items-center justify-between rounded bg-primary p-4 lg:hidden">
-          {/* TODO: Only show if user haven't voted in any nomination */}
+          {/* TODO: Only show if user has logged in and haven't voted in some nomination */}
           <p className="text-primary-foreground">
             Don't forget to cast your votes and share your predictions!
           </p>
@@ -60,7 +60,7 @@ export default async function Home() {
                       : ""
                   }
                 >
-                  <AvatarImage src={user.profilePic ?? ""} />
+                  <AvatarImage src={user.image ?? ""} />
                   <AvatarFallback>
                     {user.username?.[0]?.toUpperCase() ?? "@"}
                   </AvatarFallback>
@@ -81,8 +81,8 @@ export default async function Home() {
                     <p className="text-sm">{user.score} points</p>
                   </div>
                   <Progress
-                    value={Number(user.score)}
-                    max={Number(maxData.maxScore)}
+                    value={Number(user.score) || 1}
+                    max={Number(maxData.maxScore) || 1}
                     className="h-2"
                   />
                 </div>
@@ -103,7 +103,7 @@ export default async function Home() {
               </h3>
             </div>
 
-            {/* TODO: Only show if user haven't voted in any nomination */}
+            {/* TODO: Only show if user is logged in  and haven't voted in some nomination */}
             <div className="my-4 hidden items-center justify-between rounded bg-primary p-4 lg:flex">
               <p className="text-primary-foreground">
                 For now, don't forget to cast your votes and share your

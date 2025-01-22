@@ -19,7 +19,7 @@ export default async function WelcomePage() {
   }
 
   return (
-    <Card>
+    <Card className="lg:w-1/3">
       <CardHeader>
         <CardTitle>Welcome aboard</CardTitle>
         <CardDescription>We need to see some id</CardDescription>

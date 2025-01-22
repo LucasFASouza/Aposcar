@@ -54,7 +54,7 @@ const EditUserPage = () => {
   const router = useRouter();
   const [previewUrl, setPreviewUrl] = useState("");
 
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   const { data: userData, isLoading: isUserLoading } =
     api.users.getUserById.useQuery(session?.user?.id ?? "", {
@@ -65,7 +65,8 @@ const EditUserPage = () => {
     api.nominations.getMovies.useQuery();
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
-    onSuccess: () => {
+    onSuccess: (data, { username, image }) => {
+      update({ user: { username, image } });
       toast({
         title: "Profile updated!",
         description:
@@ -271,7 +272,7 @@ const EditUserPage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="flex w-full justify-between">
           <Link
             className={buttonVariants({ variant: "outline" })}
