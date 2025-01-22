@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import { users } from "@/server/db/schema/auth";
 import { api } from "@/trpc/server";
 import { notFound } from "next/navigation";
 import PhTrophy from "~icons/ph/trophy";
