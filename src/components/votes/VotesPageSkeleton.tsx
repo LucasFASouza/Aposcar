@@ -12,11 +12,11 @@ export const VotesPageSkeleton = () => (
       <Skeleton className="h-24 w-full lg:h-40" />
 
       <div className="flex w-full gap-4">
-        <Skeleton className="h-44 w-2/5 lg:block lg:w-1/5" />
-        <Skeleton className="h-44 w-2/5 lg:block lg:w-1/5" />
-        <Skeleton className="h-44 w-1/5 lg:block" />
-        <Skeleton className="hidden h-44 lg:block lg:w-1/5" />
-        <Skeleton className="hidden h-44 lg:block lg:w-1/5" />
+        <Skeleton className="aspect-[2/3] w-2/5 lg:block lg:w-1/5" />
+        <Skeleton className="aspect-[2/3] w-2/5 lg:block lg:w-1/5" />
+        <Skeleton className="aspect-[2/3] w-1/5 lg:block" />
+        <Skeleton className="hidden aspect-[2/3] lg:block lg:w-1/5" />
+        <Skeleton className="hidden aspect-[2/3] lg:block lg:w-1/5" />
       </div>
     </div>
 
