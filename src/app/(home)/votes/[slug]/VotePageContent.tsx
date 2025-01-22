@@ -21,12 +21,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
+import VotesPageSkeleton from "@/components/votes/VotesPageSkeleton";
 
 type Nomination = Unpacked<CategoryWithNavigation["nominations"]>;
 
-interface Props extends CategoryWithNavigation {
+interface Props {
   categorySlug: string;
   categories: Category[];
 }
@@ -44,7 +45,8 @@ export function VotePageContent({ categorySlug, categories }: Props) {
     categorySlug,
   });
 
-  if (!data?.currentCategory) return <>Loading...</>;
+  if (!data?.currentCategory)
+    return <VotesPageSkeleton />;
 
   const {
     currentCategory,
@@ -158,6 +160,7 @@ export function VotePageContent({ categorySlug, categories }: Props) {
           </div>
         </div>
       </div>
+
       <div className="fixed bottom-14 left-0 right-0 hidden lg:block">
         <VoteNavigator categories={categories} />
       </div>

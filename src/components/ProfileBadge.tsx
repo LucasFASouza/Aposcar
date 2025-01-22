@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { useSession, signOut } from "next-auth/react";
 import { api } from "@/trpc/react";
 import { useMemo } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const LoginButton = () => (
   <Button variant="ghost" asChild>
@@ -35,7 +36,7 @@ export const AvatarDropdown: React.FC = () => {
 
   const content = useMemo(() => {
     if (status === "loading" || isLoading) {
-      return <div>Loading...</div>;
+      return <Skeleton className="w-32 h-10" />;
     }
 
     if (!session) {

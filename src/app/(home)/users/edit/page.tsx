@@ -29,6 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useSession } from "next-auth/react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const formSchema = z.object({
   username: z
@@ -92,7 +93,19 @@ const EditUserPage = () => {
     }
   }, [userData]);
 
-  if (isUserLoading || isMoviesLoading || !movies) return <div>Loading...</div>;
+  if (isUserLoading || isMoviesLoading || !movies)
+    return (
+      <div className="flex w-full flex-col gap-8">
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <Skeleton className="h-[650px] lg:h-96 lg:w-3/5" />
+          <Skeleton className="h-[500px] lg:h-96 lg:w-2/5" />
+        </div>
+        <div className="flex w-full justify-between">
+          <Skeleton className="h-10 w-28" />
+          <Skeleton className="h-10 w-32" />
+        </div>
+      </div>
+    );
 
   const onSubmit = (data: UserFormData) => {
     mutate(data);
@@ -258,6 +271,7 @@ const EditUserPage = () => {
             </div>
           </div>
         </div>
+        
         <div className="flex w-full justify-between">
           <Link
             className={buttonVariants({ variant: "outline" })}

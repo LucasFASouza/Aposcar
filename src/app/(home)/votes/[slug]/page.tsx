@@ -1,8 +1,8 @@
 import { db } from "@/server/db";
-import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { VotePageContent } from "./VotePageContent";
 import { api } from "@/trpc/server";
+import VotesPageSkeleton from "@/components/votes/VotesPageSkeleton";
 
 export const dynamicParams = false;
 
@@ -17,7 +17,7 @@ const VotePage = async ({ params }: { params: { slug: string } }) => {
   const categories = await api.nominations.getCategories();
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<VotesPageSkeleton />}>
       <VotePageContent categorySlug={params.slug} categories={categories} />
     </Suspense>
   );
