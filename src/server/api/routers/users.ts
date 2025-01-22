@@ -16,7 +16,11 @@ export const usersRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       await ctx.db
         .update(users)
-        .set({ username: input.username, completedOnboarding: new Date() })
+        .set({
+          username: input.username,
+          image: input.image,
+          completedOnboarding: new Date(),
+        })
         .where(eq(users.id, ctx.session.user.id));
 
       return { success: true };

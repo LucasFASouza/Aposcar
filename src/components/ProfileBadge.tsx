@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,7 +9,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AvatarImage } from "@radix-ui/react-avatar";
 import PhSignOut from "~icons/ph/sign-out";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +18,7 @@ import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const LoginButton = () => (
-  <Button variant="ghost" asChild>
+  <Button variant="outline" asChild>
     <Link href="/login">Login</Link>
   </Button>
 );
@@ -45,7 +44,11 @@ export const AvatarDropdown: React.FC = () => {
 
     if (error) {
       signOut();
-      return <div>Error loading user data</div>;
+      return (
+        <div className="text-sm text-muted-foreground">
+          Error loading user data
+        </div>
+      );
     }
 
     return (
@@ -62,7 +65,9 @@ export const AvatarDropdown: React.FC = () => {
             </div>
             <Avatar>
               <AvatarImage src={user?.image ?? ""} />
-              <AvatarFallback />
+              <AvatarFallback>
+                {user?.username?.[0]?.toUpperCase() ?? "@"}
+              </AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>

@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/select";
 import { useSession } from "next-auth/react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const formSchema = z.object({
   username: z
@@ -124,14 +125,21 @@ const EditUserPage = () => {
             </FormDescription>
             <div className="flex flex-col gap-12 lg:flex-row">
               <div className="flex flex-col items-center justify-center lg:w-1/4">
-                <div className="relative aspect-square w-1/2 overflow-hidden rounded-full lg:w-full">
+                {/* <div className="relative aspect-square w-1/2 overflow-hidden rounded-full lg:w-full">
                   <Image
                     src={previewUrl || "/images/poster-placeholder.png"}
                     alt="Profile picture preview"
                     fill
                     className="object-cover"
                   />
-                </div>
+                </div> */}
+
+                <Avatar className="aspect-square h-fit w-1/2 lg:w-full">
+                  <AvatarImage src={previewUrl ?? ""} />
+                  <AvatarFallback className=" font-bold text-5xl">
+                    @
+                  </AvatarFallback>
+                </Avatar>
               </div>
               <div className="flex flex-col gap-4 lg:w-3/4">
                 <FormField

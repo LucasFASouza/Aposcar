@@ -19,10 +19,10 @@ export default async function WelcomePage() {
   }
 
   return (
-    <Card className="lg:w-1/3">
+    <Card className="lg:w-1/3 m-4">
       <CardHeader>
         <CardTitle>Welcome aboard</CardTitle>
-        <CardDescription>We need to see some id</CardDescription>
+        <CardDescription>We need to see some id...</CardDescription>
       </CardHeader>
       <CardContent>
         <WelcomeForm />

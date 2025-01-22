@@ -25,20 +25,28 @@ import {
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const WelcomeForm = () => {
   const { data: session, update } = useSession();
   const [previewUrl, setPreviewUrl] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const { toast } = useToast();
   const router = useRouter();
 
   const { mutate, isPending, isSuccess } = api.users.onboardUser.useMutation({
-    onSuccess: (data, { username, image }) => {
-      update({ user: { username, image } });
+    onSuccess: (data, variables) => {
+      console.log("Mutated", data, variables);
+      update({
+        user: {
+          username: variables.username,
+          image: variables.image,
+        },
+      });
       toast({
         title: "Account created successfully",
-        description: `Welcome ${username}. Edit your profile later to add your social links and favorite movie!`,
+        description: `Welcome ${variables.username}. Edit your profile later to add your social links and favorite movie!`,
       });
       router.push("/");
     },
@@ -53,20 +61,28 @@ export const WelcomeForm = () => {
   });
 
   useEffect(() => {
-    if (session?.user?.image) {
-      setPreviewUrl(session.user.image);
+    if (session?.user && !isLoaded) {
+      console.log("Efeitando");
+      setPreviewUrl(session.user.image ?? "");
+      form.setValue("username", session.user.username);
+      form.setValue("image", session.user.image ?? "");
+      setIsLoaded(true);
     }
-  }, []);
+  }, [session]);
 
   const onSubmit = (data: OnboardUserInput) => {
-    mutate(data);
+    console.log("Submitting data", data);
+    mutate({
+      username: data.username,
+      image: data.image,
+    });
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="flex w-full flex-col items-center justify-center gap-8 lg:flex-row">
-          <div className="flex w-1/2 flex-col">
+          {/* <div className="flex w-1/2 flex-col">
             <div className="relative aspect-square w-full overflow-hidden rounded-full">
               <Image
                 src={previewUrl || "/images/poster-placeholder.png"}
@@ -75,7 +91,13 @@ export const WelcomeForm = () => {
                 className="object-cover"
               />
             </div>
-          </div>
+          </div> */}
+          <Avatar className="aspect-square h-fit w-1/2 lg:w-1/4">
+            <AvatarImage src={previewUrl ?? ""} />
+            <AvatarFallback className="text-4xl font-bold lg:text-3xl">
+              @
+            </AvatarFallback>
+          </Avatar>
 
           <div className="flex flex-col gap-4 lg:w-3/4">
             <FormField
@@ -114,8 +136,8 @@ export const WelcomeForm = () => {
                     />
                   </FormControl>
                   <FormDescription>
-                    Add the URL of your chosen profile picture. Or leave it
-                    blank to use the default.
+                    Add the URL of your chosen profile picture. <br />
+                    Or leave it blank to use the default.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
