@@ -28,7 +28,7 @@ import { useEffect, useState } from "react";
 
 export const WelcomeForm = () => {
   const { data: session, update } = useSession();
-  const [previewUrl, setPreviewUrl] = useState(session?.user.image || "");
+  const [previewUrl, setPreviewUrl] = useState("");
 
   const { toast } = useToast();
   const router = useRouter();
@@ -55,12 +55,8 @@ export const WelcomeForm = () => {
   useEffect(() => {
     if (session?.user?.image) {
       setPreviewUrl(session.user.image);
-      form.reset({
-        username: "",
-        image: session.user.image,
-      });
     }
-  }, [session, form]);
+  }, []);
 
   const onSubmit = (data: OnboardUserInput) => {
     mutate(data);
