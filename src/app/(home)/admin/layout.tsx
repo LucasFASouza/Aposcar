@@ -5,7 +5,9 @@ import { type PropsWithChildren } from "react";
 const AdminLayout: React.FC<PropsWithChildren> = async ({ children }) => {
   const session = await auth();
 
-  if (session?.user?.role !== "admin") return redirect("/");
+  console.log("session", session);
+
+  // if (session?.user?.role !== "admin") return redirect("/");
 
   return <>{children}</>;
 };

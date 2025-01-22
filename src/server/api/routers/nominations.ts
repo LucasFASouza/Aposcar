@@ -200,4 +200,25 @@ export const nominationsRouter = createTRPCRouter({
     .query(async ({ ctx }) => {
       return await ctx.db.select().from(dbtMovie);
     }),
+
+  setWinner: protectedProcedure
+    .input(
+      z.object({
+        nominationId: z.string(),
+        categoryId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db
+        .update(dbtNomination)
+        .set({ isWinner: false })
+        .where(eq(dbtNomination.category, input.categoryId));
+
+      await ctx.db
+        .update(dbtNomination)
+        .set({ isWinner: true, isWinnerLastUpdate: new Date() })
+        .where(eq(dbtNomination.id, input.nominationId));
+
+      return { success: true };
+    }),
 });

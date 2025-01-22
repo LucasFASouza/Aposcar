@@ -46,7 +46,7 @@ export const WelcomeForm = () => {
       });
       toast({
         title: "Account created successfully",
-        description: `Welcome ${variables.username}. Edit your profile later to add your social links and favorite movie!`,
+        description: `Welcome ${variables.username}!\nEdit your profile later to add your social links and favorite movie!`,
       });
       router.push("/");
     },

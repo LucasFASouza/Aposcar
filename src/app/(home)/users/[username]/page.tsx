@@ -185,11 +185,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                   <TableCell className="font-bold">
                     {nomination.categoryName}
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    className={nomination.isWinner ? "text-primary" : ""}
+                  >
                     {nomination.votedReceiverName ? (
-                      <span
-                        className={nomination.isWinner ? "text-primary" : ""}
-                      >
+                      <span>
                         {nomination.votedReceiverName}
                         {" ("}
                         {nomination.votedMovieName}
