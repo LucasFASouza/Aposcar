@@ -65,8 +65,8 @@ const EditUserPage = () => {
     api.nominations.getMovies.useQuery();
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
-    onSuccess: async (data, { username, image }) => {
-      await update({ user: { username, image } });
+    onSuccess: (data, { username, image }) => {
+      update({ user: { username, image } });
       toast({
         title: "Profile updated!",
         description:

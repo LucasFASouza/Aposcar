@@ -33,7 +33,7 @@ export const AvatarDropdown: React.FC = () => {
     enabled: !!session?.user?.id,
   });
 
-  const content = useMemo(async () => {
+  const content = useMemo(() => {
     if (status === "loading" || isLoading) {
       return <Skeleton className="h-10 w-32" />;
     }
@@ -43,7 +43,7 @@ export const AvatarDropdown: React.FC = () => {
     }
 
     if (error) {
-      await signOut();
+      signOut();
       return (
         <div className="text-sm text-muted-foreground">
           Error loading user data

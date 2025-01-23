@@ -1,18 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { db } from "@/server/db";
 import { auth } from "@/server/auth";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 import { buttonVariants } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
-import {
-  dbtCategory,
-  dbtMovie,
-  dbtNomination,
-  dbtReceiver,
-} from "@/server/db/schema/aposcar";
-import { eq } from "drizzle-orm";
 import { api } from "@/trpc/server";
 
 export default async function Home() {

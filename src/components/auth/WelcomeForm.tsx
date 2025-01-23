@@ -34,9 +34,9 @@ export const WelcomeForm = () => {
   const router = useRouter();
 
   const { mutate, isPending, isSuccess } = api.users.onboardUser.useMutation({
-    onSuccess: async (data, variables) => {
+    onSuccess: (data, variables) => {
       console.log("Mutated", data, variables);
-      await update({
+      update({
         user: {
           username: variables.username,
           image: variables.image,
