@@ -7,7 +7,7 @@ import { onboardUserInputSchema } from "@/server/api/zod/users";
 import { auth } from "@/server/auth";
 import { users, userSelectSchema } from "@/server/db/schema/auth";
 import { TRPCError } from "@trpc/server";
-import { eq } from "drizzle-orm";
+import { eq, and, not } from "drizzle-orm";
 import { z } from "zod";
 
 export const usersRouter = createTRPCRouter({
@@ -52,6 +52,23 @@ export const usersRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const existingUser = await ctx.db
+        .select()
+        .from(users)
+        .where(
+          and(
+            eq(users.username, input.username),
+            not(eq(users.id, ctx.session.user.id)),
+          ),
+        );
+
+      if (existingUser.length > 0) {
+        throw new TRPCError({
+          code: "CONFLICT",
+          message: "DUPLICATE_USERNAME",
+        });
+      }
+
       await ctx.db
         .update(users)
         .set(input)

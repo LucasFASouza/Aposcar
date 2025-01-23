@@ -75,6 +75,22 @@ const EditUserPage = () => {
       });
       router.push("/");
     },
+    onError: (error) => {
+      if (error.data?.code === "CONFLICT") {
+        toast({
+          title: "Username taken",
+          description: "This username is already taken. Please choose another",
+        });
+        return;
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description:
+            "Something went wrong. Please try again later or contact us.",
+        });
+      }
+    },
   });
 
   const form = useForm<UserFormData>({
@@ -110,6 +126,10 @@ const EditUserPage = () => {
     );
 
   const onSubmit = (data: UserFormData) => {
+    if (data.favoriteMovie === "Select a movie") {
+      data.favoriteMovie = "";
+    }
+    
     mutate(data);
   };
 
@@ -136,7 +156,7 @@ const EditUserPage = () => {
 
                 <Avatar className="aspect-square h-fit w-1/2 lg:w-full">
                   <AvatarImage src={previewUrl ?? ""} />
-                  <AvatarFallback className=" font-bold text-5xl">
+                  <AvatarFallback className="text-5xl font-bold">
                     @
                   </AvatarFallback>
                 </Avatar>

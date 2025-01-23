@@ -50,6 +50,22 @@ export const WelcomeForm = () => {
       });
       router.push("/");
     },
+    onError: (error) => {
+      if (error.data?.code === "CONFLICT") {
+        toast({
+          title: "Username taken",
+          description: "This username is already taken. Please choose another",
+        });
+        return;
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description:
+            "Something went wrong. Please try again later or contact us.",
+        });
+      }
+    },
   });
 
   const form = useForm<OnboardUserInput>({
