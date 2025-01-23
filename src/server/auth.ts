@@ -43,6 +43,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           emailVerified: null,
           role: "basic",
           username: profile.email.split("@")[0] ?? profile.name,
+          favoriteMovie: null,
+          letterboxdUsername: null,
+          twitterUsername: null,
+          bskyUsername: null,
+          githubUsername: null,
         };
       },
     }),
