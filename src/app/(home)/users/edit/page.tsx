@@ -17,7 +17,6 @@ import { api } from "@/trpc/react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import PhCircleNotch from "~icons/ph/circle-notch";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -66,14 +65,14 @@ const EditUserPage = () => {
     api.nominations.getMovies.useQuery();
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
-    onSuccess: (data, { username, image }) => {
-      update({ user: { username, image } });
+    onSuccess: async (data, { username, image }) => {
+      await update({ user: { username, image } });
       toast({
         title: "Profile updated!",
         description:
           "Your profile has been updated successfully. It may take a few minutes to reflect the changes.",
       });
-      router.push("/");
+      await router.push("/");
     },
     onError: (error) => {
       if (error.data?.code === "CONFLICT") {
@@ -129,13 +128,15 @@ const EditUserPage = () => {
     if (data.favoriteMovie === "Select a movie") {
       data.favoriteMovie = "";
     }
-    if (data?.twitterUsername && data.twitterUsername.startsWith("@")) {
-      data.twitterUsername = data.twitterUsername.slice(1);
-    }
-    if (data?.letterboxdUsername && data.letterboxdUsername.startsWith("@")) {
-      data.letterboxdUsername = data.letterboxdUsername.slice(1);
-    }
-    
+
+    data.twitterUsername = data?.twitterUsername?.startsWith("@")
+      ? data.twitterUsername.slice(1)
+      : data.twitterUsername;
+
+    data.letterboxdUsername = data?.letterboxdUsername?.startsWith("@")
+      ? data.letterboxdUsername.slice(1)
+      : data.letterboxdUsername;
+
     mutate(data);
   };
 

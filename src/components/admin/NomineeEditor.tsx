@@ -12,10 +12,8 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -41,7 +39,7 @@ const nominationSchema = z.object({
 
 type NominationFormData = z.infer<typeof nominationSchema>;
 
-export function NomineeEditor({ categories }: { categories: any }) {
+export function NomineeEditor({ categories }: { categories: Category[] }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [nomineesNumber, setNomineesNumber] = useState(5);
   const { toast } = useToast();
@@ -140,8 +138,7 @@ export function NomineeEditor({ categories }: { categories: any }) {
             ))}
           </SelectContent>
         </Select>
-            
-        
+
         {movies && nominations && (
           <div className="space-y-4">
             {Array.from({ length: nomineesNumber }).map((_, index) => (

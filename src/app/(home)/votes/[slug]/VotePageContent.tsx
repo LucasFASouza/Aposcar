@@ -71,7 +71,7 @@ export function VotePageContent({ categorySlug, categories }: Props) {
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>You didn't confirm your vote!</DialogTitle>
+            <DialogTitle>You didn&apos;t confirm your vote!</DialogTitle>
             <DialogDescription>
               Are you sure you want to leave without voting in this category?
             </DialogDescription>

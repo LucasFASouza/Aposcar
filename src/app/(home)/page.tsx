@@ -28,7 +28,7 @@ export default async function Home() {
         <div className="my-4 flex items-center justify-between rounded bg-primary p-4 lg:hidden">
           {/* TODO: Only show if user has logged in and haven't voted in some nomination */}
           <p className="text-primary-foreground">
-            Don't forget to cast your votes and share your predictions!
+            Don&apos;t forget to cast your votes and share your predictions!
           </p>
           <Link
             className={buttonVariants({ variant: "outline" })}
@@ -99,14 +99,15 @@ export default async function Home() {
           <div>
             <div className="space-y-1 rounded border p-4">
               <h3 className="text-sm">
-                When the premiation starts you'll see the winners right here!
+                When the premiation starts you&apos;ll see the winners right
+                here!
               </h3>
             </div>
 
             {/* TODO: Only show if user is logged in  and haven't voted in some nomination */}
             <div className="my-4 hidden items-center justify-between rounded bg-primary p-4 lg:flex">
               <p className="text-primary-foreground">
-                For now, don't forget to cast your votes and share your
+                For now, don&apos;t forget to cast your votes and share your
                 predictions!
               </p>
               <Link

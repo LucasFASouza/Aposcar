@@ -12,7 +12,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
 import PhCircleNotch from "~icons/ph/circle-notch";
@@ -22,8 +21,7 @@ import {
   OnboardUserInput,
   onboardUserInputSchema,
 } from "@/server/api/zod/users";
-import { redirect, useRouter } from "next/navigation";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -36,9 +34,9 @@ export const WelcomeForm = () => {
   const router = useRouter();
 
   const { mutate, isPending, isSuccess } = api.users.onboardUser.useMutation({
-    onSuccess: (data, variables) => {
+    onSuccess: async (data, variables) => {
       console.log("Mutated", data, variables);
-      update({
+      await update({
         user: {
           username: variables.username,
           image: variables.image,

@@ -14,7 +14,7 @@ import { notFound } from "next/navigation";
 import PhTrophy from "~icons/ph/trophy";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/server/auth";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
@@ -198,7 +198,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                     ) : (
                       (nomination.votedMovieName ?? (
                         <span className="text-sm font-normal text-muted-foreground">
-                          You haven't voted in this category!
+                          You haven&apos;t voted in this category!
                         </span>
                       ))
                     )}
