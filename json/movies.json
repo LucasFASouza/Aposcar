@@ -1,302 +1,470 @@
 [
   {
-    "name": "Oppenheimer",
-    "tagline": "THE WORLD FOREVER CHANGES.",
-    "description": "The story of J. Robert Oppenheimer\u2019s role in the development of the atomic bomb during World War II.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/7/8/4/3/2/8/784328-oppenheimer-0-1000-0-1500-crop.jpg?v=e3c6e7a32c",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/mn/uu/op/02/oppenheimer-2023-1200-1200-675-675-crop-000000.jpg?v=aa1b3a6d85",
-    "slug": "oppenheimer-2023",
-    "letterboxd": "https://letterboxd.com/film/oppenheimer-2023/",
-    "type": "movie"
+    "slug": "conclave",
+    "name": "Conclave",
+    "tagline": "WHAT HAPPENS BEHIND THESE WALLS WILL CHANGE EVERYTHING.",
+    "description": "After the unexpected death of the Pope, Cardinal Lawrence is tasked with managing the covert and ancient ritual of electing a new one. Sequestered in the Vatican with the Catholic Church\u2019s most powerful leaders until the process is complete, Lawrence finds himself at the center of a conspiracy that could lead to its downfall.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/7/7/2/5/3/877253-conclave-0-1000-0-1500-crop.jpg?v=f9cbf50dec",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/pc/vk/od/sg/Conclave-1200-1200-675-675-crop-000000.jpg?v=19e6dafecc",
+    "letterboxd": "https://letterboxd.com/film/conclave/"
   },
   {
-    "name": "Poor Things",
-    "tagline": "SHE\u2019S LIKE NOTHING YOU\u2019VE EVER SEEN.",
-    "description": "Brought back to life by an unorthodox scientist, a young woman runs off with a lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/7/1/0/3/5/2/710352-poor-things-0-1000-0-1500-crop.jpg?v=a0f2ee9a0e",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/33/cq/4s/53/gsVC7HMf4VR2XFOyqjTSklY2Tms-1200-1200-675-675-crop-000000.jpg?v=026c0bec1a",
-    "slug": "poor-things-2023",
-    "letterboxd": "https://letterboxd.com/film/poor-things-2023/",
-    "type": "movie"
+    "slug": "emilia-perez",
+    "name": "Emilia P\u00e9rez",
+    "tagline": "PASSION HAS A NEW NAME.",
+    "description": "Rita, an underrated lawyer working for a large law firm more interested in getting criminals out of jail than bringing them to justice, is hired by the leader of a criminal organization.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg?v=cc7782128e",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/04/ks/7w/la/EmiliaPerez-1200-1200-675-675-crop-000000.jpg?v=417fe2842a",
+    "letterboxd": "https://letterboxd.com/film/emilia-perez/"
   },
   {
-    "name": "Killers of the Flower Moon",
-    "tagline": "GREED IS AN ANIMAL THAT HUNGERS FOR BLOOD.",
-    "description": "When oil is discovered in 1920s Oklahoma under Osage Nation land, the Osage people are murdered one by one\u2014until the FBI steps in to unravel the mystery.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/3/9/8/0/0/9/398009-killers-of-the-flower-moon-0-1000-0-1500-crop.jpg?v=49b577149d",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/wt/7t/d0/vk/kotfm-1200-1200-675-675-crop-000000.jpg?v=1189ce14d7",
-    "slug": "killers-of-the-flower-moon",
-    "letterboxd": "https://letterboxd.com/film/killers-of-the-flower-moon/",
-    "type": "movie"
+    "slug": "anora",
+    "name": "Anora",
+    "tagline": "LOVE IS A HUSTLE.",
+    "description": "Anora, a young sex worker from Brooklyn, gets her chance at a Cinderella story when she meets and impulsively marries the son of an oligarch. Once the news reaches Russia, her fairytale is threatened as the parents set out for New York to get the marriage annulled.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/5/9/5/4/0/959540-anora-0-1000-0-1500-crop.jpg?v=6f92877033",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/5d/nm/eu/bz/anora-1200-1200-675-675-crop-000000.jpg?v=220493ca2d",
+    "letterboxd": "https://letterboxd.com/film/anora/"
   },
   {
-    "name": "Barbie",
-    "tagline": "SHE\u2019S EVERYTHING. HE\u2019S JUST KEN.",
-    "description": "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/2/7/7/0/6/4/277064-barbie-0-1000-0-1500-crop.jpg?v=1b83dc7a71",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/mm/bt/iu/mk/fRyYKQdsXIjw26MendWxpWmvnBs-1200-1200-675-675-crop-000000.jpg?v=0036da8577",
-    "slug": "barbie",
-    "letterboxd": "https://letterboxd.com/film/barbie/",
-    "type": "movie"
+    "slug": "the-brutalist",
+    "name": "The Brutalist",
+    "tagline": "WELCOME TO AMERICA.",
+    "description": "Escaping post-war Europe, visionary architect L\u00e1szl\u00f3 T\u00f3th arrives in America to rebuild his life, his work, and his marriage to his wife Erzs\u00e9bet after being forced apart during wartime by shifting borders and regimes. On his own in a strange new country, L\u00e1szl\u00f3 settles in Pennsylvania, where the wealthy and prominent industrialist Harrison Lee Van Buren recognizes his talent for building. But power and legacy come at a heavy cost.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/4/7/8/4/2/8/478428-the-brutalist-0-1000-0-1500-crop.jpg?v=e23890665e",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/jx/rq/sh/k6/mN3a8MVeF57XBJCZGthr1nQlkjk-1200-1200-675-675-crop-000000.jpg?v=5e4be71ae8",
+    "letterboxd": "https://letterboxd.com/film/the-brutalist/"
   },
   {
-    "name": "Maestro",
+    "slug": "wicked-2024",
+    "name": "Wicked",
+    "tagline": "EVERYONE DESERVES THE CHANCE TO FLY.",
+    "description": "When ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda, the two\u2019s unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/3/3/7/0/3/6/337036-wicked-2024-0-1000-0-1500-crop.jpg?v=c519c37ff7",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/j4/ly/fa/jz/3M5USne9t9XKMmb4nJ7SfcAYh6X-1200-1200-675-675-crop-000000.jpg?v=e85c5e4529",
+    "letterboxd": "https://letterboxd.com/film/wicked-2024/"
+  },
+  {
+    "slug": "a-complete-unknown",
+    "name": "A Complete Unknown",
+    "tagline": "THE BALLAD OF A TRUE ORIGINAL.",
+    "description": "New York, early 1960s. Against the backdrop of a vibrant music scene and tumultuous cultural upheaval, an enigmatic 19-year-old from Minnesota arrives in the West Village with his guitar and revolutionary talent, destined to change the course of American music.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/5/8/6/5/8/3/586583-a-complete-unknown-0-1000-0-1500-crop.jpg?v=f14ab6ecf6",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/y7/ha/y0/tk/a-complete-unknown-1200-1200-675-675-crop-000000.jpg?v=5519495df2",
+    "letterboxd": "https://letterboxd.com/film/a-complete-unknown/"
+  },
+  {
+    "slug": "dune-part-two",
+    "name": "Dune: Part Two",
+    "tagline": "LONG LIVE THE FIGHTERS.",
+    "description": "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-1000-0-1500-crop.jpg?v=cc533700f8",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/qp/uv/i4/8b/l6b9YZEokZl1nt7q0pprrur6btG-1200-1200-675-675-crop-000000.jpg?v=ed21d71137",
+    "letterboxd": "https://letterboxd.com/film/dune-part-two/"
+  },
+  {
+    "slug": "the-substance",
+    "name": "The Substance",
+    "tagline": "IF YOU FOLLOW THE INSTRUCTIONS, WHAT COULD GO WRONG?",
+    "description": "A fading celebrity decides to use a black market drug, a cell-replicating substance that temporarily creates a younger, better version of herself.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/3/8/1/4/0/838140-the-substance-0-1000-0-1500-crop.jpg?v=ab9e1072f8",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/ju/7r/z4/9i/xfSVZf7naMoGuqoHaQhbvfPrfWs-1200-1200-675-675-crop-000000.jpg?v=adde104f43",
+    "letterboxd": "https://letterboxd.com/film/the-substance/"
+  },
+  {
+    "slug": "nickel-boys",
+    "name": "Nickel Boys",
     "tagline": null,
-    "description": "A towering and fearless love story chronicling the lifelong relationship between Leonard Bernstein and Felicia Montealegre Cohn Bernstein. A love letter to life and art, Maestro at its core is an emotionally epic portrayal of family and love.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/4/5/3/0/6/9/453069-maestro-0-1000-0-1500-crop.jpg?v=1dde1fa55f",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/d4/zc/k5/ps/Maestro2-1200-1200-675-675-crop-000000.jpg?v=a80b640668",
-    "slug": "maestro-2023",
-    "letterboxd": "https://letterboxd.com/film/maestro-2023/",
-    "type": "movie"
+    "description": "Chronicles the powerful friendship between two young Black teenagers navigating the harrowing trials of reform school together in Florida.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/2/6/5/8/9/926589-nickel-boys-0-1000-0-1500-crop.jpg?v=c90912e607",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/0m/nv/ic/99/sy7Q8ttHlw4yMRoBarPlNSzlhxf-1200-1200-675-675-crop-000000.jpg?v=3aa6fcdece",
+    "letterboxd": "https://letterboxd.com/film/nickel-boys/"
   },
   {
-    "name": "American Fiction",
+    "slug": "im-still-here-2024",
+    "name": "I\u2019m Still Here",
+    "tagline": "WHEN A MOTHER\u2019S COURAGE DEFIES TYRANNY, HOPE IS REBORN.",
+    "description": "In the early 1970s, the military dictatorship in Brazil reaches its height. The Paiva family - Rubens, Eunice, and their five children - live in a beachside house in Rio, open to all their friends. One day, Rubens is taken for questioning and does not return.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/0/1/6/7/1/901671-im-still-here-2024-0-1000-0-1500-crop.jpg?v=62be7ea503",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/wz/fd/qp/mi/i'm%20still-1200-1200-675-675-crop-000000.jpg?v=76e2958e0b",
+    "letterboxd": "https://letterboxd.com/film/im-still-here-2024/"
+  },
+  {
+    "slug": "a-real-pain",
+    "name": "A Real Pain",
+    "tagline": "JOIN THE FAMILY.",
+    "description": "Mismatched cousins David and Benji reunite for a tour through Poland to honor their beloved grandmother. The adventure takes a turn when the pair\u2019s old tensions resurface against the backdrop of their family history.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/1/3/2/5/8/913258-a-real-pain-0-1000-0-1500-crop.jpg?v=893a943872",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/j6/nm/pz/7d/cJUaa7KdSgxFMri4hdO6ZnxmLcr-1200-1200-675-675-crop-000000.jpg?v=41e980e877",
+    "letterboxd": "https://letterboxd.com/film/a-real-pain/"
+  },
+  {
+    "slug": "sing-sing-2023",
+    "name": "Sing Sing",
+    "tagline": "TRUST THE PROCESS.",
+    "description": "Divine G, imprisoned at Sing Sing for a crime he didn\u2019t commit, finds purpose by acting in a theatre group alongside other incarcerated men in this story of resilience, humanity, and the transformative power of art.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/1/9/5/7/1041957-sing-sing-2023-0-1000-0-1500-crop.jpg?v=f893b22924",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/pb/tw/7z/mm/sing%20sing-1200-1200-675-675-crop-000000.jpg?v=449b71a30e",
+    "letterboxd": "https://letterboxd.com/film/sing-sing-2023/"
+  },
+  {
+    "slug": "september-5",
+    "name": "September 5",
     "tagline": null,
-    "description": "A novelist fed up with the establishment profiting from \u201cBlack\u201d entertainment uses a pen name to write a book that propels him into the heart of hypocrisy and the madness he claims to disdain.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/9/5/2/8/1/2/952812-american-fiction-0-1000-0-1500-crop.jpg?v=fbc2c6daf1",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/63/d9/n6/vr/american%20fiction-1200-1200-675-675-crop-000000.jpg?v=6044bc5835",
-    "slug": "american-fiction",
-    "letterboxd": "https://letterboxd.com/film/american-fiction/",
-    "type": "movie"
+    "description": "During the 1972 Summer Olympics in Munich, Germany, an American sports broadcasting team must adapt to live coverage the Israeli athletes being held hostage by a terrorist group.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/9/5/7/1/8/1095718-september-5-0-1000-0-1500-crop.jpg?v=d70c1a941c",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/ff/f7/uf/b3/s5-1200-1200-675-675-crop-000000.jpg?v=a312e314f8",
+    "letterboxd": "https://letterboxd.com/film/september-5/"
   },
   {
-    "name": "Anatomy of a Fall",
-    "tagline": "DID SHE DO IT?",
-    "description": "A woman is suspected of her husband\u2019s murder, and their blind son faces a moral dilemma as the sole witness.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/2/2/0/9/3/822093-anatomy-of-a-fall-0-1000-0-1500-crop.jpg?v=4efab8aedc",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/wt/mj/4u/pj/anatomy-1200-1200-675-675-crop-000000.jpg?v=b1310de47c",
-    "slug": "anatomy-of-a-fall",
-    "letterboxd": "https://letterboxd.com/film/anatomy-of-a-fall/",
-    "type": "movie"
+    "slug": "nosferatu-2024",
+    "name": "Nosferatu",
+    "tagline": "SUCCUMB TO THE DARKNESS.",
+    "description": "A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/3/5/9/5/0/5/359505-nosferatu-2024-0-1000-0-1500-crop.jpg?v=a12d4ad648",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/l3/72/mx/b8/vqToPEywI1QzUNd5bJceldmrWUf-1200-1200-675-675-crop-000000.jpg?v=cdd95a78e1",
+    "letterboxd": "https://letterboxd.com/film/nosferatu-2024/"
   },
   {
-    "name": "The Holdovers",
-    "tagline": "DISCOMFORT AND JOY.",
-    "description": "A curmudgeonly instructor at a New England prep school is forced to remain on campus during Christmas break to babysit the handful of students with nowhere to go. Eventually, he forms an unlikely bond with one of them \u2014 a damaged, brainy troublemaker \u2014 and with the school\u2019s head cook, who has just lost a son in Vietnam.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/7/5/5/5/6/4/755564-the-holdovers-0-1000-0-1500-crop.jpg?v=99bbdd8955",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/w7/tw/8s/e8/IMG_3085-1200-1200-675-675-crop-000000.jpg?v=b40be2ecb7",
-    "slug": "the-holdovers",
-    "letterboxd": "https://letterboxd.com/film/the-holdovers/",
-    "type": "movie"
+    "slug": "gladiator-ii",
+    "name": "Gladiator II",
+    "tagline": "PREPARE TO BE ENTERTAINED.",
+    "description": "Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius is forced to enter the Colosseum after his home is conquered by the tyrannical Emperors who now lead Rome with an iron fist. With rage in his heart and the future of the Empire at stake, Lucius must look to his past to find strength and honor to return the glory of Rome to its people.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/4/8/6/9/7/8/486978-gladiator-ii-0-1000-0-1500-crop.jpg?v=0fb2edf525",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/85/h2/uy/p3/gladiator%202-1200-1200-675-675-crop-000000.jpg?v=35462ea2c8",
+    "letterboxd": "https://letterboxd.com/film/gladiator-ii/"
   },
   {
-    "name": "The Zone of Interest",
-    "tagline": "NO NEED TO LISTEN.",
-    "description": "The commandant of Auschwitz, Rudolf H\u00f6ss, and his wife Hedwig, strive to build a dream life for their family in a house and garden next to the camp.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/3/9/8/8/0/0/398800-the-zone-of-interest-0-1000-0-1500-crop.jpg?v=0514f658e1",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/s2/ig/hp/hx/bq9FpkTw9I3s1cSRuZxQibM2xOx-1200-1200-675-675-crop-000000.jpg?v=6259278de6",
-    "slug": "the-zone-of-interest",
-    "letterboxd": "https://letterboxd.com/film/the-zone-of-interest/",
-    "type": "movie"
+    "slug": "maria-2024",
+    "name": "Maria",
+    "tagline": null,
+    "description": "Maria Callas, the world\u2019s greatest opera singer, lives the last days of her life in 1970s Paris, as she confronts her identity and life.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/3/6/0/4/0/936040-maria-2024-0-1000-0-1500-crop.jpg?v=66ba1a738c",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/lr/xy/8y/pz/maria-1200-1200-675-675-crop-000000.jpg?v=bb6a3e4317",
+    "letterboxd": "https://letterboxd.com/film/maria-2024/"
   },
   {
-    "name": "Napoleon",
-    "tagline": "HE CAME FROM NOTHING. HE CONQUERED EVERYTHING.",
-    "description": "An epic that details the checkered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/6/7/4/1/3/7/674137-napoleon-0-1000-0-1500-crop.jpg?v=8cb54e07b5",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/we/7u/kj/bf/napoleon-2023-1200-1200-675-675-crop-000000.jpg?v=56ee0d66d7",
-    "slug": "napoleon-2023",
-    "letterboxd": "https://letterboxd.com/film/napoleon-2023/",
-    "type": "movie"
+    "slug": "the-apprentice-2024",
+    "name": "The Apprentice",
+    "tagline": "AN AMERICAN HORROR STORY.",
+    "description": "A young Donald Trump, eager to make his name as a hungry scion of a wealthy family in 1970s New York, comes under the spell of Roy Cohn, the cutthroat attorney who would help create the Donald Trump we know today. Cohn sees in Trump the perfect prot\u00e9g\u00e9\u2014someone with raw ambition, a hunger for success, and a willingness to do whatever it takes to win.",
+    "poster": "https://a.ltrbxd.com/resized/sm/upload/yj/8m/d9/4r/apprentice_xxlg-0-1000-0-1500-crop.jpg?v=684581b66b",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/ah/2m/d0/i8/TheApprentice-1200-1200-675-675-crop-000000.jpg?v=31b97bae93",
+    "letterboxd": "https://letterboxd.com/film/the-apprentice-2024/"
   },
   {
-    "name": "The Creator",
-    "tagline": "THIS IS A FIGHT FOR OUR VERY EXISTENCE.",
-    "description": "Amid a future war between the human race and the forces of artificial intelligence, a hardened ex-special forces agent grieving the disappearance of his wife, is recruited to hunt down and kill the Creator, the elusive architect of advanced AI who has developed a mysterious weapon with the power to end the war\u2014and mankind itself.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/5/9/5/0/2/9/595029-the-creator-0-1000-0-1500-crop.jpg?v=b921bf1d45",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/cm/y0/bu/57/the-creator-1200-1200-675-675-crop-000000.jpg?v=084e42dd67",
-    "slug": "the-creator-2023",
-    "letterboxd": "https://letterboxd.com/film/the-creator-2023/",
-    "type": "movie"
+    "slug": "a-different-man",
+    "name": "A Different Man",
+    "tagline": "THE MORE YOU CHANGE, THE MORE YOU STAY THE SAME.",
+    "description": "Aspiring actor Edward undergoes a radical medical procedure to drastically transform his appearance. But his new dream face quickly turns into a nightmare, as he loses out on the role he was born to play and becomes obsessed with reclaiming what was lost.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/9/1/2/9/1/891291-a-different-man-0-1000-0-1500-crop.jpg?v=f19de2db41",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/gp/m2/rs/1m/ADifferentMan-1200-1200-675-675-crop-000000.jpg?v=0ad096bcad",
+    "letterboxd": "https://letterboxd.com/film/a-different-man/"
   },
   {
-    "name": "Mission: Impossible \u2013 Dead Reckoning Part One",
-    "tagline": "WE ALL SHARE THE SAME FATE.",
+    "slug": "the-seed-of-the-sacred-fig",
+    "name": "The Seed of the Sacred Fig",
+    "tagline": null,
+    "description": "An investigating judge in the Revolutionary Court in Tehran grapples with mistrust and paranoia as nationwide political protests intensify and his gun mysteriously disappears. Suspecting the involvement of his wife and their two daughters, he imposes drastic measures at home, causing tensions to rise. Step by step, social norms and the rules of family life are being suspended.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/6/1/8/0/6/1161806-the-seed-of-the-sacred-fig-0-1000-0-1500-crop.jpg?v=93abc60195",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/48/cg/6b/cd/seed-1200-1200-675-675-crop-000000.jpg?v=d7a550833a",
+    "letterboxd": "https://letterboxd.com/film/the-seed-of-the-sacred-fig/"
+  },
+  {
+    "slug": "the-girl-with-the-needle",
+    "name": "The Girl with the Needle",
+    "tagline": null,
+    "description": "Struggling to survive in post-WWI Copenhagen, a newly unemployed and pregnant young woman is taken in by a charismatic elder to help run an underground adoption agency. The two form an unexpected bond, until a sudden discovery changes everything.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/1/6/3/2/1/1116321-the-girl-with-the-needle-0-1000-0-1500-crop.jpg?v=7d75e28758",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/kn/d4/v3/ad/TheGirlWithTheNeedle-1200-1200-675-675-crop-000000.jpg?v=8c61e15a37",
+    "letterboxd": "https://letterboxd.com/film/the-girl-with-the-needle/"
+  },
+  {
+    "slug": "the-wild-robot",
+    "name": "The Wild Robot",
+    "tagline": "DISCOVER YOUR TRUE NATURE.",
+    "description": "After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island. To survive the harsh environment, Roz bonds with the island\u2019s animals and cares for an orphaned baby goose.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/7/1/1/9/6/1071196-the-wild-robot-0-1000-0-1500-crop.jpg?v=a70bdbaea0",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/lo/yv/o4/a4/tR0RttXyT10l7GxpDSLTalPtLVj-1200-1200-675-675-crop-000000.jpg?v=3bd0088c78",
+    "letterboxd": "https://letterboxd.com/film/the-wild-robot/"
+  },
+  {
+    "slug": "alien-romulus",
+    "name": "Alien: Romulus",
+    "tagline": "IN SPACE, NO ONE CAN HEAR YOU.",
+    "description": "While scavenging the deep ends of a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/5/0/4/5/9/850459-alien-romulus-0-1000-0-1500-crop.jpg?v=acabb7fd83",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/9k/b6/vt/j7/6kGlcZ1T7V2MxVlQbiynxJdrHrl-1200-1200-675-675-crop-000000.jpg?v=a61d6bcc85",
+    "letterboxd": "https://letterboxd.com/film/alien-romulus/"
+  },
+  {
+    "slug": "inside-out-2-2024",
+    "name": "Inside Out 2",
+    "tagline": "MAKE ROOM FOR NEW EMOTIONS.",
+    "description": "Teenager Riley\u2019s mind headquarters is undergoing a sudden demolition to make room for something entirely unexpected: new Emotions! Joy, Sadness, Anger, Fear and Disgust, who\u2019ve long been running a successful operation by all accounts, aren\u2019t sure how to feel when Anxiety shows up. And it looks like she\u2019s not alone.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/8/921578-inside-out-2-0-1000-0-1500-crop.jpg?v=efa25e5cca",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/0x/nf/kx/7e/inside-1200-1200-675-675-crop-000000.jpg?v=0c03894316",
+    "letterboxd": "https://letterboxd.com/film/inside-out-2-2024/"
+  },
+  {
+    "slug": "elton-john-never-too-late",
+    "name": "Elton John: Never Too Late",
+    "tagline": "HE RISKED EVERYTHING TO FIND HIMSELF.",
+    "description": "Sir Elton John looks back on his life and the astonishing early days of his 50-year career in this emotionally charged, full-circle journey. As he prepares for his final concert in North America at Dodger Stadium, Elton takes us back in time and recounts his struggles with adversity, abuse, and addiction, and how he overcame them to become the icon he is today.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/7/9/7/4/9/879749-elton-john-never-too-late-0-1000-0-1500-crop.jpg?v=adda3cad3c",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/elton-john-never-too-late/"
+  },
+  {
+    "slug": "kingdom-of-the-planet-of-the-apes",
+    "name": "Kingdom of the Planet of the Apes",
+    "tagline": "NO ONE CAN STOP THE REIGN.",
+    "description": "Several generations following Caesar\u2019s reign, apes \u2013 now the dominant species \u2013 live harmoniously while humans have been reduced to living in the shadows. As a new tyrannical ape leader builds his empire, one young ape undertakes a harrowing journey that will cause him to question all he\u2019s known about the past and to make choices that will define a future for apes and humans alike.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/5/7/8/7/7/4/578774-kingdom-of-the-planet-of-the-apes-0-1000-0-1500-crop.jpg?v=b765efe92a",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/62/f0/gf/so/fypydCipcWDKDTTCoPucBsdGYXW-1200-1200-675-675-crop-000000.jpg?v=af972bf69e",
+    "letterboxd": "https://letterboxd.com/film/kingdom-of-the-planet-of-the-apes/"
+  },
+  {
+    "slug": "better-man-2024",
+    "name": "Better Man",
+    "tagline": "FAME MAKES MONKEYS OF US ALL.",
+    "description": "Follow Robbie Williams\u2019 journey from childhood, to being the youngest member of chart-topping boyband Take That, through to his unparalleled achievements as a record-breaking solo artist \u2013 all the while confronting the challenges that stratospheric fame and success can bring.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/7/1/7/4/7/1/717471-better-man-2024-0-1000-0-1500-crop.jpg?v=e2168b52aa",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/4w/wb/zw/0e/better%20man-1200-1200-675-675-crop-000000.jpg?v=8470b8e9fb",
+    "letterboxd": "https://letterboxd.com/film/better-man-2024/"
+  },
+  {
+    "slug": "flow-2024",
+    "name": "Flow",
+    "tagline": null,
+    "description": "A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/7/3/9/4/5/1/739451-flow-2024-0-1000-0-1500-crop.jpg?v=32f49339d9",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/tx/mz/e7/j4/ozvcHbXhCJE0BtUaR6jOfF8MOYE-1200-1200-675-675-crop-000000.jpg?v=c67c91ad39",
+    "letterboxd": "https://letterboxd.com/film/flow-2024/"
+  },
+  {
+    "slug": "wallace-gromit-vengeance-most-fowl",
+    "name": "Wallace & Gromit: Vengeance Most Fowl",
+    "tagline": "NEW FRIENDS. OLD ENEMIES.",
+    "description": "Gromit\u2019s concern that Wallace is becoming too dependent on his inventions proves justified, when Wallace invents a \u201csmart\u201d gnome that seems to develop a mind of its own. When it emerges that a vengeful figure from the past might be masterminding things, it falls to Gromit to battle sinister forces and save his master\u2026 or Wallace may never be able to invent again!",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/8/3/4/5/6/1/834561-wallace-gromit-vengeance-most-fowl-0-1000-0-1500-crop.jpg?v=b5b3c56e5e",
+    "backdrop": "https://a.ltrbxd.com/resized/alternative-backdrop/8/3/4/5/6/1/tmdb/lJUaW1DnOqWZpyTKzFlG1kNxvoD-1200-1200-675-675-crop-000000.jpg?v=24e9279861",
+    "letterboxd": "https://letterboxd.com/film/wallace-gromit-vengeance-most-fowl/"
+  },
+  {
+    "slug": "memoir-of-a-snail",
+    "name": "Memoir of a Snail",
+    "tagline": "LIFE CAN ONLY BE UNDERSTOOD BACKWARDS, BUT WE HAVE TO LIVE IT FORWARDS.",
+    "description": "Forcibly separated from her twin brother when they are orphaned, a melancholic misfit learns how to find confidence within herself amid the clutter of misfortunes and everyday life.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/5/9/8/2/9/959829-memoir-of-a-snail-0-1000-0-1500-crop.jpg?v=e23dff99a0",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/cx/xc/2o/ay/memoir-1200-1200-675-675-crop-000000.jpg?v=726c84381c",
+    "letterboxd": "https://letterboxd.com/film/memoir-of-a-snail/"
+  },
+  {
+    "slug": "no-other-land",
+    "name": "No Other Land",
+    "tagline": null,
+    "description": "This film made by a Palestinian-Israeli collective shows the destruction of the occupied West Bank\u2019s Masafer Yatta by Israeli soldiers and the alliance which develops between the Palestinian activist Basel and Israeli journalist Yuval.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/1/5/8/7/4/1115874-no-other-land-0-1000-0-1500-crop.jpg?v=7a96e00fce",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/b8/w7/es/1a/8FNqLsZfkqvGXWDupWUj359iMwc-1200-1200-675-675-crop-000000.jpg?v=9f45914c75",
+    "letterboxd": "https://letterboxd.com/film/no-other-land/"
+  },
+  {
+    "slug": "sugarcane",
+    "name": "Sugarcane",
+    "tagline": null,
+    "description": "An investigation into abuse and missing children at an Indian residential school ignites a reckoning on the nearby Sugarcane Reserve.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/4/8/4/6/1044846-sugarcane-0-1000-0-1500-crop.jpg?v=3c1c72edea",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/pb/ot/qm/fi/Sugarcane-1200-1200-675-675-crop-000000.jpg?v=3ab883f2a1",
+    "letterboxd": "https://letterboxd.com/film/sugarcane/"
+  },
+  {
+    "slug": "soundtrack-to-a-coup-detat",
+    "name": "Soundtrack to a Coup d\u2019\u00c9tat",
+    "tagline": null,
+    "description": "In 1960, United Nations: the Global South ignites a political earthquake, musicians Abbey Lincoln and Max Roach crash the Security Council, Nikita Khrushchev bangs his shoe denouncing America\u2019s color bar, while the U.S. dispatches jazz ambassador Louis Armstrong to the Congo to deflect attention from its first African post-colonial coup.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/9/8/3/3/2/1098332-soundtrack-to-a-coup-detat-0-1000-0-1500-crop.jpg?v=f32f1b835c",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/5m/ea/lf/4d/SoundtracktoaCoup-1200-1200-675-675-crop-000000.jpg?v=5de1d5b73b",
+    "letterboxd": "https://letterboxd.com/film/soundtrack-to-a-coup-detat/"
+  },
+  {
+    "slug": "black-box-diaries",
+    "name": "Black Box Diaries",
+    "tagline": "A NIGHT THAT CHANGED HER LIFE BECAME A SCANDAL THAT ROCKED A NATION.",
+    "description": "Journalist Shiori It\u014d embarks on a courageous investigation of her own sexual assault in an improbable attempt to prosecute her high-profile offender. Her quest becomes a landmark case in Japan, exposing the country\u2019s outdated judicial and societal systems.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/9/8/3/1/7/1098317-black-box-diaries-0-1000-0-1500-crop.jpg?v=e1b258a7c0",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/ir/28/i1/l0/BlackBoxDiaries-1200-1200-675-675-crop-000000.jpg?v=57dc55215e",
+    "letterboxd": "https://letterboxd.com/film/black-box-diaries/"
+  },
+  {
+    "slug": "porcelain-war",
+    "name": "Porcelain War",
+    "tagline": null,
+    "description": "Under roaring fighter jets and missile strikes, Ukrainian artists Slava, Anya, and Andrey choose to stay behind and fight, contending with the soldiers they have become. Defiantly finding beauty amid destruction, they show that although it\u2019s easy to make people afraid, it\u2019s hard to destroy their passion for living.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/9/8/3/2/9/1098329-porcelain-war-0-1000-0-1500-crop.jpg?v=9eb1d5c455",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/b2/kb/is/5n/PorcelainWar-1200-1200-675-675-crop-000000.jpg?v=306851e9fe",
+    "letterboxd": "https://letterboxd.com/film/porcelain-war/"
+  },
+  {
+    "slug": "wander-to-wonder",
+    "name": "Wander to Wonder",
+    "tagline": null,
+    "description": "In the 1980s, Mary, Billybud, and Fumbleton starred in the children\u2019s television program Wander to Wonder. They are left alone in the studio after the show\u2019s originator passed away.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/2/7/0/3/1042703-wander-to-wonder-0-1000-0-1500-crop.jpg?v=a0e370010b",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/24/7p/je/56/WTW_04-1200-1200-675-675-crop-000000.jpg?v=b7536b3afa",
+    "letterboxd": "https://letterboxd.com/film/wander-to-wonder/"
+  },
+  {
+    "slug": "in-the-shadow-of-the-cypress",
+    "name": "In the Shadow of the Cypress",
+    "tagline": null,
     "description": "",
-    "image": "https://a.ltrbxd.com/resized/film-poster/5/0/3/4/0/2/503402-mission-impossible-dead-reckoning-part-one-0-1000-0-1500-crop.jpg?v=800fc297c1",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/y9/xn/y0/xz/mission-impossible-dead-reckoning-part-one-1200-1200-675-675-crop-000000.jpg?v=3511c2e186",
-    "slug": "mission-impossible-dead-reckoning-part-one",
-    "letterboxd": "https://letterboxd.com/film/mission-impossible-dead-reckoning-part-one/",
-    "type": "movie"
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/2/7/1/1/1042711-in-the-shadow-of-the-cypress-0-1000-0-1500-crop.jpg?v=fc0874f0a1",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/52/ev/9c/1x/Dar%20Saaye%20Sarv_3-1200-1200-675-675-crop-000000.jpg?v=703b464d0f",
+    "letterboxd": "https://letterboxd.com/film/in-the-shadow-of-the-cypress/"
   },
   {
-    "name": "NYAD",
-    "tagline": "WITNESS THE INCREDIBLE TRUE STORY.",
-    "description": "Athlete Diana Nyad sets out at 60 to achieve a nearly impossible lifelong dream: to swim from Cuba to Florida across more than 100 miles of open ocean.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/0/6/0/4/2/806042-nyad-0-1000-0-1500-crop.jpg?v=53a8f8ac0c",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/0q/7c/7c/ft/IMG_2868-1200-1200-675-675-crop-000000.jpg?v=319947e5e3",
-    "slug": "nyad",
-    "letterboxd": "https://letterboxd.com/film/nyad/",
-    "type": "movie"
-  },
-  {
-    "name": "Past Lives",
+    "slug": "beautiful-men-2023",
+    "name": "Beautiful Men",
     "tagline": null,
-    "description": "Nora and Hae Sung, two childhood friends, are reunited in New York for one fateful week as they confront notions of destiny, love, and the choices that make a life.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/5/9/1/0/5/3/591053-past-lives-0-1000-0-1500-crop.jpg?v=c600b7854e",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/w5/vf/ru/qm/past-lives-1200-1200-675-675-crop-000000.jpg?v=2ff888a5e1",
-    "slug": "past-lives",
-    "letterboxd": "https://letterboxd.com/film/past-lives/",
-    "type": "movie"
+    "description": "Three balding brothers travel to Istanbul to get a hair transplant. Stuck with each other in a hotel far from home, their insecurities grow faster than their hair.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/3/4/1/8/1043418-beautiful-men-0-1000-0-1500-crop.jpg?v=618a4ac72a",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/5n/e0/dj/v7/beautifuk%20meb-1200-1200-675-675-crop-000000.jpg?v=0b261aa8e2",
+    "letterboxd": "https://letterboxd.com/film/beautiful-men-2023/"
   },
   {
-    "name": "Society of the Snow",
-    "tagline": "BASED ON A REMARKABLE TRUE STORY.",
-    "description": "On October 13, 1972, Uruguayan Air Force Flight 571, chartered to take a rugby team to Chile, crashes into a glacier in the heart of the Andes.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/1/3/8/4/0/813840-society-of-the-snow-0-1000-0-1500-crop.jpg?v=c75af7d2b8",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/g3/xz/v1/kl/socienty-snow-1200-1200-675-675-crop-000000.jpg?v=a6a501d6b9",
-    "slug": "society-of-the-snow",
-    "letterboxd": "https://letterboxd.com/film/society-of-the-snow/",
-    "type": "movie"
-  },
-  {
-    "name": "Rustin",
-    "tagline": "OWN YOUR POWER.",
-    "description": "Activist Bayard Rustin faces racism and homophobia as he helps change the course of Civil Rights history by orchestrating the 1963 March on Washington.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/0/8/7/2/6/808726-rustin-0-1000-0-1500-crop.jpg?v=0b688007e4",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/w5/tu/2o/r9/rustin-1200-1200-675-675-crop-000000.jpg?v=15dcfcf22d",
-    "slug": "rustin-2023",
-    "letterboxd": "https://letterboxd.com/film/rustin-2023/",
-    "type": "movie"
-  },
-  {
-    "name": "The Color Purple",
-    "tagline": "A BOLD NEW TAKE ON THE BELOVED CLASSIC.",
-    "description": "A decades-spanning tale of love and resilience and of one woman\u2019s journey to independence. Celie faces many hardships in her life, but ultimately finds extraordinary strength and hope in the unbreakable bonds of sisterhood.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/4/8/7/5/3/8/487538-the-color-purple-0-1000-0-1500-crop.jpg?v=75de81088b",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/sw/xk/lm/w2/color-purple-2023-1200-1200-675-675-crop-000000.jpg?v=0a55062340",
-    "slug": "the-color-purple-2023",
-    "letterboxd": "https://letterboxd.com/film/the-color-purple-2023/",
-    "type": "movie"
-  },
-  {
-    "name": "May December",
-    "tagline": "SOME ROLES ARE TRANSFORMATIVE.",
-    "description": "Twenty years after their notorious tabloid romance gripped the nation, a married couple buckles under the pressure when an actress arrives to do research for a film about their past.",
-    "image": "https://a.ltrbxd.com/resized/sm/upload/zh/p4/cg/6v/may-december-0-1000-0-1500-crop.jpg?v=40f7f230a3",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/r3/ll/he/8n/97MOhHIgU6ZdLcB9DrAhx3WAqrU-1200-1200-675-675-crop-000000.jpg?v=0e7320df4c",
-    "slug": "may-december",
-    "letterboxd": "https://letterboxd.com/film/may-december/",
-    "type": "movie"
-  },
-  {
-    "name": "El Conde",
-    "tagline": "THINGS ARE ABOUT TO GET BLOODY\u2026",
-    "description": "After living for over two centuries, Augusto Pinochet is a vampire ready to die\u2026 but the vultures around him won\u2019t let him go without one last bite.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/9/2/9/9/1/892991-el-conde-0-1000-0-1500-crop.jpg?v=31195803ac",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/nj/3c/4g/uc/TheCount2023-1200-1200-675-675-crop-000000.jpg?v=8e3a0422ee",
-    "slug": "el-conde",
-    "letterboxd": "https://letterboxd.com/film/el-conde/",
-    "type": "movie"
-  },
-  {
-    "name": "Godzilla Minus One",
-    "tagline": "POSTWAR JAPAN. FROM ZERO TO MINUS.",
-    "description": "In postwar Japan, Godzilla brings new devastation to an already scorched landscape. With no military intervention or government help in sight, the survivors must join together in the face of despair and fight back against an unrelenting horror.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/4/5/7/0/6/845706-godzilla-minus-one-0-1000-0-1500-crop.jpg?v=a98e8c1ed4",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/wt/xq/8w/wb/godzilla-1200-1200-675-675-crop-000000.jpg?v=5defa22bec",
-    "slug": "godzilla-minus-one",
-    "letterboxd": "https://letterboxd.com/film/godzilla-minus-one/",
-    "type": "movie"
-  },
-  {
-    "name": "Guardians of the Galaxy Vol. 3",
-    "tagline": "ONCE MORE WITH FEELING.",
-    "description": "Peter Quill, still reeling from the loss of Gamora, must rally his team around him to defend the universe along with protecting one of their own. A mission that, if not completed successfully, could quite possibly lead to the end of the Guardians as we know them.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/3/7/9/7/1/1/379711-guardians-of-the-galaxy-volume-3-0-1000-0-1500-crop.jpg?v=bd023e472c",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/4c/6j/js/74/guardians%203-1200-1200-675-675-crop-000000.jpg?v=ab95c6f636",
-    "slug": "guardians-of-the-galaxy-vol-3",
-    "letterboxd": "https://letterboxd.com/film/guardians-of-the-galaxy-vol-3/",
-    "type": "movie"
-  },
-  {
-    "name": "Golda",
-    "tagline": "ISRAEL, 1973\u2026 ONE WOMAN STOOD BETWEEN VICTORY AND DEFEAT.",
-    "description": "Set during the tense 19 days of the Yom Kippur War in 1973, Israeli Prime Minister Golda Meir is faced with the potential of Israel\u2019s complete destruction. She must navigate overwhelming odds, a skeptical cabinet and a complex relationship with US Secretary of State Henry Kissinger, with millions of lives in the balance. Her tough leadership and compassion would ultimately decide the fate of her nation and leave her with a controversial legacy around the world.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/1/0/0/0/3/810003-golda-0-1000-0-1500-crop.jpg?v=3f538caba2",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/mi/mq/sl/xu/golda-1200-1200-675-675-crop-000000.jpg?v=d2721d66ed",
-    "slug": "golda-2023",
-    "letterboxd": "https://letterboxd.com/film/golda-2023/",
-    "type": "movie"
-  },
-  {
-    "name": "Indiana Jones and the Dial of Destiny",
-    "tagline": "HIS FINAL ADVENTURE WILL BE HIS GREATEST.",
-    "description": "Finding himself in a new era, and approaching retirement, Indy wrestles with fitting into a world that seems to have outgrown him. But as the tentacles of an all-too-familiar evil return in the form of an old rival, Indy must don his hat and pick up his whip once more to make sure an ancient and powerful artifact doesn\u2019t fall into the wrong hands.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/2/6/5/4/3/3/265433-indiana-jones-and-the-dial-of-destiny-0-1000-0-1500-crop.jpg?v=34f4a02c6b",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/ip/c5/my/7j/indiana-jones-dial-destiny-1200-1200-675-675-crop-000000.jpg?v=e617d1ff61",
-    "slug": "indiana-jones-and-the-dial-of-destiny",
-    "letterboxd": "https://letterboxd.com/film/indiana-jones-and-the-dial-of-destiny/",
-    "type": "movie"
-  },
-  {
-    "name": "American Symphony",
+    "slug": "yuck",
+    "name": "Yuck!",
     "tagline": null,
-    "description": "Musician Jon Batiste attempts to compose a symphony as his wife, writer Suleika Jaouad, undergoes cancer treatment.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/1/0/5/8/6/0/7/1058607-american-symphony-0-1000-0-1500-crop.jpg?v=2ab2864455",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/u5/cf/fj/3v/american%20symphony-1200-1200-675-675-crop-000000.jpg?v=e7b309d5f9",
-    "slug": "american-symphony",
-    "letterboxd": "https://letterboxd.com/film/american-symphony/",
-    "type": "movie"
+    "description": "Yuck. Couples kissing on the mouth are gross. And the worst is, you can\u2019t miss them: when people are about to kiss, their lips become all pink and shiny. Little L\u00e9o laughs at them, just like all the kids at the summer camp. But he has a secret he won\u2019t tell his friends: his own mouth has actually begun glistening. And, in reality, L\u00e9o desperately wants to give kissing a try.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/0/3/8/9/6/1103896-yuck-0-1000-0-1500-crop.jpg?v=8dc32066ac",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/em/h6/6o/o3/rUID6M9JLU6DK2c9WXEKgmsG1C6-1200-1200-675-675-crop-000000.jpg?v=79d6ad3660",
+    "letterboxd": "https://letterboxd.com/film/yuck/"
   },
   {
-    "name": "Flamin\u2019 Hot",
-    "tagline": "THE FLAVOR YOU KNOW. THE STORY YOU DON\u2019T.",
-    "description": "The inspiring true story of Richard Monta\u00f1ez, the Frito Lay janitor who channeled his Mexican American heritage and upbringing to turn the iconic Flamin\u2019 Hot Cheetos into a snack that disrupted the food industry and became a global pop culture phenomenon.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/5/5/2/6/3/2/552632-flamin-hot-0-1000-0-1500-crop.jpg?v=bc7b37fd7f",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/lk/ad/nl/8y/flamin-1200-1200-675-675-crop-000000.jpg?v=635947918b",
-    "slug": "flamin-hot",
-    "letterboxd": "https://letterboxd.com/film/flamin-hot/",
-    "type": "movie"
+    "slug": "magic-candies",
+    "name": "Magic Candies",
+    "tagline": "WHO\u2019S VOICE DO YOU WANT TO HEAR?",
+    "description": "The other kids never ask Dong-Dong to play, but he\u2019s fine just playing marbles on his own. Until one day, he buys a bag of colorful candies and begins to discover new voices and perspectives.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/3/3/6/9/3/1133693-magic-candies-0-1000-0-1500-crop.jpg?v=6d89023b7a",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/wq/cr/i6/2c/2QQUXTZdHdh48K51aZKMlfaD6B1-1200-1200-675-675-crop-000000.jpg?v=ca43363e40",
+    "letterboxd": "https://letterboxd.com/film/magic-candies/"
   },
   {
-    "name": "The Boy and the Heron",
-    "tagline": "WHERE DEATH COMES TO AN END, LIFE FINDS A NEW BEGINNING.",
-    "description": "While the Second World War rages, the teenage Mahito, haunted by his mother\u2019s tragic death, is relocated from Tokyo to the serene rural home of his new stepmother Natsuko, a woman who bears a striking resemblance to the boy\u2019s mother. As he tries to adjust, this strange new world grows even stranger following the appearance of a persistent gray heron, who perplexes and bedevils Mahito, dubbing him the \u201clong-awaited one.\u201d",
-    "image": "https://a.ltrbxd.com/resized/film-poster/4/3/8/6/9/2/438692-the-boy-and-the-heron-0-1000-0-1500-crop.jpg?v=521e114164",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/p5/p2/uu/qw/zw8xr67ForpLerzMSlZOFKXRhnc-1200-1200-675-675-crop-000000.jpg?v=b0c50cde3b",
-    "slug": "the-boy-and-the-heron",
-    "letterboxd": "https://letterboxd.com/film/the-boy-and-the-heron/",
-    "type": "movie"
-  },
-  {
-    "name": "Elemental",
-    "tagline": "OPPOSITES REACT.",
-    "description": "In a city where fire, water, land and air residents live together, a fiery young woman and a go-with-the-flow guy will discover something elemental: how much they have in common.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/7/8/8/5/4/878854-elemental-0-1000-0-1500-crop.jpg?v=949da202f5",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/m5/2v/be/p5/elemental-1200-1200-675-675-crop-000000.jpg?v=854f77eca1",
-    "slug": "elemental-2023",
-    "letterboxd": "https://letterboxd.com/film/elemental-2023/",
-    "type": "movie"
-  },
-  {
-    "name": "Nimona",
-    "tagline": "A NEW HERO TAKES SHAPE.",
-    "description": "A knight framed for a tragic crime teams with a scrappy, shape-shifting teen to prove his innocence.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/8/6/5/1/1/2/865112-nimona-0-1000-0-1500-crop.jpg?v=23fa6c0b1b",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/or/yq/0l/pe/nimona-1200-1200-675-675-crop-000000.jpg?v=70b85dd549",
-    "slug": "nimona-2023",
-    "letterboxd": "https://letterboxd.com/film/nimona-2023/",
-    "type": "movie"
-  },
-  {
-    "name": "Robot Dreams",
+    "slug": "the-man-who-could-not-remain-silent",
+    "name": "The Man Who Could Not Remain Silent",
     "tagline": null,
-    "description": "A lonely dog\u2019s friendship with his robot companion takes a sad turn when an unexpected malfunction forces him to abandon Robot at the beach. Will Dog ever meet Robot again?",
-    "image": "https://a.ltrbxd.com/resized/film-poster/7/5/3/4/2/0/753420-robot-dreams-0-1000-0-1500-crop.jpg?v=f231becfbe",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/9y/gp/sk/0d/hIeEpk2w1dnC9ly9ZJwwbunH2Cx-1200-1200-675-675-crop-000000.jpg?v=474f037f31",
-    "slug": "robot-dreams",
-    "letterboxd": "https://letterboxd.com/film/robot-dreams/",
-    "type": "movie"
+    "description": "",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/6/2/4/0/1/1162401-the-man-who-could-not-remain-silent-0-1000-0-1500-crop.jpg?v=e330d67770",
+    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/9m/dy/7i/wi/ManWhoCouldNotRemainSilent-1200-1200-675-675-crop-000000.jpg?v=d4d7346348",
+    "letterboxd": "https://letterboxd.com/film/the-man-who-could-not-remain-silent/"
   },
   {
-    "name": "Spider-Man: Across the Spider-Verse",
-    "tagline": "IT\u2019S HOW YOU WEAR THE MASK THAT MATTERS.",
-    "description": "After reuniting with Gwen Stacy, Brooklyn\u2019s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse\u2019s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.",
-    "image": "https://a.ltrbxd.com/resized/film-poster/4/9/7/6/3/1/497631-spider-man-across-the-spider-verse-0-1000-0-1500-crop.jpg?v=f2acbf1b8a",
-    "backdrop": "https://a.ltrbxd.com/resized/sm/upload/22/gj/k3/ql/spider-verse-1200-1200-675-675-crop-000000.jpg?v=259dfdc695",
-    "slug": "spider-man-across-the-spider-verse",
-    "letterboxd": "https://letterboxd.com/film/spider-man-across-the-spider-verse/",
-    "type": "movie"
+    "slug": "anuja",
+    "name": "Anuja",
+    "tagline": null,
+    "description": "When a gifted 9-year-old girl, Anuja, who works in a garment factory in Delhi, India is offered a once-in-a-lifetime chance to attend school, she is forced to make a heart-wrenching decision that will determine her and her sister Palak\u2019s fate.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/3/2/1/5/6/1232156-anuja-0-1000-0-1500-crop.jpg?v=8f18c1496a",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/anuja/"
+  },
+  {
+    "slug": "im-not-a-robot-2023",
+    "name": "I\u2019m Not a Robot",
+    "tagline": null,
+    "description": "\u201cDo people think your conduct is aloof?\u201d When the young music producer Lara fails to convince her computer she is not a robot, she has her doubts too. Because no matter how often she identifies the traffic signs and trees in the tests, the computer will not accept her ticks. In panic, she calls her boyfriend for comfort, but this only complicates the situation further, in this absurd comedy full of black humour involving Lara\u2019s existential dilemma.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/6/5/1/3/3/1065133-im-not-a-robot-2023-0-1000-0-1500-crop.jpg?v=a0d7fd168c",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/im-not-a-robot-2023/"
+  },
+  {
+    "slug": "a-lien",
+    "name": "A Lien",
+    "tagline": null,
+    "description": "On the day of their green card interview, a young couple confronts a dangerous immigration process.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/0/8/7/1/5/1008715-a-lien-0-1000-0-1500-crop.jpg?v=62bc99c3f4",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/a-lien/"
+  },
+  {
+    "slug": "crust-2023",
+    "name": "Crust",
+    "tagline": null,
+    "description": "12-year-old Fabi has to finally prove himself as one of the family - by getting his first scar.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/4/2/6/0/2/1142602-kruste-0-1000-0-1500-crop.jpg?v=66b13b4478",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/crust-2023/"
+  },
+  {
+    "slug": "the-last-ranger",
+    "name": "The Last Ranger",
+    "tagline": null,
+    "description": "When young Litha is introduced to the magic of a game reserve by the last remaining ranger, they are ambushed by poachers. In the ensuing battle to save the rhinos, Litha discovers a terrible secret.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/9/6/9/7/2/1196972-the-last-ranger-0-1000-0-1500-crop.jpg?v=e55b3acc18",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/the-last-ranger/"
+  },
+  {
+    "slug": "once-upon-a-time-in-ukraine-2024",
+    "name": "Once Upon a Time in Ukraine",
+    "tagline": null,
+    "description": "",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/3/9/1257939-once-upon-a-time-in-ukraine-2024-0-1000-0-1500-crop.jpg?v=d1262d37c5",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/once-upon-a-time-in-ukraine-2024/"
+  },
+  {
+    "slug": "makaylas-voice-a-letter-to-the-world",
+    "name": "Makayla\u2019s Voice: A Letter to the World",
+    "tagline": null,
+    "description": "A teen with autism unlocks a joyous world of self-expression as she shares her voice for the first time using a letter board.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/9/8/4/0/8/1098408-makaylas-voice-a-letter-to-the-world-0-1000-0-1500-crop.jpg?v=e065f3c75a",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/makaylas-voice-a-letter-to-the-world/"
+  },
+  {
+    "slug": "i-am-ready-warden",
+    "name": "I Am Ready, Warden",
+    "tagline": null,
+    "description": "In the days leading up to his execution, Texas death row prisoner John Henry Ramirez seeks redemption from his victim\u2019s son; an elegy about the death penalty where a prisoner seeks forgiveness.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/3/6/5/1182365-i-am-ready-warden-0-1000-0-1500-crop.jpg?v=9403f97aaf",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/i-am-ready-warden/"
+  },
+  {
+    "slug": "incident-2023",
+    "name": "Incident",
+    "tagline": null,
+    "description": "Chicago, 2018. A man is killed by police on the street. Through a composite montage of images from surveillance and security footage as well as police body-cams, Incident recreates the event and its consequences, featuring vain justifications, altercations and attempts to avoid blame. Bill Morrison delivers a chilling political investigation in search of the truth.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/9/9/9/3/1/1/999311-incident-0-1000-0-1500-crop.jpg?v=640b34b79a",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/incident-2023/"
+  },
+  {
+    "slug": "death-by-numbers",
+    "name": "Death by Numbers",
+    "tagline": null,
+    "description": "Four years after being shot with an AR-15 in her high school, Samantha Fuentes reckons with existential questions of hatred and justice as she prepares to confront her shooter.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/4/5/5/7/6/1245576-death-by-numbers-0-1000-0-1500-crop.jpg?v=a7cf9795a0",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/death-by-numbers/"
+  },
+  {
+    "slug": "the-only-girl-in-the-orchestra",
+    "name": "The Only Girl in the Orchestra",
+    "tagline": null,
+    "description": "",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/8/6/2/3/3/1086233-the-only-girl-in-the-orchestra-0-1000-0-1500-crop.jpg?v=d30181e641",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/the-only-girl-in-the-orchestra/"
+  },
+  {
+    "slug": "instruments-of-a-beating-heart",
+    "name": "Instruments of a Beating Heart",
+    "tagline": null,
+    "description": "First graders in a Tokyo public elementary school are presented with a challenge for the final semester: performing \u201cOde to Joy\u201d at the ceremony for the new incoming first graders. Ayame, who often struggles to keep up with the group, is determined to play a major part \u2014 the big drum.",
+    "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/6/8/7/5/2/1168752-instruments-of-a-beating-heart-0-1000-0-1500-crop.jpg?v=969772fee8",
+    "backdrop": null,
+    "letterboxd": "https://letterboxd.com/film/instruments-of-a-beating-heart/"
   }
 ]
