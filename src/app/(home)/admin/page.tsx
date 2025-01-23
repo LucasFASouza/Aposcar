@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { NomineeEditor } from "@/components/admin/NomineeEditor";
 
 export default async function AdminPage() {
   const categories = await api.nominations.getCategories();
@@ -26,7 +27,7 @@ export default async function AdminPage() {
           <CardTitle>Set Nominees</CardTitle>
         </CardHeader>
         <CardContent>
-          WIP
+          <NomineeEditor categories={categories} />
         </CardContent>
       </Card>
     </div>

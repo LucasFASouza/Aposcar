@@ -39,6 +39,19 @@ const getCategoryWithNavigationSchema = z.object({
   nominations: fullNominationSchema.extend({ isUserVote: z.boolean() }).array(),
 });
 
+export const getNominationsByCategoryIdSchema = z.array(
+  z.object({
+    id: z.string(),
+    description: z.string().nullable(),
+    categoryId: z.string(),
+    categoryName: z.string(),
+    movieId: z.string(),
+    movieName: z.string().nullable(),
+    receiverId: z.string().nullable(),
+    receiverName: z.string().nullable(),
+  }),
+);
+
 export type CategoryWithNavigation = z.infer<
   typeof getCategoryWithNavigationSchema
 >;
@@ -156,6 +169,37 @@ export const nominationsRouter = createTRPCRouter({
       return await ctx.db.select().from(dbtCategory);
     }),
 
+  getNominationsByCategoryId: publicProcedure
+    .input(z.string())
+    .output(getNominationsByCategoryIdSchema)
+    .query(async ({ ctx, input }) => {
+      const nominations = await ctx.db
+        .select({
+          id: dbtNomination.id,
+          description: dbtNomination.description,
+          categoryId: dbtNomination.category,
+          categoryName: dbtCategory.name,
+          movieId: dbtNomination.movie,
+          movieName: dbtMovie.name,
+          receiverId: dbtNomination.receiver,
+          receiverName: dbtReceiver.name,
+        })
+        .from(dbtNomination)
+        .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
+        .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
+        .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
+        .where(eq(dbtCategory.id, input));
+
+      if (nominations.length < 1) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Category not found",
+        });
+      }
+
+      return nominations;
+    }),
+
   getWinningNominations: publicProcedure
     .output(fullNominationSchema.extend({ categoryName: z.string() }).array())
     .query(async ({ ctx }) => {
@@ -220,5 +264,45 @@ export const nominationsRouter = createTRPCRouter({
         .where(eq(dbtNomination.id, input.nominationId));
 
       return { success: true };
+    }),
+
+  setNominees: protectedProcedure
+    .input(
+      z.object({
+        categoryId: z.string(),
+        nominations: z
+          .array(
+            z.object({
+              movieId: z.string(),
+              receiverId: z.string().optional(),
+              description: z.string().optional(),
+            }),
+          )
+          .length(5),
+      }),
+    )
+
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db
+        .delete(dbtNomination)
+        .where(eq(dbtNomination.category, input.categoryId));
+
+      await ctx.db.insert(dbtNomination).values(
+        input.nominations.map((nom) => ({
+          category: input.categoryId,
+          movie: nom.movieId,
+          receiver: nom.receiverId,
+          description: nom.description,
+          isWinner: false,
+        })),
+      );
+
+      return { success: true };
+    }),
+
+  getReceivers: publicProcedure
+    .output(receiverSchema.array())
+    .query(async ({ ctx }) => {
+      return await ctx.db.select().from(dbtReceiver);
     }),
 });
