@@ -25,6 +25,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@/server/api/zod/schema";
 
+interface Nomination {
+  movieId: string;
+  receiverId: string;
+  description: string;
+}
+
 const nominationSchema = z.object({
   nominations: z
     .array(
@@ -92,13 +98,13 @@ export function NomineeEditor({ categories }: { categories: Category[] }) {
 
       setNomineesNumber(numberNomineesCategory);
 
-      const existingNominations = nominations.map((nom) => ({
+      const existingNominations: Nomination[] = nominations.map((nom) => ({
         movieId: nom.movieId,
         receiverId: nom.receiverId ?? "",
         description: nom.description ?? "",
       }));
 
-      const emptyRows = Array(
+      const emptyRows: Nomination[] = Array(
         numberNomineesCategory - existingNominations.length,
       ).fill({
         movieId: "",
@@ -106,8 +112,13 @@ export function NomineeEditor({ categories }: { categories: Category[] }) {
         description: "",
       });
 
+      const formNominations: Nomination[] = [
+        ...existingNominations,
+        ...emptyRows,
+      ];
+
       form.reset({
-        nominations: [...existingNominations, ...emptyRows],
+        nominations: formNominations,
       });
     }
 

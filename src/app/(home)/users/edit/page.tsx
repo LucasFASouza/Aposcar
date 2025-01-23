@@ -72,7 +72,7 @@ const EditUserPage = () => {
         description:
           "Your profile has been updated successfully. It may take a few minutes to reflect the changes.",
       });
-      await router.push("/");
+      router.push("/");
     },
     onError: (error) => {
       if (error.data?.code === "CONFLICT") {
