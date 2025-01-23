@@ -66,13 +66,23 @@ const EditUserPage = () => {
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
     onSuccess: (data, { username, image }) => {
-      update({ user: { username, image } });
-      toast({
-        title: "Profile updated!",
-        description:
-          "Your profile has been updated successfully. It may take a few minutes to reflect the changes.",
-      });
-      router.push("/");
+      void update({ user: { username, image } })
+        .then(() => {
+          toast({
+            title: "Profile updated!",
+            description:
+              "Your profile has been updated successfully. It may take a few minutes to reflect the changes.",
+          });
+          return router.push("/");
+        })
+        .catch((err) => {
+          console.error("Error updating profile:", err);
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Failed to update profile. Please try again.",
+          });
+        });
     },
     onError: (error) => {
       if (error.data?.code === "CONFLICT") {

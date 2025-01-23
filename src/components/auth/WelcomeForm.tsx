@@ -35,18 +35,27 @@ export const WelcomeForm = () => {
 
   const { mutate, isPending, isSuccess } = api.users.onboardUser.useMutation({
     onSuccess: (data, variables) => {
-      console.log("Mutated", data, variables);
-      update({
+      void update({
         user: {
           username: variables.username,
           image: variables.image,
         },
-      });
-      toast({
-        title: "Account created successfully",
-        description: `Welcome ${variables.username}!\nEdit your profile later to add your social links and favorite movie!`,
-      });
-      router.push("/");
+      })
+        .then(() => {
+          toast({
+            title: "Account created successfully",
+            description: `Welcome ${variables.username}!\nEdit your profile later to add your social links and favorite movie!`,
+          });
+          return router.push("/");
+        })
+        .catch((error) => {
+          console.error("Error updating session:", error);
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Failed to update session. Please try again.",
+          });
+        });
     },
     onError: (error) => {
       if (error.data?.code === "CONFLICT") {

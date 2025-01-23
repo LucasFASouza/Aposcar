@@ -43,7 +43,7 @@ export const AvatarDropdown: React.FC = () => {
     }
 
     if (error) {
-      signOut();
+      void signOut();
       return (
         <div className="text-sm text-muted-foreground">
           Error loading user data
