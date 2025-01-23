@@ -104,13 +104,14 @@ export function NomineeEditor({ categories }: { categories: Category[] }) {
         description: nom.description ?? "",
       }));
 
-      const emptyRows: Nomination[] = Array(
-        numberNomineesCategory - existingNominations.length,
-      ).fill({
-        movieId: "",
-        receiverId: "",
-        description: "",
-      });
+      const emptyRows = Array.from<unknown, Nomination>(
+        { length: numberNomineesCategory - existingNominations.length },
+        () => ({
+          movieId: "",
+          receiverId: "",
+          description: "",
+        }),
+      );
 
       const formNominations: Nomination[] = [
         ...existingNominations,
