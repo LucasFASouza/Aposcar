@@ -5,6 +5,8 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { AppProviders } from "@/app/_providers";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Aposcar",
@@ -21,6 +23,8 @@ export default async function RootLayout({
         <body>
           <main className="min-h-screen bg-background text-foreground">
             <TRPCReactProvider>{children}</TRPCReactProvider>
+            <Analytics />
+            <SpeedInsights />
           </main>
         </body>
       </AppProviders>
