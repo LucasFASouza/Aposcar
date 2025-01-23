@@ -129,6 +129,12 @@ const EditUserPage = () => {
     if (data.favoriteMovie === "Select a movie") {
       data.favoriteMovie = "";
     }
+    if (data?.twitterUsername && data.twitterUsername.startsWith("@")) {
+      data.twitterUsername = data.twitterUsername.slice(1);
+    }
+    if (data?.letterboxdUsername && data.letterboxdUsername.startsWith("@")) {
+      data.letterboxdUsername = data.letterboxdUsername.slice(1);
+    }
     
     mutate(data);
   };
@@ -262,12 +268,6 @@ const EditUserPage = () => {
                       <Input
                         placeholder="@fernanda_torres_believer"
                         {...field}
-                        onChange={(e) => {
-                          const value = e.target.value.startsWith("@")
-                            ? e.target.value.slice(1)
-                            : e.target.value;
-                          field.onChange(value);
-                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -285,12 +285,6 @@ const EditUserPage = () => {
                       <Input
                         placeholder="@emilia_perez_hater.bsky.social"
                         {...field}
-                        onChange={(e) => {
-                          const value = e.target.value.startsWith("@")
-                            ? e.target.value.slice(1)
-                            : e.target.value;
-                          field.onChange(value);
-                        }}
                       />
                     </FormControl>
                     <FormMessage />
