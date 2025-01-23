@@ -84,12 +84,14 @@ export function MovieSelector({
 
       {/* Desktop view */}
 
-      <div className="hidden w-full gap-2 p-2 lg:flex">
-        {nominations?.map((nomination) => (
+      <div className="hidden w-full p-2 lg:flex lg:flex-wrap lg:gap-y-4">
+        {nominations?.map((nomination, index) => (
           <div
             key={nomination.id}
             className={cn(
-              `relative aspect-[2/3] flex-1 cursor-pointer rounded-md outline outline-transparent transition-all`,
+              "relative cursor-pointer rounded-md outline outline-transparent transition-all",
+              nominations?.length === 10 ? "aspect-square" : "aspect-[2/3]",
+              "mx-[0.2rem] w-[calc(20%-0.4rem)]",
               selectedId === nomination.id && "outline-foreground",
               nomination.isUserVote && "outline-primary",
             )}
