@@ -26,30 +26,6 @@ driver = webdriver.Chrome(options=options)
 
 hrefs = [
     "https://letterboxd.com/actor/brady-corbet/",
-    "https://letterboxd.com/director/jacques-audiard/",
-    "https://letterboxd.com/director/sean-baker/",
-    "https://letterboxd.com/director/coralie-fargeat/",
-    "https://letterboxd.com/director/james-mangold/",
-    "https://letterboxd.com/actor/demi-moore/",
-    "https://letterboxd.com/actor/mikey-madison/",
-    "https://letterboxd.com/actor/karla-sofia-gascon/",
-    "https://letterboxd.com/actor/cynthia-erivo/",
-    "https://letterboxd.com/actor/fernanda-torres/",
-    "https://letterboxd.com/actor/adrien-brody/",
-    "https://letterboxd.com/actor/timothee-chalamet/",
-    "https://letterboxd.com/actor/ralph-fiennes/",
-    "https://letterboxd.com/actor/colman-domingo/",
-    "https://letterboxd.com/actor/sebastian-stan/",
-    "https://letterboxd.com/actor/zoe-saldana/",
-    "https://letterboxd.com/actor/ariana-grande/",
-    "https://letterboxd.com/actor/isabella-rossellini/",
-    "https://letterboxd.com/actor/felicity-jones/",
-    "https://letterboxd.com/actor/monica-barbaro/",
-    "https://letterboxd.com/actor/kieran-culkin/",
-    "https://letterboxd.com/actor/edward-norton/",
-    "https://letterboxd.com/actor/yura-borisov/",
-    "https://letterboxd.com/actor/guy-pearce/",
-    "https://letterboxd.com/actor/jeremy-strong/",
 ]
 
 
