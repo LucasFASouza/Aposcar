@@ -6,7 +6,6 @@ import {
   dbtReceiver,
   dbtNomination,
 } from "@/server/db/schema/aposcar";
-import { eq } from "drizzle-orm";
 
 type CategoryType = "main" | "regular" | "secondary" | undefined;
 

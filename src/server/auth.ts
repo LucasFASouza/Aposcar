@@ -1,4 +1,4 @@
-import NextAuth, { type DefaultSession } from "next-auth";
+import NextAuth, { Session, type DefaultSession } from "next-auth";
 import Google, { type GoogleProfile } from "next-auth/providers/google";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/server/db";
@@ -57,8 +57,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user, session, trigger }) {
       // console.dir({ token, user, session, trigger }, { depth: null });
-      if (trigger === "update" && session?.user?.username) {
-        token.username = session.user.username;
+      if (trigger === "update" && session && typeof session === "object") {
+        const updatedSession = session as Session & {
+          user?: {
+            username?: string;
+          };
+        };
+        
+        if (updatedSession.user?.username) {
+          token.username = updatedSession.user.username;
+        }
       }
       if (user) {
         token.role = user.role;
