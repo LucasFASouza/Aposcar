@@ -6,6 +6,7 @@ import {
   dbtReceiver,
   dbtNomination,
 } from "@/server/db/schema/aposcar";
+import { eq } from "drizzle-orm";
 
 type CategoryType = "main" | "regular" | "secondary" | undefined;
 
@@ -671,17 +672,6 @@ const movies = [
     letterboxd: "https://letterboxd.com/film/a-lien/",
   },
   {
-    slug: "crust-2023",
-    name: "Crust",
-    tagline: null,
-    description:
-      "12-year-old Fabi has to finally prove himself as one of the family - by getting his first scar.",
-    poster:
-      "https://a.ltrbxd.com/resized/film-poster/1/1/4/2/6/0/2/1142602-kruste-0-1000-0-1500-crop.jpg?v=66b13b4478",
-    backdrop: null,
-    letterboxd: "https://letterboxd.com/film/crust-2023/",
-  },
-  {
     slug: "the-last-ranger",
     name: "The Last Ranger",
     tagline: null,
@@ -691,29 +681,6 @@ const movies = [
       "https://a.ltrbxd.com/resized/film-poster/1/1/9/6/9/7/2/1196972-the-last-ranger-0-1000-0-1500-crop.jpg?v=e55b3acc18",
     backdrop: null,
     letterboxd: "https://letterboxd.com/film/the-last-ranger/",
-  },
-  {
-    slug: "once-upon-a-time-in-ukraine-2024",
-    name: "Once Upon a Time in Ukraine",
-    tagline: null,
-    description:
-      "As the Ukraine war moves into its third year, a surprising story of resilience: how children in Ukraine are surviving the Russian war machine that has targeted them and their families. With creativity and imagination they have transformed backyards and playgrounds destroyed by missiles, invented fairy tales where vegetable armies vanquish Russian attackers, and carried on the Ukrainian tradition of music and dance in bombed out studios. Life behind the frontlines as seen through the eyes of the children who will inherit a country struggling to survive a brutal invasion.",
-    poster:
-      "https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/3/9/1257939-once-upon-a-time-in-ukraine-2024-0-1000-0-1500-crop.jpg?v=d1262d37c5",
-    backdrop: null,
-    letterboxd: "https://letterboxd.com/film/once-upon-a-time-in-ukraine-2024/",
-  },
-  {
-    slug: "makaylas-voice-a-letter-to-the-world",
-    name: "Makayla\u2019s Voice: A Letter to the World",
-    tagline: null,
-    description:
-      "A teen with autism unlocks a joyous world of self-expression as she shares her voice for the first time using a letter board.",
-    poster:
-      "https://a.ltrbxd.com/resized/film-poster/1/0/9/8/4/0/8/1098408-makaylas-voice-a-letter-to-the-world-0-1000-0-1500-crop.jpg?v=e065f3c75a",
-    backdrop: null,
-    letterboxd:
-      "https://letterboxd.com/film/makaylas-voice-a-letter-to-the-world/",
   },
   {
     slug: "i-am-ready-warden",
@@ -769,6 +736,18 @@ const movies = [
       "https://a.ltrbxd.com/resized/film-poster/1/1/6/8/7/5/2/1168752-instruments-of-a-beating-heart-0-1000-0-1500-crop.jpg?v=969772fee8",
     backdrop: null,
     letterboxd: "https://letterboxd.com/film/instruments-of-a-beating-heart/",
+  },
+  {
+    slug: "the-six-triple-eight-2024",
+    name: "The Six Triple Eight",
+    tagline: "They were ordered to provide hope…",
+    description:
+      "During World War II, the US Army’s only all-Black, all-women battalion takes on an impossible mission: sorting through a three-year backlog of 17 million pieces of mail that hadn’t been delivered to American soldiers and finish within six months.",
+    poster:
+      "https://a.ltrbxd.com/resized/film-poster/9/5/7/3/2/4/957324-the-six-triple-eight-2024-0-230-0-345-crop.jpg?v=6ea2359b8f",
+    backdrop:
+      "https://a.ltrbxd.com/resized/alternative-backdrop/9/5/7/3/2/4/tmdb/2iq7ezjTeU8cASeRZCH4cn25TeI-1200-1200-675-675-crop-000000.jpg?v=1f983291fc",
+    letterboxd: "https://letterboxd.com/film/the-six-triple-eight-2024/",
   },
 ];
 
@@ -925,18 +904,349 @@ const receivers = [
   },
   {
     name: "El Mal",
+    slug: "el-mal",
   },
   {
     name: "Mi Camino",
+    slug: "mi-camino",
   },
   {
     name: "The Journey",
+    slug: "the-journey",
   },
   {
     name: "Never Too Late",
+    slug: "never-too-late",
   },
   {
     name: "Like a Bird",
+    slug: "like-a-bird",
+  },
+];
+
+const nominations = [
+  {
+    category: "actor-in-a-leading-role",
+    nominations: [
+      {
+        movie: "The Brutalist",
+        receiver: "Adrien Brody",
+        description: "in",
+      },
+      {
+        movie: "A Complete Unknown",
+        receiver: "Timothée Chalamet",
+        description: "in",
+      },
+      { movie: "Conclave", receiver: "Ralph Fiennes", description: "in" },
+      {
+        movie: "Sing Sing",
+        receiver: "Colman Domingo",
+        description: "in",
+      },
+      {
+        movie: "The Apprentice",
+        receiver: "Sebastian Stan",
+        description: "in",
+      },
+    ],
+  },
+  {
+    category: "actor-in-a-supporting-role",
+    nominations: [
+      {
+        movie: "A Real Pain",
+        receiver: "Kieran Culkin",
+        description: "in",
+      },
+      {
+        movie: "A Complete Unknown",
+        receiver: "Edward Norton",
+        description: "in",
+      },
+      { movie: "Anora", receiver: "Yura Borisov", description: "in" },
+      {
+        movie: "The Brutalist",
+        receiver: "Guy Pearce",
+        description: "in",
+      },
+      {
+        movie: "The Apprentice",
+        receiver: "Jeremy Strong",
+        description: "in",
+      },
+    ],
+  },
+  {
+    category: "actress-in-a-leading-role",
+    nominations: [
+      {
+        movie: "The Substance",
+        receiver: "Demi Moore",
+        description: "in",
+      },
+      { movie: "Anora", receiver: "Mikey Madison", description: "in" },
+      {
+        movie: "Emilia Pérez",
+        receiver: "Karla Sofía Gascón",
+        description: "in",
+      },
+      { movie: "Wicked", receiver: "Cynthia Erivo", description: "in" },
+      {
+        movie: "I’m Still Here",
+        receiver: "Fernanda Torres",
+        description: "in",
+      },
+    ],
+  },
+  {
+    category: "actress-in-a-supporting-role",
+    nominations: [
+      {
+        movie: "Emilia Pérez",
+        receiver: "Zoe Saldaña",
+        description: "in",
+      },
+      { movie: "Wicked", receiver: "Ariana Grande", description: "in" },
+      {
+        movie: "Conclave",
+        receiver: "Isabella Rossellini",
+        description: "in",
+      },
+      {
+        movie: "The Brutalist",
+        receiver: "Felicity Jones",
+        description: "in",
+      },
+      {
+        movie: "A Complete Unknown",
+        receiver: "Monica Barbaro",
+        description: "in",
+      },
+    ],
+  },
+  {
+    category: "animated-feature-film",
+    nominations: [
+      { movie: "The Wild Robot", description: "" },
+      { movie: "Flow", description: "" },
+      { movie: "Inside Out 2", description: "" },
+      { movie: "Wallace & Gromit: Vengeance Most Fowl", description: "" },
+      { movie: "Memoir of a Snail", description: "" },
+    ],
+  },
+  {
+    category: "cinematography",
+    nominations: [
+      { movie: "The Brutalist", description: "" },
+      { movie: "Nosferatu", description: "" },
+      { movie: "Dune: Part Two", description: "" },
+      { movie: "Maria", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+    ],
+  },
+  {
+    category: "costume-design",
+    nominations: [
+      { movie: "Wicked", description: "" },
+      { movie: "Nosferatu", description: "" },
+      { movie: "Conclave", description: "" },
+      { movie: "Gladiator II", description: "" },
+      { movie: "A Complete Unknown", description: "" },
+    ],
+  },
+  {
+    category: "directing",
+    nominations: [
+      {
+        movie: "The Brutalist",
+        receiver: "Brady Corbet",
+        description: "for",
+      },
+      {
+        movie: "Emilia Pérez",
+        receiver: "Jacques Audiard",
+        description: "for",
+      },
+      { movie: "Anora", receiver: "Sean Baker", description: "for" },
+      {
+        movie: "The Substance",
+        receiver: "Coralie Fargeat",
+        description: "for",
+      },
+      {
+        movie: "A Complete Unknown",
+        receiver: "James Mangold",
+        description: "for",
+      },
+    ],
+  },
+  {
+    category: "documentary-feature-film",
+    nominations: [
+      { movie: "No Other Land", description: "" },
+      { movie: "Sugarcane", description: "" },
+      { movie: "Soundtrack to a Coup d’État", description: "" },
+      { movie: "Black Box Diaries", description: "" },
+      { movie: "Porcelain War", description: "" },
+    ],
+  },
+  {
+    category: "documentary-short-film",
+    nominations: [
+      { movie: "Incident", description: "" },
+      { movie: "I Am Ready, Warden", description: "" },
+      { movie: "Death by Numbers", description: "" },
+      { movie: "The Only Girl in the Orchestra", description: "" },
+      { movie: "Instruments of a Beating Heart", description: "" },
+    ],
+  },
+  {
+    category: "film-editing",
+    nominations: [
+      { movie: "Conclave", description: "" },
+      { movie: "Anora", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+      { movie: "The Brutalist", description: "" },
+      { movie: "Wicked", description: "" },
+    ],
+  },
+  {
+    category: "international-feature-film",
+    nominations: [
+      { movie: "Emilia Pérez", description: "From France:" },
+      { movie: "I’m Still Here", description: "From Brazil:" },
+      { movie: "The Seed of the Sacred Fig", description: "From Germany:" },
+      { movie: "Flow", description: "From Latvia:" },
+      { movie: "The Girl with the Needle", description: "From Denmark:" },
+    ],
+  },
+  {
+    category: "makeup-and-hairstyling",
+    nominations: [
+      { movie: "The Substance", description: "" },
+      { movie: "Wicked", description: "" },
+      { movie: "Nosferatu", description: "" },
+      { movie: "A Different Man", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+    ],
+  },
+  {
+    category: "music-original-score",
+    nominations: [
+      { movie: "The Brutalist", description: "" },
+      { movie: "Conclave", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+      { movie: "The Wild Robot", description: "" },
+      { movie: "Wicked", description: "" },
+    ],
+  },
+  {
+    category: "music-original-song",
+    nominations: [
+      { movie: "Emilia Pérez", receiver: "El Mal", description: "from" },
+      {
+        movie: "Emilia Pérez",
+        receiver: "Mi Camino",
+        description: "from",
+      },
+      {
+        movie: "The Six Triple Eight",
+        receiver: "The Journey",
+        description: "from",
+      },
+      {
+        movie: "Elton John: Never Too Late",
+        receiver: "Never Too Late",
+        description: "from",
+      },
+      { movie: "Sing Sing", receiver: "Like a Bird", description: "from" },
+    ],
+  },
+  {
+    category: "best-picture",
+    nominations: [
+      { movie: "Conclave", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+      { movie: "Anora", description: "" },
+      { movie: "The Brutalist", description: "" },
+      { movie: "Wicked", description: "" },
+      { movie: "A Complete Unknown", description: "" },
+      { movie: "Dune: Part Two", description: "" },
+      { movie: "The Substance", description: "" },
+      { movie: "Nickel Boys", description: "" },
+      { movie: "I’m Still Here", description: "" },
+    ],
+  },
+  {
+    category: "production-design",
+    nominations: [
+      { movie: "Wicked", description: "" },
+      { movie: "The Brutalist", description: "" },
+      { movie: "Dune: Part Two", description: "" },
+      { movie: "Conclave", description: "" },
+      { movie: "Nosferatu", description: "" },
+    ],
+  },
+  {
+    category: "animated-short-film",
+    nominations: [
+      { movie: "Wander to Wonder", description: "" },
+      { movie: "Beautiful Men", description: "" },
+      { movie: "In the Shadow of the Cypress", description: "" },
+      { movie: "Yuck!", description: "" },
+      { movie: "Magic Candies", description: "" },
+    ],
+  },
+  {
+    category: "live-action-short-film",
+    nominations: [
+      { movie: "The Man Who Could Not Remain Silent", description: "" },
+      { movie: "Anuja", description: "" },
+      { movie: "I’m Not a Robot", description: "" },
+      { movie: "A Lien", description: "" },
+      { movie: "The Last Ranger", description: "" },
+    ],
+  },
+  {
+    category: "sound",
+    nominations: [
+      { movie: "Dune: Part Two", description: "" },
+      { movie: "Wicked", description: "" },
+      { movie: "A Complete Unknown", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+      { movie: "The Wild Robot", description: "" },
+    ],
+  },
+  {
+    category: "visual-effects",
+    nominations: [
+      { movie: "Dune: Part Two", description: "" },
+      { movie: "Kingdom of the Planet of the Apes", description: "" },
+      { movie: "Better Man", description: "" },
+      { movie: "Wicked", description: "" },
+      { movie: "Alien: Romulus", description: "" },
+    ],
+  },
+  {
+    category: "writing-adapted-screenplay",
+    nominations: [
+      { movie: "Conclave", description: "" },
+      { movie: "Emilia Pérez", description: "" },
+      { movie: "A Complete Unknown", description: "" },
+      { movie: "Sing Sing", description: "" },
+      { movie: "Nickel Boys", description: "" },
+    ],
+  },
+  {
+    category: "writing-original-screenplay",
+    nominations: [
+      { movie: "Anora", description: "" },
+      { movie: "The Brutalist", description: "" },
+      { movie: "A Real Pain", description: "" },
+      { movie: "The Substance", description: "" },
+      { movie: "September 5", description: "" },
+    ],
   },
 ];
 
@@ -963,6 +1273,53 @@ void (async () => {
     .insert(dbtCategoryTypesPoints)
     .values(points)
     .onConflictDoNothing({ target: dbtCategoryTypesPoints.categoryType });
-
   console.log("Inserted points: ", { points });
+
+  const dbCategories = await db.query.dbtCategory.findMany();
+  const dbMovies = await db.query.dbtMovie.findMany();
+  const dbReceivers = await db.query.dbtReceiver.findMany();
+
+  const categoryMap = new Map(dbCategories.map((c) => [c.slug, c]));
+  const movieMap = new Map(dbMovies.map((m) => [m.name, m]));
+  const receiverMap = new Map(dbReceivers.map((r) => [r.name, r]));
+
+  for (const categoryGroup of nominations) {
+    const category = categoryMap.get(categoryGroup.category);
+
+    if (!category) {
+      console.error("Category not found", categoryGroup.category);
+      continue;
+    }
+
+    for (const nom of categoryGroup.nominations) {
+      const movie = movieMap.get(nom.movie);
+
+      if (!movie) {
+        console.error("Movie not found", nom.movie);
+        continue;
+      }
+
+      let receiverId = null;
+      if ("receiver" in nom) {
+        const receiver = receiverMap.get(nom.receiver);
+        if (!receiver) {
+          console.error("Receiver not found", nom.receiver);
+          continue;
+        }
+        receiverId = receiver.id;
+      }
+
+      await db
+        .insert(dbtNomination)
+        .values({
+          category: category.id,
+          movie: movie.id,
+          receiver: receiverId,
+          description: nom.description,
+          isWinner: false,
+        })
+        .onConflictDoNothing();
+    }
+  }
+  console.log("Inserted nominations");
 })();
