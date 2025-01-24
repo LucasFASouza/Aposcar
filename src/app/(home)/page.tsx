@@ -46,7 +46,7 @@ export default async function Home() {
               </p>
               <Link
                 className={buttonVariants({ variant: "outline" })}
-                href="/votes"
+                href="/login"
               >
                 Sign in
               </Link>
@@ -135,7 +135,7 @@ export default async function Home() {
                 </p>
                 <Link
                   className={buttonVariants({ variant: "outline" })}
-                  href="/votes"
+                  href="/login"
                 >
                   Sign in
                 </Link>

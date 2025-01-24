@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const LoginButton = () => (
   <Button variant="outline" asChild>
-    <Link href="/login">Login</Link>
+    <Link href="/login">Sign in</Link>
   </Button>
 );
 
