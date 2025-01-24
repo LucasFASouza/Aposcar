@@ -187,7 +187,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                   Your Vote
                 </TableHead>
                 {userNominations.some(
-                  (n) => n.winnerMovieName || n.isWinner,
+                  (n) => n.winnerMovieName ?? n.isWinner,
                 ) && (
                   <TableHead className="px-2 py-2 lg:px-4 lg:py-4">
                     Winner
@@ -224,7 +224,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                     )}
                   </TableCell>
                   {userNominations.some(
-                    (n) => n.winnerMovieName || n.isWinner,
+                    (n) => n.winnerMovieName ?? n.isWinner,
                   ) && (
                     <TableCell className="px-2 py-2 text-sm lg:px-4 lg:py-4">
                       {nomination.isWinner ? (
