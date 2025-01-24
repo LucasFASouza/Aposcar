@@ -16,6 +16,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/server/auth";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
   const session = await auth();
@@ -116,9 +117,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <div className="w-full space-y-4 py-2">
             <div className="flex w-full gap-4">
               <div className="w-1/3 rounded-sm border px-4 py-2">
-                <p className="text-sm text-muted-foreground">Position</p>
+                <p className="text-xs text-muted-foreground lg:text-sm">
+                  Position
+                </p>
                 <div className="flex items-end justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="font-bold lg:text-xl">
                     {currentUser.position}º
                   </div>
                   <div className="text-muted-foreground">
@@ -128,9 +131,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
               </div>
 
               <div className="w-1/3 rounded-sm border px-4 py-2">
-                <p className="text-sm text-muted-foreground">Correct answers</p>
+                <p className="text-xs text-muted-foreground lg:text-sm">
+                  Correct answers
+                </p>
                 <div className="flex items-end justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="font-bold lg:text-xl">
                     {currentUser.correctAnswers}
                   </div>
                   <div className="text-muted-foreground">
@@ -140,9 +145,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
               </div>
 
               <div className="w-1/3 rounded-sm border px-4 py-2">
-                <p className="text-sm text-muted-foreground">Total score</p>
+                <p className="text-xs text-muted-foreground lg:text-sm">
+                  Total score
+                </p>
                 <div className="flex items-end justify-between">
-                  <div className="text-xl font-bold">
+                  <div className="font-bold lg:text-xl">
                     {currentUser.score} points
                   </div>
                 </div>
@@ -151,10 +158,10 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
 
             {userData?.favoriteMovie && (
               <div className="w-full rounded-sm border p-4">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs text-muted-foreground lg:text-sm">
                   Favorite movie of the season
                 </p>
-                <p className="text-lg font-bold">{userData.favoriteMovie}</p>
+                <p className="font-bold lg:text-lg">{userData.favoriteMovie}</p>
               </div>
             )}
           </div>
@@ -162,7 +169,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
       </div>
 
       {/* Votes table */}
-      <div className="py-2 lg:w-2/3 lg:p-0">
+      <div className="pb-8 pt-2 lg:w-2/3 lg:p-0">
         <h2 className="pb-4 pl-4 text-2xl font-bold">Your votes</h2>
 
         {/* TODO: Apply this later https://github.com/shadcn-ui/ui/issues/1151 */}
@@ -173,20 +180,33 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <Table>
             <TableHeader>
               <TableRow className="font-bold">
-                <TableHead>Category</TableHead>
-                <TableHead>Your Vote</TableHead>
-                <TableHead>Winner</TableHead>
+                <TableHead className="px-2 py-2 lg:px-4 lg:py-4">
+                  Category
+                </TableHead>
+                <TableHead className="px-2 py-2 lg:px-4 lg:py-4">
+                  Your Vote
+                </TableHead>
+                {userNominations.some(
+                  (n) => n.winnerMovieName || n.isWinner,
+                ) && (
+                  <TableHead className="px-2 py-2 lg:px-4 lg:py-4">
+                    Winner
+                  </TableHead>
+                )}
               </TableRow>
             </TableHeader>
 
             <TableBody>
               {userNominations.map((nomination) => (
                 <TableRow key={nomination.categoryName}>
-                  <TableCell className="font-bold">
+                  <TableCell className="px-2 py-2 text-sm font-bold lg:px-4 lg:py-4">
                     {nomination.categoryName}
                   </TableCell>
                   <TableCell
-                    className={nomination.isWinner ? "text-primary" : ""}
+                    className={cn(
+                      "px-2 py-2 text-sm lg:px-4 lg:py-4",
+                      nomination.isWinner && "text-primary",
+                    )}
                   >
                     {nomination.votedReceiverName ? (
                       <span>
@@ -203,22 +223,28 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                       ))
                     )}
                   </TableCell>
-                  <TableCell>
-                    {nomination.isWinner ? (
-                      <PhTrophy className="text-primary" />
-                    ) : nomination.winnerReceiverName ? (
-                      <span>
-                        {nomination.winnerReceiverName}
-                        {" ("}
-                        {nomination.winnerMovieName}
-                        {") "}
-                      </span>
-                    ) : (
-                      (nomination.winnerMovieName ?? (
-                        <span className="text-sm text-muted-foreground">-</span>
-                      ))
-                    )}
-                  </TableCell>
+                  {userNominations.some(
+                    (n) => n.winnerMovieName || n.isWinner,
+                  ) && (
+                    <TableCell className="px-2 py-2 text-sm lg:px-4 lg:py-4">
+                      {nomination.isWinner ? (
+                        <PhTrophy className="text-primary" />
+                      ) : nomination.winnerReceiverName ? (
+                        <span>
+                          {nomination.winnerReceiverName}
+                          {" ("}
+                          {nomination.winnerMovieName}
+                          {") "}
+                        </span>
+                      ) : (
+                        (nomination.winnerMovieName ?? (
+                          <span className="text-sm text-muted-foreground">
+                            -
+                          </span>
+                        ))
+                      )}
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

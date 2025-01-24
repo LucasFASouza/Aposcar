@@ -202,4 +202,15 @@ export const votesRouter = createTRPCRouter({
 
       return { userNominations: userNominations, userData: userData[0] };
     }),
+
+  getUserVotingStatus: protectedProcedure.query(async ({ ctx }) => {
+    const categories = await ctx.db.query.dbtCategory.findMany();
+    const userVotes = await ctx.db.query.dbtVote.findMany({
+      where: eq(dbtVote.user, ctx.session.user.id),
+    });
+
+    return {
+      pendingVotes: userVotes.length < categories.length,
+    };
+  }),
 });

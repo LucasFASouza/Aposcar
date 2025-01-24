@@ -10,6 +10,12 @@ import { api } from "@/trpc/server";
 export default async function Home() {
   const session = await auth();
 
+  const userVotingStatus = session?.user
+    ? await api.votes.getUserVotingStatus()
+    : null;
+
+  const showVotingReminder = session?.user && userVotingStatus?.pendingVotes;
+
   const winningNominations = await api.nominations.getWinningNominations();
   const { maxData, usersScores } = await api.votes.getUserRankings();
 
@@ -17,18 +23,36 @@ export default async function Home() {
   return (
     <div className="flex h-full flex-col justify-between gap-6 lg:flex-row">
       {winningNominations.length === 0 && (
-        <div className="my-4 flex items-center justify-between rounded bg-primary p-4 lg:hidden">
-          {/* TODO: Only show if user has logged in and haven't voted in some nomination */}
-          <p className="text-primary-foreground">
-            Don&apos;t forget to cast your votes and share your predictions!
-          </p>
-          <Link
-            className={buttonVariants({ variant: "outline" })}
-            href="/votes"
-          >
-            Go vote
-          </Link>
-        </div>
+        <>
+          {showVotingReminder && (
+            <div className="my-4 flex items-center justify-between rounded bg-primary p-4 text-sm lg:hidden">
+              <p className="text-primary-foreground">
+                Don&apos;t forget to cast your votes and share your predictions!
+                You can always edit them later.
+              </p>
+              <Link
+                className={buttonVariants({ variant: "outline" })}
+                href="/votes"
+              >
+                Go vote
+              </Link>
+            </div>
+          )}
+
+          {!session?.user && (
+            <div className="my-4 flex items-center justify-between rounded bg-primary p-4 lg:hidden">
+              <p className="text-primary-foreground">
+                Sign in to cast your votes and share your predictions!
+              </p>
+              <Link
+                className={buttonVariants({ variant: "outline" })}
+                href="/votes"
+              >
+                Sign in
+              </Link>
+            </div>
+          )}
+        </>
       )}
 
       <div className="pt-4 lg:w-2/3 lg:p-0">
@@ -88,26 +112,41 @@ export default async function Home() {
         <h2 className="pb-4 pl-4 text-2xl font-bold">Last updates</h2>
 
         {winningNominations.length === 0 && (
-          <div>
+          <div className="space-y-4">
+            {showVotingReminder && (
+              <div className="hidden items-center justify-between rounded bg-primary p-4 text-sm lg:flex">
+                <p className="text-primary-foreground">
+                  Don&apos;t forget to cast your votes and share your
+                  predictions! You can always edit them later.
+                </p>
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="/votes"
+                >
+                  Go vote
+                </Link>
+              </div>
+            )}
+
+            {!session?.user && (
+              <div className="hidden items-center justify-between rounded bg-primary p-4 text-sm lg:flex">
+                <p className="text-primary-foreground">
+                  Sign in to cast your votes and share your predictions!
+                </p>
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="/votes"
+                >
+                  Sign in
+                </Link>
+              </div>
+            )}
+
             <div className="space-y-1 rounded border p-4">
               <h3 className="text-sm">
                 When the premiation starts you&apos;ll see the winners right
                 here!
               </h3>
-            </div>
-
-            {/* TODO: Only show if user is logged in  and haven't voted in some nomination */}
-            <div className="my-4 hidden items-center justify-between rounded bg-primary p-4 lg:flex">
-              <p className="text-primary-foreground">
-                For now, don&apos;t forget to cast your votes and share your
-                predictions!
-              </p>
-              <Link
-                className={buttonVariants({ variant: "outline" })}
-                href="/votes"
-              >
-                Go vote
-              </Link>
             </div>
           </div>
         )}
