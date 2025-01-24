@@ -143,9 +143,9 @@ const EditUserPage = () => {
       ? data.twitterUsername.slice(1)
       : data.twitterUsername;
 
-    data.letterboxdUsername = data?.letterboxdUsername?.startsWith("@")
-      ? data.letterboxdUsername.slice(1)
-      : data.letterboxdUsername;
+    data.bskyUsername = data?.bskyUsername?.startsWith("@")
+      ? data.bskyUsername.slice(1)
+      : data.bskyUsername;
 
     mutate(data);
   };
