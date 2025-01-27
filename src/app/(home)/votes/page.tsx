@@ -1,16 +1,17 @@
-import { db } from "@/server/db";
 import { redirect } from "next/navigation";
 import VotesPageSkeleton from "@/components/votes/VotesPageSkeleton";
+import { api } from "@/trpc/server";
 
-// TODO: Essa página pode conter a lista de categorias e mostrar quais o usuário ainda não apostou
 export default async function VotesPage() {
-  const firstCategory = await db.query.dbtCategory.findFirst();
+  const categories = await api.nominations.getCategories({ ascending: false });
 
-  if (!firstCategory) {
+  if (!categories) {
     return <div>No categories found</div>;
   }
 
-  redirect(`/votes/${firstCategory.slug}`);
+  if (categories.length > 0 && categories[0] && categories[0].slug) {
+    redirect(`/votes/${categories[0].slug}`);
+  }
 
   return <VotesPageSkeleton />;
 }

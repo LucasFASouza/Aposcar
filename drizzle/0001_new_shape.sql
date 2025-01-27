@@ -1,0 +1,1 @@
+ALTER TABLE "aposcar_categories" ADD COLUMN "ordering" serial NOT NULL;

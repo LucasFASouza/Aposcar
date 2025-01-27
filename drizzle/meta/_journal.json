@@ -8,6 +8,13 @@
       "when": 1737389494117,
       "tag": "0000_bitter_eddie_brock",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737979548852,
+      "tag": "0001_new_shape",
+      "breakpoints": true
     }
   ]
 }

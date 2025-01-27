@@ -131,7 +131,8 @@ export const votesRouter = createTRPCRouter({
           id: dbtCategory.id,
           categoryName: dbtCategory.name,
         })
-        .from(dbtCategory);
+        .from(dbtCategory)
+        .orderBy(dbtCategory.ordering);
 
       const winningNominations = await ctx.db
         .select({

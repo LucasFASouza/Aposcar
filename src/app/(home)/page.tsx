@@ -29,12 +29,12 @@ export default async function Home() {
               <p className="w-full text-primary-foreground">
                 Don&apos;t forget to cast your votes and share your predictions!
                 <br />
-                You'll be able to change them until the awards begin.
+                You&apos;ll be able to change them until the awards begin.
               </p>
               <div className="flex w-full justify-end">
                 <Link
                   className={buttonVariants({ variant: "outline" })}
-                  href="/votes"
+                  href="/votes/documentary-short-film"
                 >
                   Go vote
                 </Link>
@@ -122,13 +122,13 @@ export default async function Home() {
               <div className="hidden flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:flex">
                 <p className="w-full text-primary-foreground">
                   Don&apos;t forget to cast your votes and share your
-                  predictions! You'll be able to change them until the awards
-                  begin.
+                  predictions! You&apos;ll be able to change them until the
+                  awards begin.
                 </p>
                 <div className="flex w-full justify-end">
                   <Link
                     className={buttonVariants({ variant: "outline" })}
-                    href="/votes"
+                    href="/votes/documentary-short-film"
                   >
                     Go vote
                   </Link>

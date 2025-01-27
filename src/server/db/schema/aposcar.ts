@@ -10,6 +10,7 @@ import {
   uuid,
   integer,
   timestamp,
+  serial,
 } from "drizzle-orm/pg-core";
 import { users } from "./auth";
 
@@ -39,6 +40,7 @@ export const dbtCategory = createTable("categories", {
   name: text("name").notNull(),
   description: text("description"),
   type: dbeCategoryType("type").default("regular").notNull(),
+  ordering: serial("ordering").notNull(),
 });
 
 export const categoriesRelations = relations(dbtCategory, ({ many }) => ({

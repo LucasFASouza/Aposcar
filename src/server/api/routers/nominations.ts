@@ -19,11 +19,15 @@ import {
   dbtVote,
 } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
-import { eq, isNotNull, and } from "drizzle-orm";
+import { eq, isNotNull, and, desc } from "drizzle-orm";
 import { z } from "zod";
 
 const getCategoryInputSchema = z.object({
   categorySlug: z.string(),
+});
+
+const getCategoriesInput = z.object({
+  ascending: z.boolean().optional().default(false),
 });
 
 export const fullNominationSchema = nominationSchema.extend({
@@ -110,6 +114,7 @@ export const nominationsRouter = createTRPCRouter({
         });
       }
 
+      // TODO: Refactor next and prev logic based on ordering descendent
       const categories = await ctx.db
         .select({
           id: dbtCategory.id,
@@ -117,8 +122,10 @@ export const nominationsRouter = createTRPCRouter({
           slug: dbtCategory.slug,
           name: dbtCategory.name,
           type: dbtCategory.type,
+          ordering: dbtCategory.ordering,
         })
-        .from(dbtCategory);
+        .from(dbtCategory)
+        .orderBy(desc(dbtCategory.ordering));
 
       const currentIndex = categories.findIndex(
         (c) => c.slug === input.categorySlug,
@@ -142,11 +149,6 @@ export const nominationsRouter = createTRPCRouter({
           message: "Category has configured points",
         });
       }
-      // const points = current.type
-      //   ? await db.query.dbtCategoryTypesPoints.findFirst({
-      //       where: (points, { eq }) => eq(points.categoryType, current.type),
-      //     })
-      //   : null;
 
       return {
         currentCategory: current,
@@ -164,9 +166,15 @@ export const nominationsRouter = createTRPCRouter({
     }),
 
   getCategories: publicProcedure
+    .input(getCategoriesInput)
     .output(categorySchema.array())
-    .query(async ({ ctx }) => {
-      return await ctx.db.select().from(dbtCategory);
+    .query(async ({ ctx, input }) => {
+      return await ctx.db
+        .select()
+        .from(dbtCategory)
+        .orderBy(
+          input.ascending ? dbtCategory.ordering : desc(dbtCategory.ordering),
+        );
     }),
 
   getNominationsByCategoryId: publicProcedure
