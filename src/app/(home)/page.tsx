@@ -25,31 +25,36 @@ export default async function Home() {
       {winningNominations.length === 0 && (
         <>
           {showVotingReminder && (
-            <div className="my-4 flex items-center justify-between rounded bg-primary p-4 text-sm lg:hidden">
-              <p className="text-primary-foreground">
+            <div className="my-4 flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:hidden">
+              <p className="w-full text-primary-foreground">
                 Don&apos;t forget to cast your votes and share your predictions!
-                You can always edit them later.
+                <br />
+                You'll be able to change them until the awards begin.
               </p>
-              <Link
-                className={buttonVariants({ variant: "outline" })}
-                href="/votes"
-              >
-                Go vote
-              </Link>
+              <div className="flex w-full justify-end">
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="/votes"
+                >
+                  Go vote
+                </Link>
+              </div>
             </div>
           )}
 
           {!session?.user && (
-            <div className="my-4 flex items-center justify-between rounded bg-primary p-4 lg:hidden">
-              <p className="text-primary-foreground">
+            <div className="my-4 flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 lg:hidden">
+              <p className="w-full text-primary-foreground">
                 Sign in to cast your votes and share your predictions!
               </p>
-              <Link
-                className={buttonVariants({ variant: "outline" })}
-                href="/login"
-              >
-                Sign in
-              </Link>
+              <div className="flex w-full justify-end">
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="/login"
+                >
+                  Sign in
+                </Link>
+              </div>
             </div>
           )}
         </>
@@ -114,31 +119,36 @@ export default async function Home() {
         {winningNominations.length === 0 && (
           <div className="space-y-4">
             {showVotingReminder && (
-              <div className="hidden items-center justify-between rounded bg-primary p-4 text-sm lg:flex">
-                <p className="text-primary-foreground">
+              <div className="hidden flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:flex">
+                <p className="w-full text-primary-foreground">
                   Don&apos;t forget to cast your votes and share your
-                  predictions! You can always edit them later.
+                  predictions! You'll be able to change them until the awards
+                  begin.
                 </p>
-                <Link
-                  className={buttonVariants({ variant: "outline" })}
-                  href="/votes"
-                >
-                  Go vote
-                </Link>
+                <div className="flex w-full justify-end">
+                  <Link
+                    className={buttonVariants({ variant: "outline" })}
+                    href="/votes"
+                  >
+                    Go vote
+                  </Link>
+                </div>
               </div>
             )}
 
             {!session?.user && (
-              <div className="hidden items-center justify-between rounded bg-primary p-4 text-sm lg:flex">
-                <p className="text-primary-foreground">
+              <div className="hidden flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:flex">
+                <p className="w-full text-primary-foreground">
                   Sign in to cast your votes and share your predictions!
                 </p>
-                <Link
-                  className={buttonVariants({ variant: "outline" })}
-                  href="/login"
-                >
-                  Sign in
-                </Link>
+                <div className="flex w-full justify-end">
+                  <Link
+                    className={buttonVariants({ variant: "outline" })}
+                    href="/login"
+                  >
+                    Sign in
+                  </Link>
+                </div>
               </div>
             )}
 
