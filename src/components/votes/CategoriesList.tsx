@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { type Category } from "@/server/api/zod/schema";
-import Link from "next/link";
 import { useState } from "react";
 
 interface Props {

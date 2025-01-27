@@ -105,7 +105,8 @@ export const nominationsRouter = createTRPCRouter({
             eq(dbtVote.user, ctx.session.user.id),
           ),
         )
-        .where(eq(dbtCategory.slug, input.categorySlug));
+        .where(eq(dbtCategory.slug, input.categorySlug))
+        .orderBy(dbtMovie.name);
 
       if (nominations.length < 1) {
         throw new TRPCError({
@@ -114,7 +115,6 @@ export const nominationsRouter = createTRPCRouter({
         });
       }
 
-      // TODO: Refactor next and prev logic based on ordering descendent
       const categories = await ctx.db
         .select({
           id: dbtCategory.id,

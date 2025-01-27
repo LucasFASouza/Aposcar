@@ -16,6 +16,17 @@ import { count } from "console";
 import { desc, eq, is, sql, sum } from "drizzle-orm";
 import { z } from "zod";
 
+export type UserNomination = {
+  categoryName: string;
+  votedMovieName: string | null;
+  votedReceiverName: string | null;
+  votedDescription: string | null;
+  isWinner: boolean;
+  winnerMovieName: string | null;
+  winnerReceiverName: string | null;
+  winnerDescription: string | null;
+};
+
 const getCurrentUserVotesSchema = z.object({
   id: z.string(),
   isWinner: z.boolean(),
