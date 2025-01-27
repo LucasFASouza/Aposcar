@@ -3,7 +3,6 @@ import { WinnerSelector } from "@/components/admin/WinnerSelector";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";

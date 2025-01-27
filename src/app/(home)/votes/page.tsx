@@ -9,7 +9,7 @@ export default async function VotesPage() {
     return <div>No categories found</div>;
   }
 
-  if (categories.length > 0 && categories[0] && categories[0].slug) {
+  if (categories.length > 0 && categories[0]?.slug) {
     redirect(`/votes/${categories[0].slug}`);
   }
 
