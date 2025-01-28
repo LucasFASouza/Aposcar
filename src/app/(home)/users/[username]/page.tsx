@@ -14,7 +14,7 @@ import { notFound } from "next/navigation";
 import PhTrophy from "~icons/ph/trophy";
 // import { ScrollArea } from "@/components/ui/scroll-area";
 import { auth } from "@/server/auth";
-import {  buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 // import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -144,16 +144,17 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
 
           {/* General Info */}
           <div className="w-full space-y-4 py-2">
-            <div className="flex w-full gap-4">
+            <div className="flex w-full gap-2 lg:gap-4">
               <div className="w-1/3 rounded-sm border px-4 py-2">
                 <p className="text-xs text-muted-foreground lg:text-sm">
                   Position
                 </p>
-                <div className="flex items-end justify-between">
-                  <div className="font-bold lg:text-xl">
-                    {currentUser.position}º
+
+                <div className="flex w-full items-end justify-end gap-2">
+                  <div className="text-lg font-bold lg:text-xl">
+                    {currentUser.position}
                   </div>
-                  <div className="text-muted-foreground">
+                  <div className="text-sm text-muted-foreground lg:text-base">
                     / {maxData.maxPosition}
                   </div>
                 </div>
@@ -161,13 +162,14 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
 
               <div className="w-1/3 rounded-sm border px-4 py-2">
                 <p className="text-xs text-muted-foreground lg:text-sm">
-                  Correct answers
+                  Predictions
                 </p>
-                <div className="flex items-end justify-between">
-                  <div className="font-bold lg:text-xl">
+
+                <div className="flex w-full items-end justify-end gap-2">
+                  <div className="text-lg font-bold lg:text-xl">
                     {currentUser.correctAnswers}
                   </div>
-                  <div className="text-muted-foreground">
+                  <div className="text-sm text-muted-foreground lg:text-base">
                     / {maxData.maxCorrectAnswers}
                   </div>
                 </div>
@@ -177,9 +179,13 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                 <p className="text-xs text-muted-foreground lg:text-sm">
                   Total score
                 </p>
-                <div className="flex items-end justify-between">
-                  <div className="font-bold lg:text-xl">
-                    {currentUser.score} points
+
+                <div className="flex w-full items-end justify-end gap-2">
+                  <div className="text-lg font-bold lg:text-xl">
+                    {currentUser.score}
+                  </div>
+                  <div className="text-sm text-muted-foreground lg:text-base">
+                    pts
                   </div>
                 </div>
               </div>
@@ -244,12 +250,12 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <TableBody>
             {userNominations.map((nomination) => (
               <TableRow key={nomination.categoryName}>
-                <TableCell className="px-2 py-2 text-sm font-bold lg:px-3 lg:py-3">
+                <TableCell className="px-2 py-2 text-xs font-bold lg:px-3 lg:py-3 lg:text-sm">
                   {nomination.categoryName}
                 </TableCell>
                 <TableCell
                   className={cn(
-                    "px-2 py-2 text-sm lg:px-3 lg:py-3",
+                    "px-2 py-2 text-xs lg:px-3 lg:py-3 lg:text-sm",
                     nomination.isWinner && "text-primary",
                   )}
                 >
@@ -262,7 +268,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                     </span>
                   ) : (
                     (nomination.votedMovieName ?? (
-                      <span className="text-sm font-normal text-muted-foreground">
+                      <span className="font-normal text-muted-foreground">
                         -
                       </span>
                     ))
@@ -271,7 +277,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                 {userNominations.some(
                   (n) => n.winnerMovieName ?? n.isWinner,
                 ) && (
-                  <TableCell className="px-2 py-2 text-sm lg:px-3 lg:py-3">
+                  <TableCell className="px-2 py-2 text-xs lg:px-3 lg:py-3 lg:text-sm">
                     {nomination.isWinner ? (
                       <PhTrophy className="text-primary" />
                     ) : nomination.winnerReceiverName ? (
@@ -283,7 +289,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                       </span>
                     ) : (
                       (nomination.winnerMovieName ?? (
-                        <span className="text-sm text-muted-foreground">-</span>
+                        <span className="text-muted-foreground">-</span>
                       ))
                     )}
                   </TableCell>

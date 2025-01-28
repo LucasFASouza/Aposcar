@@ -71,7 +71,7 @@ export default async function Home() {
             <div key={user.username}>
               <Link
                 href={`/users/${user.username}`}
-                className="flex w-full items-center gap-4 border-b border-secondary px-6 py-4 hover:bg-secondary"
+                className="flex w-full items-center gap-2 lg:gap-4 border-b border-secondary p-3 lg:px-6 lg:py-4 hover:bg-secondary"
               >
                 <div className="text-xl font-bold">{user.position}º</div>
                 <Avatar
