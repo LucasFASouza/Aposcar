@@ -25,7 +25,7 @@ export default async function RootLayout({
         <p className="">
           Made with 💛 by{" "}
           <a
-            href="https://www.labquatro.com.br"
+            href="https://github.com/LucasFASouza/aposcar"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground hover:text-primary"
