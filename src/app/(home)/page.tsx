@@ -71,7 +71,7 @@ export default async function Home() {
             <div key={user.username}>
               <Link
                 href={`/users/${user.username}`}
-                className="flex w-full items-center gap-2 lg:gap-4 border-b border-secondary p-3 lg:px-6 lg:py-4 hover:bg-secondary"
+                className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
               >
                 <div className="text-xl font-bold">{user.position}º</div>
                 <Avatar
@@ -102,8 +102,8 @@ export default async function Home() {
                     <p className="text-sm">{user.score} points</p>
                   </div>
                   <Progress
-                    value={Number(user.score) || 1}
-                    max={Number(maxData.maxScore) || 1}
+                    value={maxData.maxScore ? Number(user.score) || 0 : 1}
+                    max={Number(maxData.maxScore) || 0}
                     className="h-2"
                   />
                 </div>

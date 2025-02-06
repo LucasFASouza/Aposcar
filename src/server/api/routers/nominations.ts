@@ -242,7 +242,7 @@ export const nominationsRouter = createTRPCRouter({
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
-        .orderBy(dbtNomination.isWinnerLastUpdate);
+        .orderBy(desc(dbtNomination.isWinnerLastUpdate));
 
       return winningNominations;
     }),

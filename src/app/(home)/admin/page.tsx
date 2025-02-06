@@ -12,7 +12,7 @@ import { Category } from "@/server/api/zod/schema";
 export default async function AdminPage() {
   const categories: Category[] = await api.nominations.getCategories({ascending: true});
   return (
-    <div className="container flex flex-col gap-8 py-8 lg:flex-row">
+    <div className="container flex flex-col gap-8 py-8 lg:flex-row items-center justify-center">
       <Card className="w-full rounded lg:w-1/2">
         <CardHeader>
           <CardTitle>Set Winners</CardTitle>
@@ -22,14 +22,14 @@ export default async function AdminPage() {
         </CardContent>
       </Card>
 
-      <Card className="w-full rounded lg:w-1/2">
+      {/* <Card className="w-full rounded lg:w-1/2">
         <CardHeader>
           <CardTitle>Set Nominees</CardTitle>
         </CardHeader>
         <CardContent>
           <NomineeEditor categories={categories} />
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }

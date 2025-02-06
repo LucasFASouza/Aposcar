@@ -13,7 +13,7 @@ import {
 } from "@/server/db/schema/aposcar";
 import { users } from "@/server/db/schema/auth";
 import { count } from "console";
-import { desc, eq, is, sql, sum } from "drizzle-orm";
+import { asc, desc, eq, is, sql, sum } from "drizzle-orm";
 import { z } from "zod";
 
 export type UserNomination = {
@@ -102,9 +102,7 @@ export const votesRouter = createTRPCRouter({
         eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
       )
       .groupBy(users.id, users.email, users.role, users.name, users.image)
-      .orderBy(() =>
-        desc(sql`COALESCE(SUM(${dbtCategoryTypesPoints.points}), 0)`),
-      );
+      .orderBy(() => sql`position`);
 
     const scoreData = await ctx.db
       .select({
