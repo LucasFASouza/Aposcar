@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { VotePageContent } from "./VotePageContent";
 import { api } from "@/trpc/server";
 import VotesPageSkeleton from "@/components/votes/VotesPageSkeleton";
+import { redirect } from "next/navigation";
 
 export const dynamicParams = false;
 
@@ -18,12 +19,7 @@ const VotePage = async ({ params }: { params: { slug: string } }) => {
   const winningNominations = await api.nominations.getWinningNominations();
 
   if (winningNominations.length !== 0) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
+    redirect("/");
   }
 
   return (
