@@ -15,6 +15,16 @@ export const generateStaticParams = async () => {
 
 const VotePage = async ({ params }: { params: { slug: string } }) => {
   const categories = await api.nominations.getCategories({ ascending: false });
+  const winningNominations = await api.nominations.getWinningNominations();
+
+  if (winningNominations.length !== 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return (
     <Suspense fallback={<VotesPageSkeleton />}>
