@@ -96,11 +96,11 @@ importers:
         specifier: ^7.4.4
         version: 7.4.4
       drizzle-orm:
-        specifier: ^0.38.3
-        version: 0.38.3(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1)
+        specifier: ^0.38.4
+        version: 0.38.4(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1)
       drizzle-zod:
         specifier: ^0.6.1
-        version: 0.6.1(drizzle-orm@0.38.3(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1))(zod@3.24.1)
+        version: 0.6.1(drizzle-orm@0.38.4(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1))(zod@3.24.1)
       geist:
         specifier: ^1.3.1
         version: 1.3.1(next@14.2.23(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -1784,8 +1784,8 @@ packages:
     resolution: {integrity: sha512-HmA/NeewvHywhJ2ENXD3KvOuM/+K2dGLJfxVfIHsGwaqKICJnS+Ke2L6UcSrSrtMJLJaT0Im1Qv4TFXfaZShyw==}
     hasBin: true
 
-  drizzle-orm@0.38.3:
-    resolution: {integrity: sha512-w41Y+PquMpSff/QDRGdItG0/aWca+/J3Sda9PPGkTxBtjWQvgU1jxlFBXdjog5tYvTu58uvi3PwR1NuCx0KeZg==}
+  drizzle-orm@0.38.4:
+    resolution: {integrity: sha512-s7/5BpLKO+WJRHspvpqTydxFob8i1vo2rEx4pY6TGY7QSMuUfWUuzaY0DIpXCkgHOo37BaFC+SJQb99dDUXT3Q==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -4793,15 +4793,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.38.3(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1):
+  drizzle-orm@0.38.4(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1):
     optionalDependencies:
       '@types/react': 18.3.18
       postgres: 3.3.5
       react: 18.3.1
 
-  drizzle-zod@0.6.1(drizzle-orm@0.38.3(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1))(zod@3.24.1):
+  drizzle-zod@0.6.1(drizzle-orm@0.38.4(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1))(zod@3.24.1):
     dependencies:
-      drizzle-orm: 0.38.3(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1)
+      drizzle-orm: 0.38.4(@types/react@18.3.18)(postgres@3.3.5)(react@18.3.1)
       zod: 3.24.1
 
   dunder-proto@1.0.1:
