@@ -1,5 +1,7 @@
+import { ne } from "drizzle-orm";
 import { db } from "@/server/db";
 import {
+  dbtEdition,
   dbtCategory,
   dbtCategoryTypesPoints,
   dbtMovie,
@@ -1249,15 +1251,39 @@ const nominations = [
 ];
 
 void (async () => {
+  // Set all other editions to inactive
+  await db
+    .update(dbtEdition)
+    .set({ isActive: false })
+    .where(ne(dbtEdition.year, 2025));
+
+  const [edition] = await db
+    .insert(dbtEdition)
+    .values({ year: 2025, isActive: true })
+    .onConflictDoNothing({ target: dbtEdition.year })
+    .returning();
+
+  const editionData =
+    edition ??
+    (await db.query.dbtEdition.findFirst({
+      where: (e, { eq }) => eq(e.year, 2025),
+    }));
+
+  if (!editionData) {
+    throw new Error("Failed to create or fetch 2025 edition");
+  }
+
+  console.log("Edition created/fetched: ", { edition: editionData });
+
   await db
     .insert(dbtCategory)
-    .values(categories)
+    .values(categories.map((c) => ({ ...c, edition: editionData.id })))
     .onConflictDoNothing({ target: dbtCategory.slug });
   console.log("Inserted categories: ", { categories });
 
   await db
     .insert(dbtMovie)
-    .values(movies)
+    .values(movies.map((m) => ({ ...m, edition: editionData.id })))
     .onConflictDoNothing({ target: dbtMovie.slug });
   console.log("Inserted movies: ", { movies });
 
@@ -1315,6 +1341,7 @@ void (async () => {
           receiver: receiverId,
           description: nom.description,
           isWinner: false,
+          edition: editionData.id,
         })
         .onConflictDoNothing();
     }
