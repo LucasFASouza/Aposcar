@@ -15,6 +15,13 @@
       "when": 1737979548852,
       "tag": "0001_new_shape",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769101305604,
+      "tag": "0002_wealthy_sleepwalker",
+      "breakpoints": true
     }
   ]
 }

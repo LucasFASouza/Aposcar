@@ -24,8 +24,8 @@ Aposcar is a web application designed for cinephiles to engage in predicting Osc
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/aposcar-mvp.git
-cd aposcar-mvp
+git clone https://github.com/your-username/aposcar.git
+cd aposcar
 ```
 
 2. Set up the backend:

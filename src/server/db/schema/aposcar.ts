@@ -22,6 +22,19 @@ import { users } from "./auth";
  */
 export const createTable = pgTableCreator((name) => `aposcar_${name}`);
 
+export const dbtEdition = createTable("editions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  year: integer("year").unique().notNull(),
+  isActive: boolean("isActive").default(false).notNull(),
+});
+
+export const editionRelations = relations(dbtEdition, ({ many }) => ({
+  categories: many(dbtCategory),
+  movies: many(dbtMovie),
+  nominations: many(dbtNomination),
+  votes: many(dbtVote),
+}));
+
 export const dbeCategoryType = pgEnum("categoryType", [
   "main",
   "regular",
@@ -41,10 +54,17 @@ export const dbtCategory = createTable("categories", {
   description: text("description"),
   type: dbeCategoryType("type").default("regular").notNull(),
   ordering: serial("ordering").notNull(),
+  edition: uuid("edition")
+    .references(() => dbtEdition.id)
+    .notNull(),
 });
 
-export const categoriesRelations = relations(dbtCategory, ({ many }) => ({
+export const categoriesRelations = relations(dbtCategory, ({ many, one }) => ({
   nomination: many(dbtNomination),
+  edition: one(dbtEdition, {
+    fields: [dbtCategory.edition],
+    references: [dbtEdition.id],
+  }),
 }));
 
 export const dbtMovie = createTable("movies", {
@@ -56,7 +76,17 @@ export const dbtMovie = createTable("movies", {
   tagline: text("tagline"),
   backdrop: text("backdrop"),
   letterboxd: text("letterboxd"),
+  edition: uuid("edition")
+    .references(() => dbtEdition.id)
+    .notNull(),
 });
+
+export const movieRelations = relations(dbtMovie, ({ one }) => ({
+  edition: one(dbtEdition, {
+    fields: [dbtMovie.edition],
+    references: [dbtEdition.id],
+  }),
+}));
 
 export const dbtReceiver = createTable("receivers", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -78,6 +108,9 @@ export const dbtNomination = createTable("nominations", {
     .notNull(),
   receiver: uuid("receiver").references(() => dbtReceiver.id),
   description: text("description"),
+  edition: uuid("edition")
+    .references(() => dbtEdition.id)
+    .notNull(),
 });
 
 export const nominationRelations = relations(dbtNomination, ({ one }) => ({
@@ -95,6 +128,10 @@ export const nominationRelations = relations(dbtNomination, ({ one }) => ({
     fields: [dbtNomination.category],
     references: [dbtCategory.id],
   }),
+  edition: one(dbtEdition, {
+    fields: [dbtNomination.edition],
+    references: [dbtEdition.id],
+  }),
 }));
 
 export const dbtVote = createTable("votes", {
@@ -108,6 +145,9 @@ export const dbtVote = createTable("votes", {
   category: uuid("category").references(() => dbtCategory.id, {
     onDelete: "cascade",
   }),
+  edition: uuid("edition")
+    .references(() => dbtEdition.id)
+    .notNull(),
 });
 
 export const votesConstraint = sql`
@@ -127,6 +167,10 @@ export const voteRelations = relations(dbtVote, ({ one }) => ({
   category: one(dbtCategory, {
     fields: [dbtVote.category],
     references: [dbtCategory.id],
+  }),
+  edition: one(dbtEdition, {
+    fields: [dbtVote.edition],
+    references: [dbtEdition.id],
   }),
 }));
 
