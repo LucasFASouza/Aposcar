@@ -11,7 +11,7 @@ import {
 import { createSelectSchema } from "drizzle-zod";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { z } from "zod";
-import { dbtVote, dbtMovie } from "./aposcar";
+import { dbtVote, dbtMovie, dbtEdition } from "./aposcar";
 import { relations } from "drizzle-orm";
 
 export const userRoles = pgEnum("userRoles", ["basic", "admin"]);
@@ -27,7 +27,6 @@ export const users = pgTable("user", {
   completedOnboarding: timestamp("completedOnboarding", { mode: "date" }),
   image: text("image"),
   role: userRoles("role").default("basic").notNull(),
-  favoriteMovie: uuid("favoriteMovie").references(() => dbtMovie.id),
   letterboxdUsername: text("letterboxdUsername"),
   twitterUsername: text("twitterUsername"),
   bskyUsername: text("bskyUsername"),
@@ -36,6 +35,21 @@ export const users = pgTable("user", {
 
 export const userSelectSchema = createSelectSchema(users);
 export type UserSelect = z.infer<typeof userSelectSchema>;
+
+export const userFavoriteMovies = pgTable("userFavoriteMovie", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  user: text("user")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  movie: uuid("movie")
+    .notNull()
+    .references(() => dbtMovie.id),
+  edition: uuid("edition")
+    .notNull()
+    .references(() => dbtEdition.id),
+});
 
 export const accounts = pgTable(
   "account",
@@ -104,10 +118,25 @@ export const authenticators = pgTable(
   }),
 );
 
-export const userVotesRelation = relations(users, ({ many, one }) => ({
+export const userVotesRelation = relations(users, ({ many }) => ({
   votes: many(dbtVote),
-  favoriteMovie: one(dbtMovie, {
-    fields: [users.favoriteMovie],
-    references: [dbtMovie.id],
-  }),
+  favoriteMovies: many(userFavoriteMovies),
 }));
+
+export const userFavoriteMoviesRelation = relations(
+  userFavoriteMovies,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [userFavoriteMovies.user],
+      references: [users.id],
+    }),
+    movie: one(dbtMovie, {
+      fields: [userFavoriteMovies.movie],
+      references: [dbtMovie.id],
+    }),
+    edition: one(dbtEdition, {
+      fields: [userFavoriteMovies.edition],
+      references: [dbtEdition.id],
+    }),
+  }),
+);

@@ -5,7 +5,8 @@ import {
 } from "@/server/api/trpc";
 import { onboardUserInputSchema } from "@/server/api/zod/users";
 import { auth } from "@/server/auth";
-import { users, userSelectSchema } from "@/server/db/schema/auth";
+import { users, userSelectSchema, userFavoriteMovies } from "@/server/db/schema/auth";
+import { dbtEdition } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
 import { eq, and, not } from "drizzle-orm";
 import { z } from "zod";
@@ -69,23 +70,77 @@ export const usersRouter = createTRPCRouter({
         });
       }
 
+      const { favoriteMovie, ...userData } = input;
+
       await ctx.db
         .update(users)
-        .set(input)
+        .set(userData)
         .where(eq(users.id, ctx.session.user.id));
+
+      // Update favorite movie if provided
+      if (favoriteMovie) {
+        const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+          where: eq(dbtEdition.isActive, true),
+        });
+
+        if (!activeEdition) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "No active edition found",
+          });
+        }
+
+        // Delete existing favorite for this edition
+        await ctx.db
+          .delete(userFavoriteMovies)
+          .where(
+            and(
+              eq(userFavoriteMovies.user, ctx.session.user.id),
+              eq(userFavoriteMovies.edition, activeEdition.id),
+            ),
+          );
+
+        // Insert new favorite
+        await ctx.db.insert(userFavoriteMovies).values({
+          user: ctx.session.user.id,
+          movie: favoriteMovie,
+          edition: activeEdition.id,
+        });
+      }
 
       return { success: true };
     }),
   getUserById: publicProcedure
     .input(z.string())
-    .output(userSelectSchema)
     .query(async ({ ctx, input }) => {
-      const user = (
-        await ctx.db.select().from(users).where(eq(users.id, input))
-      ).at(0);
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
+      const user = await ctx.db.query.users.findFirst({
+        where: eq(users.id, input),
+        with: {
+          favoriteMovies: {
+            where: eq(userFavoriteMovies.edition, activeEdition.id),
+            limit: 1,
+          },
+        },
+      });
+
       if (!user) {
         throw new TRPCError({ code: "BAD_REQUEST", message: "User not found" });
       }
-      return user;
+
+      return {
+        ...user,
+        favoriteMovie: user.favoriteMovies[0]?.movie ?? null,
+      };
     }),
 });

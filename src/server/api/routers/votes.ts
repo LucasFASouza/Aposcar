@@ -12,9 +12,8 @@ import {
   dbtMovie,
   dbtReceiver,
 } from "@/server/db/schema/aposcar";
-import { users } from "@/server/db/schema/auth";
-import { count } from "console";
-import { asc, desc, eq, is, sql, sum, and } from "drizzle-orm";
+import { users, userFavoriteMovies } from "@/server/db/schema/auth";
+import { eq, sql, sum, and } from "drizzle-orm";
 import { z } from "zod";
 
 export type UserNomination = {
@@ -251,18 +250,36 @@ export const votesRouter = createTRPCRouter({
           username: users.username,
           image: users.image,
           role: users.role,
-          favoriteMovie: dbtMovie.name,
-          backdrop: dbtMovie.backdrop,
           letterboxdUsername: users.letterboxdUsername,
           twitterUsername: users.twitterUsername,
           bskyUsername: users.bskyUsername,
           githubUsername: users.githubUsername,
         })
         .from(users)
-        .leftJoin(dbtMovie, eq(users.favoriteMovie, dbtMovie.id))
         .where(eq(users.username, input));
 
-      return { userNominations: userNominations, userData: userData[0] };
+      const favoriteMovieData = await ctx.db
+        .select({
+          favoriteMovie: dbtMovie.name,
+          backdrop: dbtMovie.backdrop,
+        })
+        .from(userFavoriteMovies)
+        .innerJoin(dbtMovie, eq(userFavoriteMovies.movie, dbtMovie.id))
+        .where(
+          and(
+            eq(userFavoriteMovies.user, userData[0]?.id ?? ""),
+            eq(userFavoriteMovies.edition, activeEdition.id),
+          ),
+        )
+        .limit(1);
+
+      const userDataWithFavorite = {
+        ...userData[0],
+        favoriteMovie: favoriteMovieData[0]?.favoriteMovie ?? null,
+        backdrop: favoriteMovieData[0]?.backdrop ?? null,
+      };
+
+      return { userNominations: userNominations, userData: userDataWithFavorite };
     }),
 
   getUserVotingStatus: protectedProcedure.query(async ({ ctx }) => {
