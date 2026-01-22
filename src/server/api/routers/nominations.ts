@@ -142,10 +142,8 @@ export const nominationsRouter = createTRPCRouter({
           name: dbtCategory.name,
           type: dbtCategory.type,
           ordering: dbtCategory.ordering,
-          edition: dbtCategory.edition,
         })
         .from(dbtCategory)
-        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(desc(dbtCategory.ordering));
 
       const currentIndex = categories.findIndex(
@@ -204,7 +202,6 @@ export const nominationsRouter = createTRPCRouter({
       return await ctx.db
         .select()
         .from(dbtCategory)
-        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(
           input.ascending ? dbtCategory.ordering : desc(dbtCategory.ordering),
         );

@@ -76,10 +76,7 @@ export const votesRouter = createTRPCRouter({
       `);
 
       const category = await ctx.db.query.dbtCategory.findFirst({
-        where: and(
-          eq(dbtCategory.slug, input.categorySlug),
-          eq(dbtCategory.edition, activeEdition.id),
-        ),
+        where: eq(dbtCategory.slug, input.categorySlug),
       });
 
       await ctx.db.insert(dbtVote).values({
@@ -184,7 +181,6 @@ export const votesRouter = createTRPCRouter({
           categoryName: dbtCategory.name,
         })
         .from(dbtCategory)
-        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(dbtCategory.ordering);
 
       const winningNominations = await ctx.db
@@ -279,7 +275,10 @@ export const votesRouter = createTRPCRouter({
         backdrop: favoriteMovieData[0]?.backdrop ?? null,
       };
 
-      return { userNominations: userNominations, userData: userDataWithFavorite };
+      return {
+        userNominations: userNominations,
+        userData: userDataWithFavorite,
+      };
     }),
 
   getUserVotingStatus: protectedProcedure.query(async ({ ctx }) => {
@@ -291,9 +290,7 @@ export const votesRouter = createTRPCRouter({
       throw new Error("No active edition found");
     }
 
-    const categories = await ctx.db.query.dbtCategory.findMany({
-      where: eq(dbtCategory.edition, activeEdition.id),
-    });
+    const categories = await ctx.db.query.dbtCategory.findMany();
     const userVotes = await ctx.db.query.dbtVote.findMany({
       where: and(
         eq(dbtVote.user, ctx.session.user.id),

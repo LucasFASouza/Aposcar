@@ -29,7 +29,6 @@ export const dbtEdition = createTable("editions", {
 });
 
 export const editionRelations = relations(dbtEdition, ({ many }) => ({
-  categories: many(dbtCategory),
   movies: many(dbtMovie),
   nominations: many(dbtNomination),
   votes: many(dbtVote),
@@ -54,17 +53,10 @@ export const dbtCategory = createTable("categories", {
   description: text("description"),
   type: dbeCategoryType("type").default("regular").notNull(),
   ordering: serial("ordering").notNull(),
-  edition: uuid("edition")
-    .references(() => dbtEdition.id)
-    .notNull(),
 });
 
-export const categoriesRelations = relations(dbtCategory, ({ many, one }) => ({
+export const categoriesRelations = relations(dbtCategory, ({ many }) => ({
   nomination: many(dbtNomination),
-  edition: one(dbtEdition, {
-    fields: [dbtCategory.edition],
-    references: [dbtEdition.id],
-  }),
 }));
 
 export const dbtMovie = createTable("movies", {
