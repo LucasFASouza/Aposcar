@@ -11,6 +11,7 @@ import {
   receiverSchema,
 } from "@/server/api/zod/schema";
 import {
+  dbtEdition,
   dbtCategory,
   dbtCategoryTypesPoints,
   dbtMovie,
@@ -67,6 +68,17 @@ export const nominationsRouter = createTRPCRouter({
     .input(getCategoryInputSchema)
     .output(getCategoryWithNavigationSchema)
     .query(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       const nominations = await ctx.db
         .select({
           id: dbtNomination.id,
@@ -74,6 +86,7 @@ export const nominationsRouter = createTRPCRouter({
           isWinner: dbtNomination.isWinner,
           isWinnerLastUpdate: dbtNomination.isWinnerLastUpdate,
           category: dbtNomination.category,
+          edition: dbtNomination.edition,
           categoryName: dbtCategory.name,
           isUserVote: isNotNull(dbtVote.user).as<boolean>("isUserVote"),
           movie: {
@@ -85,6 +98,7 @@ export const nominationsRouter = createTRPCRouter({
             tagline: dbtMovie.tagline,
             backdrop: dbtMovie.backdrop,
             letterboxd: dbtMovie.letterboxd,
+            edition: dbtMovie.edition,
           },
           receiver: {
             id: dbtReceiver.id,
@@ -105,7 +119,12 @@ export const nominationsRouter = createTRPCRouter({
             eq(dbtVote.user, ctx.session.user.id),
           ),
         )
-        .where(eq(dbtCategory.slug, input.categorySlug))
+        .where(
+          and(
+            eq(dbtCategory.slug, input.categorySlug),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        )
         .orderBy(dbtMovie.name);
 
       if (nominations.length < 1) {
@@ -123,8 +142,10 @@ export const nominationsRouter = createTRPCRouter({
           name: dbtCategory.name,
           type: dbtCategory.type,
           ordering: dbtCategory.ordering,
+          edition: dbtCategory.edition,
         })
         .from(dbtCategory)
+        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(desc(dbtCategory.ordering));
 
       const currentIndex = categories.findIndex(
@@ -169,9 +190,21 @@ export const nominationsRouter = createTRPCRouter({
     .input(getCategoriesInput)
     .output(categorySchema.array())
     .query(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       return await ctx.db
         .select()
         .from(dbtCategory)
+        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(
           input.ascending ? dbtCategory.ordering : desc(dbtCategory.ordering),
         );
@@ -181,6 +214,17 @@ export const nominationsRouter = createTRPCRouter({
     .input(z.string())
     .output(getNominationsByCategoryIdSchema)
     .query(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       const nominations = await ctx.db
         .select({
           id: dbtNomination.id,
@@ -196,7 +240,12 @@ export const nominationsRouter = createTRPCRouter({
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
-        .where(eq(dbtCategory.id, input));
+        .where(
+          and(
+            eq(dbtCategory.id, input),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        );
 
       if (nominations.length < 1) {
         throw new TRPCError({
@@ -211,6 +260,17 @@ export const nominationsRouter = createTRPCRouter({
   getWinningNominations: publicProcedure
     .output(fullNominationSchema.extend({ categoryName: z.string() }).array())
     .query(async ({ ctx }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       const winningNominations = await ctx.db
         .select({
           id: dbtNomination.id,
@@ -218,6 +278,7 @@ export const nominationsRouter = createTRPCRouter({
           isWinner: dbtNomination.isWinner,
           isWinnerLastUpdate: dbtNomination.isWinnerLastUpdate,
           category: dbtNomination.category,
+          edition: dbtNomination.edition,
           categoryName: dbtCategory.name,
           movie: {
             id: dbtMovie.id,
@@ -228,6 +289,7 @@ export const nominationsRouter = createTRPCRouter({
             tagline: dbtMovie.tagline,
             backdrop: dbtMovie.backdrop,
             letterboxd: dbtMovie.letterboxd,
+            edition: dbtMovie.edition,
           },
           receiver: {
             id: dbtReceiver.id,
@@ -238,7 +300,12 @@ export const nominationsRouter = createTRPCRouter({
           },
         })
         .from(dbtNomination)
-        .where(eq(dbtNomination.isWinner, true))
+        .where(
+          and(
+            eq(dbtNomination.isWinner, true),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        )
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
@@ -250,7 +317,21 @@ export const nominationsRouter = createTRPCRouter({
   getMovies: publicProcedure
     .output(moviesSchema.array())
     .query(async ({ ctx }) => {
-      return await ctx.db.select().from(dbtMovie);
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
+      return await ctx.db
+        .select()
+        .from(dbtMovie)
+        .where(eq(dbtMovie.edition, activeEdition.id));
     }),
 
   setWinner: protectedProcedure
@@ -261,10 +342,26 @@ export const nominationsRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       await ctx.db
         .update(dbtNomination)
         .set({ isWinner: false })
-        .where(eq(dbtNomination.category, input.categoryId));
+        .where(
+          and(
+            eq(dbtNomination.category, input.categoryId),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        );
 
       await ctx.db
         .update(dbtNomination)
@@ -291,9 +388,25 @@ export const nominationsRouter = createTRPCRouter({
     )
 
     .mutation(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
       await ctx.db
         .delete(dbtNomination)
-        .where(eq(dbtNomination.category, input.categoryId));
+        .where(
+          and(
+            eq(dbtNomination.category, input.categoryId),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        );
 
       await ctx.db.insert(dbtNomination).values(
         input.nominations.map((nom) => ({
@@ -302,6 +415,7 @@ export const nominationsRouter = createTRPCRouter({
           receiver: nom.receiverId,
           description: nom.description,
           isWinner: false,
+          edition: activeEdition.id,
         })),
       );
 

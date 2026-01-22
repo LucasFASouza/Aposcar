@@ -4,6 +4,7 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 import {
+  dbtEdition,
   dbtCategoryTypesPoints,
   dbtCategory,
   dbtNomination,
@@ -13,7 +14,7 @@ import {
 } from "@/server/db/schema/aposcar";
 import { users } from "@/server/db/schema/auth";
 import { count } from "console";
-import { asc, desc, eq, is, sql, sum } from "drizzle-orm";
+import { asc, desc, eq, is, sql, sum, and } from "drizzle-orm";
 import { z } from "zod";
 
 export type UserNomination = {
@@ -47,6 +48,14 @@ export const votesRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new Error("No active edition found");
+      }
+
       console.log(ctx.session.user.id);
       // DELETE with JOINS are not yet available on drizzle
       // https://github.com/drizzle-team/drizzle-orm/issues/3100
@@ -63,18 +72,37 @@ export const votesRouter = createTRPCRouter({
             WHERE
               ${dbtVote.user} = ${ctx.session.user.id}
               AND ${dbtCategory.slug} = ${input.categorySlug}
+              AND ${dbtVote.edition} = ${activeEdition.id}
           )  
       `);
 
-      await ctx.db
-        .insert(dbtVote)
-        .values({ nomination: input.nominationId, user: ctx.session.user.id });
+      const category = await ctx.db.query.dbtCategory.findFirst({
+        where: and(
+          eq(dbtCategory.slug, input.categorySlug),
+          eq(dbtCategory.edition, activeEdition.id),
+        ),
+      });
+
+      await ctx.db.insert(dbtVote).values({
+        nomination: input.nominationId,
+        user: ctx.session.user.id,
+        category: category?.id,
+        edition: activeEdition.id,
+      });
       return {
         success: true,
       };
     }),
 
   getUserRankings: publicProcedure.query(async ({ ctx }) => {
+    const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+      where: eq(dbtEdition.isActive, true),
+    });
+
+    if (!activeEdition) {
+      throw new Error("No active edition found");
+    }
+
     const usersData = await ctx.db
       .select({
         role: users.role,
@@ -94,7 +122,10 @@ export const votesRouter = createTRPCRouter({
           ),
       })
       .from(users)
-      .leftJoin(dbtVote, eq(dbtVote.user, users.id))
+      .leftJoin(
+        dbtVote,
+        and(eq(dbtVote.user, users.id), eq(dbtVote.edition, activeEdition.id)),
+      )
       .leftJoin(dbtNomination, eq(dbtVote.nomination, dbtNomination.id))
       .leftJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
       .leftJoin(
@@ -118,7 +149,12 @@ export const votesRouter = createTRPCRouter({
         dbtCategoryTypesPoints,
         eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
       )
-      .where(dbtNomination.isWinner.getSQL());
+      .where(
+        and(
+          dbtNomination.isWinner.getSQL(),
+          eq(dbtNomination.edition, activeEdition.id),
+        ),
+      );
 
     const maxData = {
       maxScore: scoreData[0]?.maxScore ?? 0,
@@ -135,12 +171,21 @@ export const votesRouter = createTRPCRouter({
   getUserProfile: publicProcedure
     .input(z.string())
     .query(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new Error("No active edition found");
+      }
+
       const allCategories = await ctx.db
         .select({
           id: dbtCategory.id,
           categoryName: dbtCategory.name,
         })
         .from(dbtCategory)
+        .where(eq(dbtCategory.edition, activeEdition.id))
         .orderBy(dbtCategory.ordering);
 
       const winningNominations = await ctx.db
@@ -152,7 +197,12 @@ export const votesRouter = createTRPCRouter({
           winnerDescription: dbtNomination.description,
         })
         .from(dbtNomination)
-        .where(eq(dbtNomination.isWinner, true))
+        .where(
+          and(
+            eq(dbtNomination.isWinner, true),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        )
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id));
@@ -172,7 +222,9 @@ export const votesRouter = createTRPCRouter({
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
         .innerJoin(users, eq(dbtVote.user, users.id))
-        .where(eq(users.username, input));
+        .where(
+          and(eq(users.username, input), eq(dbtVote.edition, activeEdition.id)),
+        );
 
       const userNominations = allCategories.map((category) => {
         const voted = votedNominations.find(
@@ -214,9 +266,22 @@ export const votesRouter = createTRPCRouter({
     }),
 
   getUserVotingStatus: protectedProcedure.query(async ({ ctx }) => {
-    const categories = await ctx.db.query.dbtCategory.findMany();
+    const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+      where: eq(dbtEdition.isActive, true),
+    });
+
+    if (!activeEdition) {
+      throw new Error("No active edition found");
+    }
+
+    const categories = await ctx.db.query.dbtCategory.findMany({
+      where: eq(dbtCategory.edition, activeEdition.id),
+    });
     const userVotes = await ctx.db.query.dbtVote.findMany({
-      where: eq(dbtVote.user, ctx.session.user.id),
+      where: and(
+        eq(dbtVote.user, ctx.session.user.id),
+        eq(dbtVote.edition, activeEdition.id),
+      ),
     });
 
     return {
