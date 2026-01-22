@@ -118,11 +118,17 @@ export const votesRouter = createTRPCRouter({
           ),
       })
       .from(users)
-      .leftJoin(
+      .innerJoin(
         dbtVote,
         and(eq(dbtVote.user, users.id), eq(dbtVote.edition, activeEdition.id)),
       )
-      .leftJoin(dbtNomination, eq(dbtVote.nomination, dbtNomination.id))
+      .innerJoin(
+        dbtNomination,
+        and(
+          eq(dbtVote.nomination, dbtNomination.id),
+          eq(dbtNomination.edition, activeEdition.id),
+        ),
+      )
       .leftJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
       .leftJoin(
         dbtCategoryTypesPoints,
