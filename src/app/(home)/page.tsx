@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 import { buttonVariants } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { formatDistanceToNow } from "date-fns";
 import { api } from "@/trpc/server";
+import { WinningNominationCard } from "@/components/home/WinningNominationCard";
 
 export default async function Home() {
   const session = await auth();
@@ -166,20 +166,10 @@ export default async function Home() {
           style={{ maxHeight: "calc(100vh - 13rem)" }}
         >
           {winningNominations.map((nomination) => (
-            <div key={nomination.id} className="space-y-1 border-b p-4">
-              <div className="flex justify-between">
-                <h3 className="text-sm">{nomination.categoryName}</h3>
-                {nomination.isWinnerLastUpdate && (
-                  <p className="text-xs text-muted-foreground">
-                    {formatDistanceToNow(nomination.isWinnerLastUpdate)} ago
-                  </p>
-                )}
-              </div>
-
-              <h2 className="text-lg font-semibold text-primary">
-                {nomination.movie.name}
-              </h2>
-            </div>
+            <WinningNominationCard
+              key={nomination.id}
+              nomination={nomination}
+            />
           ))}
         </ScrollArea>
       </div>

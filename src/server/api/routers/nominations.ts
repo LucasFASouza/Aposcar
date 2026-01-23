@@ -20,7 +20,7 @@ import {
   dbtVote,
 } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
-import { eq, isNotNull, and, desc } from "drizzle-orm";
+import { eq, isNotNull, and, desc, sql, count } from "drizzle-orm";
 import { z } from "zod";
 
 const getCategoryInputSchema = z.object({
@@ -423,5 +423,73 @@ export const nominationsRouter = createTRPCRouter({
     .output(receiverSchema.array())
     .query(async ({ ctx }) => {
       return await ctx.db.select().from(dbtReceiver);
+    }),
+
+  getCategoryVoteStats: protectedProcedure
+    .input(z.object({ categoryId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
+        });
+      }
+
+      const voteStats = await ctx.db
+        .select({
+          nominationId: dbtNomination.id,
+          movieName: dbtMovie.name,
+          receiverName: dbtReceiver.name,
+          description: dbtNomination.description,
+          isWinner: dbtNomination.isWinner,
+          voteCount: count(dbtVote.id).as("voteCount"),
+        })
+        .from(dbtNomination)
+        .where(
+          and(
+            eq(dbtNomination.category, input.categoryId),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        )
+        .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
+        .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
+        .leftJoin(
+          dbtVote,
+          and(
+            eq(dbtVote.nomination, dbtNomination.id),
+            eq(dbtVote.edition, activeEdition.id),
+          ),
+        )
+        .groupBy(
+          dbtNomination.id,
+          dbtMovie.name,
+          dbtReceiver.name,
+          dbtNomination.description,
+          dbtNomination.isWinner,
+        );
+
+      const userVote = await ctx.db
+        .select({
+          nominationId: dbtVote.nomination,
+        })
+        .from(dbtVote)
+        .innerJoin(dbtNomination, eq(dbtVote.nomination, dbtNomination.id))
+        .where(
+          and(
+            eq(dbtVote.user, ctx.session.user.id),
+            eq(dbtNomination.category, input.categoryId),
+            eq(dbtVote.edition, activeEdition.id),
+          ),
+        )
+        .limit(1);
+
+      return {
+        voteStats,
+        userVoteNominationId: userVote[0]?.nominationId ?? null,
+      };
     }),
 });
