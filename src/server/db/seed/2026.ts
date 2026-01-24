@@ -62,7 +62,7 @@ const movies = [
     name: "Hamnet",
     tagline: "KEEP YOUR HEART OPEN.",
     description:
-      "The powerful story of love and loss that inspired the creation of Shakespeare\u2019s timeless masterpiece, Hamlet.",
+      "The powerful story of love and loss that inspired the creation of Shakespeare's timeless masterpiece, Hamlet.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/2/772232-hamnet-0-230-0-345-crop.jpg?v=631489314d",
     backdrop:
@@ -120,9 +120,9 @@ const movies = [
   {
     slug: "f1",
     name: "F1",
-    tagline: "LET\u2019S RIDE.",
+    tagline: "LET'S RIDE.",
     description:
-      "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team\u2014and mentor a young hotshot driver\u2014while chasing one more chance at glory.",
+      "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/8/1/7/9/7/7/817977-f1-the-movie-0-230-0-345-crop.jpg?v=f5ae2b99b9",
     backdrop:
@@ -134,7 +134,7 @@ const movies = [
     name: "Blue Moon",
     tagline: "FORGOTTEN BUT NOT GONE.",
     description:
-      "On the evening of March 31, 1943, legendary lyricist Lorenz Hart confronts his shattered self-confidence in Sardi\u2019s bar as his former collaborator Richard Rodgers celebrates the opening night of his ground-breaking hit musical \u201cOklahoma!\u201d.",
+      "On the evening of March 31, 1943, legendary lyricist Lorenz Hart confronts his shattered self-confidence in Sardi's bar as his former collaborator Richard Rodgers celebrates the opening night of his ground-breaking hit musical 'Oklahoma!'.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/1/8/1/4/6/3/1181463-blue-moon-2025-0-230-0-345-crop.jpg?v=e7b58cae0d",
     backdrop:
@@ -143,10 +143,10 @@ const movies = [
   },
   {
     slug: "if-i-had-legs-id-kick-you",
-    name: "If I Had Legs I\u2019d Kick You",
+    name: "If I Had Legs I'd Kick You",
     tagline: "EVERYTHING IS UNDER CONTROL.",
     description:
-      "With her life crashing down around her, Linda attempts to navigate her child\u2019s mysterious illness, her absent husband, a missing person, and an increasingly hostile relationship with her therapist.",
+      "With her life crashing down around her, Linda attempts to navigate her child's mysterious illness, her absent husband, a missing person, and an increasingly hostile relationship with her therapist.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/0/4/6/5/2/2/1046522-if-i-had-legs-id-kick-you-0-230-0-345-crop.jpg?v=831a0c76c9",
     backdrop:
@@ -158,7 +158,7 @@ const movies = [
     name: "Song Sung Blue",
     tagline: "INSPIRED BY A LEGEND. BOUND BY A DREAM.",
     description:
-      "Based on a true story, two down-on-their-luck musicians form a joyous Neil Diamond tribute band, proving it\u2019s never too late to find love and follow your dreams.",
+      "Based on a true story, two down-on-their-luck musicians form a joyous Neil Diamond tribute band, proving it's never too late to find love and follow your dreams.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/2/3/1257923-song-sung-blue-2025-0-230-0-345-crop.jpg?v=cbd714fcd7",
     backdrop:
@@ -169,7 +169,7 @@ const movies = [
     slug: "weapons-2025",
     name: "Weapons",
     tagline:
-      "LAST NIGHT AT 2:17 AM, EVERY CHILD FROM MRS. GANDY\u2019S CLASS WOKE UP, GOT OUT OF BED, WENT DOWNSTAIRS, OPENED THE FRONT DOOR, WALKED INTO THE DARK \u2026AND THEY NEVER CAME BACK.",
+      "LAST NIGHT AT 2:17 AM, EVERY CHILD FROM MRS. GANDY'S CLASS WOKE UP, GOT OUT OF BED, WENT DOWNSTAIRS, OPENED THE FRONT DOOR, WALKED INTO THE DARK ...AND THEY NEVER CAME BACK.",
     description:
       "When all but one child from the same class mysteriously vanish on the same night at exactly the same time, a community is left questioning who or what is behind their disappearance.",
     poster:
@@ -195,7 +195,7 @@ const movies = [
     name: "Avatar: Fire and Ash",
     tagline: "THE WORLD OF PANDORA WILL CHANGE FOREVER.",
     description:
-      "In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri face a new threat on Pandora: the Ash People, a violent and power-hungry Na\u2019vi tribe led by the ruthless Varang. Jake\u2019s family must fight for their survival and the future of Pandora in a conflict that pushes them to their emotional and physical limits.",
+      "In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri face a new threat on Pandora: the Ash People, a violent and power-hungry Na'vi tribe led by the ruthless Varang. Jake's family must fight for their survival and the future of Pandora in a conflict that pushes them to their emotional and physical limits.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/7/0/0/0/7/70007-avatar-fire-and-ash-0-230-0-345-crop.jpg?v=5d2f8b35b1",
     backdrop:
@@ -204,7 +204,7 @@ const movies = [
   },
   {
     slug: "sirat-2025",
-    name: "Sir\u0101t",
+    name: "Sirāt",
     tagline: null,
     description:
       "A man and his son arrive at a rave lost in the mountains of Morocco. They are looking for Marina, their daughter and sister, who disappeared months ago at another rave. Driven by fate, they decide to follow a group of ravers in search of one last party, in hopes Marina will be there.",
@@ -254,7 +254,7 @@ const movies = [
     name: "Kokuho",
     tagline: null,
     description:
-      "Nagasaki, 1964: Following the death of his yakuza father, 15-year-old Kikuo is taken under the wing of a famous kabuki actor. Alongside Shunsuke, the actor\u2019s only son, he decides to dedicate himself to this traditional form of theatre. For decades, the two young men grow and evolve together \u2013 and one will become the greatest Japanese master of the art of kabuki.",
+      "Nagasaki, 1964: Following the death of his yakuza father, 15-year-old Kikuo is taken under the wing of a famous kabuki actor. Alongside Shunsuke, the actor's only son, he decides to dedicate himself to this traditional form of theatre. For decades, the two young men grow and evolve together - and one will become the greatest Japanese master of the art of kabuki.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/6/5/6/5/8/1265658-kokuho-0-230-0-345-crop.jpg?v=662ff79da5",
     backdrop:
@@ -264,9 +264,9 @@ const movies = [
   {
     slug: "the-ugly-stepsister",
     name: "The Ugly Stepsister",
-    tagline: "IF THE SHOE DOESN\u2019T FIT\u2026",
+    tagline: "IF THE SHOE DOESN'T FIT...",
     description:
-      "In a fairy-tale kingdom where beauty is a brutal business, Elvira battles to compete with her incredibly beautiful stepsister, and she will go to any length to catch the prince\u2019s eye.",
+      "In a fairy-tale kingdom where beauty is a brutal business, Elvira battles to compete with her incredibly beautiful stepsister, and she will go to any length to catch the prince's eye.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/1/6/7/6/5/7/1167657-the-ugly-stepsister-0-230-0-345-crop.jpg?v=a5e7b4de55",
     backdrop:
@@ -276,8 +276,7 @@ const movies = [
   {
     slug: "viva-verdi",
     name: "Viva Verdi!",
-    tagline:
-      "\u2026 LIFE\u2019S \u201cTHIRD ACT\u201d MAY BE THE BEST ONE AFTER ALL!",
+    tagline: "... LIFE'S 'THIRD ACT' MAY BE THE BEST ONE AFTER ALL!",
     description: "",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/4/7/2/6/1/1247261-viva-verdi-0-230-0-345-crop.jpg?v=494d86481d",
@@ -301,7 +300,7 @@ const movies = [
     name: "KPop Demon Hunters",
     tagline: "THEY SING. THEY DANCE. THEY BATTLE DEMONS.",
     description:
-      "When K-pop superstars Rumi, Mira and Zoey aren\u2019t selling out stadiums, they\u2019re using their secret powers to protect their fans from supernatural threats.",
+      "When K-pop superstars Rumi, Mira and Zoey aren't selling out stadiums, they're using their secret powers to protect their fans from supernatural threats.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/7/2/0/9/5/3/720953-kpop-demon-hunters-0-230-0-345-crop.jpg?v=10b7464274",
     backdrop:
@@ -311,9 +310,9 @@ const movies = [
   {
     slug: "zootopia-2",
     name: "Zootopia 2",
-    tagline: "ZOOTOPIA WILL BE CHANGED FURRREVER\u2026",
+    tagline: "ZOOTOPIA WILL BE CHANGED FURRREVER...",
     description:
-      "After cracking the biggest case in Zootopia\u2019s history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De\u2019Snake arrives and turns the animal metropolis upside down. To crack the case, Judy and Nick must go undercover to unexpected new parts of town, where their growing partnership is tested like never before.",
+      "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De'Snake arrives and turns the animal metropolis upside down. To crack the case, Judy and Nick must go undercover to unexpected new parts of town, where their growing partnership is tested like never before.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/9/7/7/3/4/2/977342-zootopia-2-0-230-0-345-crop.jpg?v=00a15a97bc",
     backdrop:
@@ -334,11 +333,11 @@ const movies = [
   },
   {
     slug: "little-amelie-or-the-character-of-rain",
-    name: "Little Am\u00e9lie or the Character of Rain",
+    name: "Little Amélie or the Character of Rain",
     tagline:
-      "WHEN YOU\u2019RE THREE YEARS OLD, YOU SEE EVERYTHING AND UNDERSTAND NOTHING.",
+      "WHEN YOU'RE THREE YEARS OLD, YOU SEE EVERYTHING AND UNDERSTAND NOTHING.",
     description:
-      "The world is a perplexing, peaceful mystery to Am\u00e9lie until a miraculous encounter with chocolate ignites her wild sense of curiosity. As she develops a deep attachment to her family\u2019s housekeeper, Nishio-san, Am\u00e9lie discovers the wonders of nature as well as the emotional truths hidden beneath the surface of her family\u2019s idyllic life as foreigners in post-war Japan.",
+      "The world is a perplexing, peaceful mystery to Amélie until a miraculous encounter with chocolate ignites her wild sense of curiosity. As she develops a deep attachment to her family's housekeeper, Nishio-san, Amélie discovers the wonders of nature as well as the emotional truths hidden beneath the surface of her family's idyllic life as foreigners in post-war Japan.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/6/0/6/2/9/8/606298-little-amelie-or-the-character-of-rain-0-230-0-345-crop.jpg?v=4440475e1e",
     backdrop:
@@ -349,7 +348,7 @@ const movies = [
   {
     slug: "elio",
     name: "Elio",
-    tagline: "THEY ASKED FOR OUR LEADER. THEY GOT\u2026 HIM.",
+    tagline: "THEY ASKED FOR OUR LEADER. THEY GOT... HIM.",
     description:
       "Elio, a space fanatic with an active imagination, finds himself on a cosmic misadventure where he must form new bonds with eccentric alien lifeforms, navigate a crisis of intergalactic proportions and somehow discover who he is truly meant to be.",
     poster:
@@ -387,7 +386,7 @@ const movies = [
     name: "The Alabama Solution",
     tagline: "THE TRUTH FROM THE INSIDE OUT.",
     description:
-      "Incarcerated men defy the odds to expose a cover-up in one of America\u2019s deadliest prison systems.",
+      "Incarcerated men defy the odds to expose a cover-up in one of America's deadliest prison systems.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/9/5/2/0/6/1295206-the-alabama-solution-0-230-0-345-crop.jpg?v=1466f00681",
     backdrop:
@@ -399,7 +398,7 @@ const movies = [
     name: "Cutting Through Rocks",
     tagline: null,
     description:
-      "37-year-old Sara Shahverdi, a motorcycle riding, land owning, former midwife-turned-fierce citizen advocate and recent divorc\u00e9e, just won a landslide local election in her remote Iranian village and everyone has an opinion about it.",
+      "37-year-old Sara Shahverdi, a motorcycle riding, land owning, former midwife-turned-fierce citizen advocate and recent divorcée, just won a landslide local election in her remote Iranian village and everyone has an opinion about it.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/1/6/5/1284165-cutting-through-rocks-0-230-0-345-crop.jpg?v=51ce072b4d",
     backdrop:
@@ -411,7 +410,7 @@ const movies = [
     name: "Mr. Nobody Against Putin",
     tagline: null,
     description:
-      "As Russia launches its full-scale invasion of Ukraine, primary schools across Russia\u2019s hinterlands are transformed into recruitment stages for the war. Facing the ethical dilemma of working in a system defined by propaganda and violence, a brave teacher goes undercover to film what\u2019s really happening in his own school.",
+      "As Russia launches its full-scale invasion of Ukraine, primary schools across Russia's hinterlands are transformed into recruitment stages for the war. Facing the ethical dilemma of working in a system defined by propaganda and violence, a brave teacher goes undercover to film what's really happening in his own school.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/7/7/5/4/5/1277545-mr-nobody-against-putin-0-230-0-345-crop.jpg?v=e15d911787",
     backdrop:
@@ -423,7 +422,7 @@ const movies = [
     name: "Come See Me in the Good Light",
     tagline: "A LOVE STORY IN THE FACE OF LOSS.",
     description:
-      "In an intimate and joyful story of love in the face of loss, celebrated poets Andrea Gibson and Megan Falley find strength\u2014and unexpected hilarity\u2014in what might be their final year together.",
+      "In an intimate and joyful story of love in the face of loss, celebrated poets Andrea Gibson and Megan Falley find strength—and unexpected hilarity—in what might be their final year together.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/1/5/4/1284154-come-see-me-in-the-good-light-0-230-0-345-crop.jpg?v=f18de047d6",
     backdrop:
@@ -491,7 +490,7 @@ const movies = [
   },
   {
     slug: "butchers-stain",
-    name: "Butcher\u2019s Stain",
+    name: "Butcher's Stain",
     tagline: null,
     description:
       "The story follows Samir, an Arab butcher falsely accused by his manager of removing hostage posters, forcing him to fight for his job and innocence amidst rising prejudice.",
@@ -505,7 +504,7 @@ const movies = [
     name: "A Friend of Dorothy",
     tagline: null,
     description:
-      "Dorothy is a lonely widow whose body is failing, but her mind remains as bright as ever. When 17-year-old JJ accidentally kicks his football into her garden, he upends Dorothy\u2019s daily routine of pills, prunes, and crosswords, and an unlikely friendship blossoms. Despite being worlds apart in every way, the two come to find they have more in common than they could ever imagine.",
+      "Dorothy is a lonely widow whose body is failing, but her mind remains as bright as ever. When 17-year-old JJ accidentally kicks his football into her garden, he upends Dorothy's daily routine of pills, prunes, and crosswords, and an unlikely friendship blossoms. Despite being worlds apart in every way, the two come to find they have more in common than they could ever imagine.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/3/4/7/4/7/1/1347471-a-friend-of-dorothy-2025-0-230-0-345-crop.jpg?v=d8b8998e8f",
     backdrop: null,
@@ -513,7 +512,7 @@ const movies = [
   },
   {
     slug: "jane-austens-period-drama",
-    name: "Jane Austen\u2019s Period Drama",
+    name: "Jane Austen's Period Drama",
     tagline: null,
     description:
       "England, 1813. In the middle of a long-awaited marriage proposal, Miss Estrogenia Talbot gets her period. Her suitor, Mr. Dickley, mistakes the blood for an injury, and it soon becomes clear that his expensive education has missed a spot.",
@@ -525,7 +524,7 @@ const movies = [
   {
     slug: "the-singers-2025",
     name: "The Singers",
-    tagline: "A MAN WALKS INTO A BAR\u2026",
+    tagline: "A MAN WALKS INTO A BAR...",
     description:
       "A genre-bending short film inspired by a 19th-century short story written by Ivan Turgenev, in which a lowly pub full of downtrodden men connect unexpectedly through an impromptu sing-off.",
     poster:
@@ -573,7 +572,7 @@ const movies = [
     name: "Children No More: Were and Are Gone",
     tagline: null,
     description:
-      "In Tel Aviv, activists gather weekly to \u201cscream\u201d their opposition to the genocidal war in Gaza with a silent vigil for the children killed by Israel. Their protest, consider a betrayal by many, is an act of defiance that calls to confront a reality we must not ignore.",
+      "In Tel Aviv, activists gather weekly to 'scream' their opposition to the genocidal war in Gaza with a silent vigil for the children killed by Israel. Their protest, consider a betrayal by many, is an act of defiance that calls to confront a reality we must not ignore.",
     poster:
       "https://a.ltrbxd.com/resized/film-poster/1/4/3/3/2/4/5/1433245-children-no-more-were-and-are-gone-0-230-0-345-crop.jpg?v=34beeacc16",
     backdrop: null,
@@ -583,7 +582,7 @@ const movies = [
   {
     slug: "the-devil-is-busy",
     name: "The Devil Is Busy",
-    tagline: "A DAY ON THE FRONT LINES OF WOMEN\u2019S HEALTHCARE",
+    tagline: "A DAY ON THE FRONT LINES OF WOMEN'S HEALTHCARE",
     description:
       "At an Atlanta abortion clinic besieged by protesters, the director of operations, Tracy, takes necessary risks to safeguard staff and patients.",
     poster:
@@ -619,7 +618,7 @@ const receivers = [
   },
   {
     slug: "chloe-zhao",
-    name: "Chlo\u00e9 Zhao",
+    name: "Chloé Zhao",
     image: "https://image.tmdb.org/t/p/w500/r8DmTdOqHbDUydCOVb277rncPTK.jpg",
     letterboxd: "https://letterboxd.com/director/chloe-zhao/",
   },
@@ -667,7 +666,7 @@ const receivers = [
   },
   {
     slug: "timothee-chalamet",
-    name: "Timoth\u00e9e Chalamet",
+    name: "Timothée Chalamet",
     image: "https://image.tmdb.org/t/p/w500/dFxpwRpmzpVfP1zjluH68DeQhyj.jpg",
     letterboxd: "https://letterboxd.com/actor/timothee-chalamet/",
   },
@@ -727,7 +726,7 @@ const receivers = [
   },
   {
     slug: "stellan-skarsgard",
-    name: "Stellan Skarsg\u00e5rd",
+    name: "Stellan Skarsgård",
     image: "https://image.tmdb.org/t/p/w500/x78BtYHElirO7Iw8bL4m8CnzRDc.jpg",
     letterboxd: "https://letterboxd.com/actor/stellan-skarsgard/",
   },
@@ -779,27 +778,96 @@ const receivers = [
 
 const nominations = [
   {
+    category: "best-picture",
+    nominations: [
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "Sentimental Value", description: "" },
+      { movie: "Frankenstein", description: "" },
+      { movie: "Bugonia", description: "" },
+      { movie: "Train Dreams", description: "" },
+      { movie: "The Secret Agent", description: "" },
+      { movie: "F1", description: "" },
+    ],
+  },
+  {
+    category: "directing",
+    nominations: [
+      {
+        movie: "One Battle After Another",
+        receiver: "Paul Thomas Anderson",
+        description: "for",
+      },
+      { movie: "Sinners", receiver: "Ryan Coogler", description: "for" },
+      { movie: "Hamnet", receiver: "Chloé Zhao", description: "for" },
+      {
+        movie: "Sentimental Value",
+        receiver: "Joachim Trier",
+        description: "for",
+      },
+      { movie: "Marty Supreme", receiver: "Josh Safdie", description: "for" },
+    ],
+  },
+  {
+    category: "actress-in-a-leading-role",
+    nominations: [
+      { movie: "Hamnet", receiver: "Jessie Buckley", description: "in" },
+      {
+        movie: "If I Had Legs I’d Kick You",
+        receiver: "Rose Byrne",
+        description: "in",
+      },
+      {
+        movie: "Sentimental Value",
+        receiver: "Renate Reinsve",
+        description: "in",
+      },
+      { movie: "Bugonia", receiver: "Emma Stone", description: "in" },
+      { movie: "Song Sung Blue", receiver: "Kate Hudson", description: "in" },
+    ],
+  },
+  {
     category: "actor-in-a-leading-role",
     nominations: [
       {
-        movie: "The Brutalist",
-        receiver: "Adrien Brody",
-        description: "in",
-      },
-      {
-        movie: "A Complete Unknown",
+        movie: "Marty Supreme",
         receiver: "Timothée Chalamet",
         description: "in",
       },
-      { movie: "Conclave", receiver: "Ralph Fiennes", description: "in" },
       {
-        movie: "Sing Sing",
-        receiver: "Colman Domingo",
+        movie: "One Battle After Another",
+        receiver: "Leonardo DiCaprio",
+        description: "in",
+      },
+      { movie: "Blue Moon", receiver: "Ethan Hawke", description: "in" },
+      {
+        movie: "The Secret Agent",
+        receiver: "Wagner Moura",
+        description: "in",
+      },
+      { movie: "Sinners", receiver: "Michael B. Jordan", description: "in" },
+    ],
+  },
+  {
+    category: "actress-in-a-supporting-role",
+    nominations: [
+      {
+        movie: "One Battle After Another",
+        receiver: "Teyana Taylor",
+        description: "in",
+      },
+      { movie: "Weapons", receiver: "Amy Madigan", description: "in" },
+      { movie: "Sinners", receiver: "Wunmi Mosaku", description: "in" },
+      {
+        movie: "Sentimental Value",
+        receiver: "Inga Ibsdotter Lilleaas",
         description: "in",
       },
       {
-        movie: "The Apprentice",
-        receiver: "Sebastian Stan",
+        movie: "Sentimental Value",
+        receiver: "Elle Fanning",
         description: "in",
       },
     ],
@@ -808,302 +876,214 @@ const nominations = [
     category: "actor-in-a-supporting-role",
     nominations: [
       {
-        movie: "A Real Pain",
-        receiver: "Kieran Culkin",
+        movie: "Sentimental Value",
+        receiver: "Stellan Skarsgård",
         description: "in",
       },
       {
-        movie: "A Complete Unknown",
-        receiver: "Edward Norton",
+        movie: "One Battle After Another",
+        receiver: "Benicio del Toro",
         description: "in",
       },
-      { movie: "Anora", receiver: "Yura Borisov", description: "in" },
+      { movie: "Frankenstein", receiver: "Jacob Elordi", description: "in" },
       {
-        movie: "The Brutalist",
-        receiver: "Guy Pearce",
+        movie: "One Battle After Another",
+        receiver: "Sean Penn",
         description: "in",
       },
-      {
-        movie: "The Apprentice",
-        receiver: "Jeremy Strong",
-        description: "in",
-      },
+      { movie: "Sinners", receiver: "Delroy Lindo", description: "in" },
     ],
   },
   {
-    category: "actress-in-a-leading-role",
+    category: "writing-adapted-screenplay",
     nominations: [
-      {
-        movie: "The Substance",
-        receiver: "Demi Moore",
-        description: "in",
-      },
-      { movie: "Anora", receiver: "Mikey Madison", description: "in" },
-      {
-        movie: "Emilia Pérez",
-        receiver: "Karla Sofía Gascón",
-        description: "in",
-      },
-      { movie: "Wicked", receiver: "Cynthia Erivo", description: "in" },
-      {
-        movie: "I’m Still Here",
-        receiver: "Fernanda Torres",
-        description: "in",
-      },
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "Bugonia", description: "" },
+      { movie: "Train Dreams", description: "" },
+      { movie: "Frankenstein", description: "" },
     ],
   },
   {
-    category: "actress-in-a-supporting-role",
+    category: "writing-original-screenplay",
     nominations: [
+      { movie: "Sinners", description: "" },
+      { movie: "Sentimental Value", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "It Was Just an Accident", description: "" },
+      { movie: "Blue Moon", description: "" },
+    ],
+  },
+  {
+    category: "casting",
+    nominations: [
+      { movie: "Sinners", description: "" },
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "The Secret Agent", description: "" },
+    ],
+  },
+  {
+    category: "cinematography",
+    nominations: [
+      { movie: "Sinners", description: "" },
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Train Dreams", description: "" },
+      { movie: "Frankenstein", description: "" },
+      { movie: "Marty Supreme", description: "" },
+    ],
+  },
+  {
+    category: "film-editing",
+    nominations: [
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "F1", description: "" },
+      { movie: "Sentimental Value", description: "" },
+    ],
+  },
+  {
+    category: "production-design",
+    nominations: [
+      { movie: "Frankenstein", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "One Battle After Another", description: "" },
+    ],
+  },
+  {
+    category: "costume-design",
+    nominations: [
+      { movie: "Frankenstein", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "Marty Supreme", description: "" },
+      { movie: "Avatar: Fire and Ash", description: "" },
+    ],
+  },
+  {
+    category: "makeup-and-hairstyling",
+    nominations: [
+      { movie: "Frankenstein", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "The Smashing Machine", description: "" },
+      { movie: "Kokuho", description: "" },
+      { movie: "The Ugly Stepsister", description: "" },
+    ],
+  },
+  {
+    category: "sound",
+    nominations: [
+      { movie: "F1", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Frankenstein", description: "" },
+      { movie: "Sirāt", description: "" },
+    ],
+  },
+  {
+    category: "visual-effects",
+    nominations: [
+      { movie: "Avatar: Fire and Ash", description: "" },
+      { movie: "F1", description: "" },
+      { movie: "Sinners", description: "" },
+      { movie: "The Lost Bus", description: "" },
+      { movie: "Jurassic World Rebirth", description: "" },
+    ],
+  },
+  {
+    category: "music-original-score",
+    nominations: [
+      { movie: "Sinners", description: "" },
+      { movie: "One Battle After Another", description: "" },
+      { movie: "Hamnet", description: "" },
+      { movie: "Frankenstein", description: "" },
+      { movie: "Bugonia", description: "" },
+    ],
+  },
+  {
+    category: "music-original-song",
+    nominations: [
+      { movie: "KPop Demon Hunters", receiver: "Golden", description: "from" },
+      { movie: "Sinners", receiver: "I Lied to You", description: "from" },
       {
-        movie: "Emilia Pérez",
-        receiver: "Zoe Saldaña",
-        description: "in",
+        movie: "Diane Warren: Relentless",
+        receiver: "Dear Me",
+        description: "from",
       },
-      { movie: "Wicked", receiver: "Ariana Grande", description: "in" },
+      { movie: "Train Dreams", receiver: "Train Dreams", description: "from" },
       {
-        movie: "Conclave",
-        receiver: "Isabella Rossellini",
-        description: "in",
-      },
-      {
-        movie: "The Brutalist",
-        receiver: "Felicity Jones",
-        description: "in",
-      },
-      {
-        movie: "A Complete Unknown",
-        receiver: "Monica Barbaro",
-        description: "in",
+        movie: "Viva Verdi!",
+        receiver: "Sweet Dreams Of Joy",
+        description: "from",
       },
     ],
   },
   {
     category: "animated-feature-film",
     nominations: [
-      { movie: "The Wild Robot", description: "" },
-      { movie: "Flow", description: "" },
-      { movie: "Inside Out 2", description: "" },
-      { movie: "Wallace & Gromit: Vengeance Most Fowl", description: "" },
-      { movie: "Memoir of a Snail", description: "" },
-    ],
-  },
-  {
-    category: "cinematography",
-    nominations: [
-      { movie: "The Brutalist", description: "" },
-      { movie: "Nosferatu", description: "" },
-      { movie: "Dune: Part Two", description: "" },
-      { movie: "Maria", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-    ],
-  },
-  {
-    category: "costume-design",
-    nominations: [
-      { movie: "Wicked", description: "" },
-      { movie: "Nosferatu", description: "" },
-      { movie: "Conclave", description: "" },
-      { movie: "Gladiator II", description: "" },
-      { movie: "A Complete Unknown", description: "" },
-    ],
-  },
-  {
-    category: "directing",
-    nominations: [
-      {
-        movie: "The Brutalist",
-        receiver: "Brady Corbet",
-        description: "for",
-      },
-      {
-        movie: "Emilia Pérez",
-        receiver: "Jacques Audiard",
-        description: "for",
-      },
-      { movie: "Anora", receiver: "Sean Baker", description: "for" },
-      {
-        movie: "The Substance",
-        receiver: "Coralie Fargeat",
-        description: "for",
-      },
-      {
-        movie: "A Complete Unknown",
-        receiver: "James Mangold",
-        description: "for",
-      },
-    ],
-  },
-  {
-    category: "documentary-feature-film",
-    nominations: [
-      { movie: "No Other Land", description: "" },
-      { movie: "Sugarcane", description: "" },
-      { movie: "Soundtrack to a Coup d’État", description: "" },
-      { movie: "Black Box Diaries", description: "" },
-      { movie: "Porcelain War", description: "" },
-    ],
-  },
-  {
-    category: "documentary-short-film",
-    nominations: [
-      { movie: "Incident", description: "" },
-      { movie: "I Am Ready, Warden", description: "" },
-      { movie: "Death by Numbers", description: "" },
-      { movie: "The Only Girl in the Orchestra", description: "" },
-      { movie: "Instruments of a Beating Heart", description: "" },
-    ],
-  },
-  {
-    category: "film-editing",
-    nominations: [
-      { movie: "Conclave", description: "" },
-      { movie: "Anora", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-      { movie: "The Brutalist", description: "" },
-      { movie: "Wicked", description: "" },
+      { movie: "KPop Demon Hunters", description: "" },
+      { movie: "Zootopia 2", description: "" },
+      { movie: "Arco", description: "" },
+      { movie: "Little Amélie or the Character of Rain", description: "" },
+      { movie: "Elio", description: "" },
     ],
   },
   {
     category: "international-feature-film",
     nominations: [
-      { movie: "Emilia Pérez", description: "From France" },
-      { movie: "I’m Still Here", description: "From Brazil" },
-      { movie: "The Seed of the Sacred Fig", description: "From Germany" },
-      { movie: "Flow", description: "From Latvia" },
-      { movie: "The Girl with the Needle", description: "From Denmark" },
+      { movie: "Sentimental Value", description: "From Norway" },
+      { movie: "The Secret Agent", description: "From Brazil" },
+      { movie: "It Was Just an Accident", description: "From France" },
+      { movie: "Sirāt", description: "From Spain" },
+      { movie: "The Voice of Hind Rajab", description: "From Tunisia" },
     ],
   },
   {
-    category: "makeup-and-hairstyling",
+    category: "documentary-feature-film",
     nominations: [
-      { movie: "The Substance", description: "" },
-      { movie: "Wicked", description: "" },
-      { movie: "Nosferatu", description: "" },
-      { movie: "A Different Man", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-    ],
-  },
-  {
-    category: "music-original-score",
-    nominations: [
-      { movie: "The Brutalist", description: "" },
-      { movie: "Conclave", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-      { movie: "The Wild Robot", description: "" },
-      { movie: "Wicked", description: "" },
-    ],
-  },
-  {
-    category: "music-original-song",
-    nominations: [
-      { movie: "Emilia Pérez", receiver: "El Mal", description: "from" },
-      {
-        movie: "Emilia Pérez",
-        receiver: "Mi Camino",
-        description: "from",
-      },
-      {
-        movie: "The Six Triple Eight",
-        receiver: "The Journey",
-        description: "from",
-      },
-      {
-        movie: "Elton John: Never Too Late",
-        receiver: "Never Too Late",
-        description: "from",
-      },
-      { movie: "Sing Sing", receiver: "Like a Bird", description: "from" },
-    ],
-  },
-  {
-    category: "best-picture",
-    nominations: [
-      { movie: "Conclave", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-      { movie: "Anora", description: "" },
-      { movie: "The Brutalist", description: "" },
-      { movie: "Wicked", description: "" },
-      { movie: "A Complete Unknown", description: "" },
-      { movie: "Dune: Part Two", description: "" },
-      { movie: "The Substance", description: "" },
-      { movie: "Nickel Boys", description: "" },
-      { movie: "I’m Still Here", description: "" },
-    ],
-  },
-  {
-    category: "production-design",
-    nominations: [
-      { movie: "Wicked", description: "" },
-      { movie: "The Brutalist", description: "" },
-      { movie: "Dune: Part Two", description: "" },
-      { movie: "Conclave", description: "" },
-      { movie: "Nosferatu", description: "" },
+      { movie: "The Perfect Neighbor", description: "" },
+      { movie: "The Alabama Solution", description: "" },
+      { movie: "Cutting Through Rocks", description: "" },
+      { movie: "Mr. Nobody Against Putin", description: "" },
+      { movie: "Come See Me in the Good Light", description: "" },
     ],
   },
   {
     category: "animated-short-film",
     nominations: [
-      { movie: "Wander to Wonder", description: "" },
-      { movie: "Beautiful Men", description: "" },
-      { movie: "In the Shadow of the Cypress", description: "" },
-      { movie: "Yuck!", description: "" },
-      { movie: "Magic Candies", description: "" },
+      { movie: "Butterfly", description: "" },
+      { movie: "The Girl Who Cried Pearls", description: "" },
+      { movie: "Retirement Plan", description: "" },
+      { movie: "Forevergreen", description: "" },
+      { movie: "The Three Sisters", description: "" },
     ],
   },
   {
     category: "live-action-short-film",
     nominations: [
-      { movie: "The Man Who Could Not Remain Silent", description: "" },
-      { movie: "Anuja", description: "" },
-      { movie: "I’m Not a Robot", description: "" },
-      { movie: "A Lien", description: "" },
-      { movie: "The Last Ranger", description: "" },
+      { movie: "Two People Exchanging Saliva", description: "" },
+      { movie: "The Singers", description: "" },
+      { movie: "A Friend of Dorothy", description: "" },
+      { movie: "Jane Austen’s Period Drama", description: "" },
+      { movie: "Butcher’s Stain", description: "" },
     ],
   },
   {
-    category: "sound",
+    category: "documentary-short-film",
     nominations: [
-      { movie: "Dune: Part Two", description: "" },
-      { movie: "Wicked", description: "" },
-      { movie: "A Complete Unknown", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-      { movie: "The Wild Robot", description: "" },
+      { movie: "All the Empty Rooms", description: "" },
+      {
+        movie: "Armed Only with a Camera: The Life and Death of Brent Renaud",
+        description: "",
+      },
+      { movie: "The Devil Is Busy", description: "" },
+      { movie: "Perfectly a Strangeness", description: "" },
+      { movie: "Children No More: Were and Are Gone", description: "" },
     ],
-  },
-  {
-    category: "visual-effects",
-    nominations: [
-      { movie: "Dune: Part Two", description: "" },
-      { movie: "Kingdom of the Planet of the Apes", description: "" },
-      { movie: "Better Man", description: "" },
-      { movie: "Wicked", description: "" },
-      { movie: "Alien: Romulus", description: "" },
-    ],
-  },
-  {
-    category: "writing-adapted-screenplay",
-    nominations: [
-      { movie: "Conclave", description: "" },
-      { movie: "Emilia Pérez", description: "" },
-      { movie: "A Complete Unknown", description: "" },
-      { movie: "Sing Sing", description: "" },
-      { movie: "Nickel Boys", description: "" },
-    ],
-  },
-  {
-    category: "writing-original-screenplay",
-    nominations: [
-      { movie: "Anora", description: "" },
-      { movie: "The Brutalist", description: "" },
-      { movie: "A Real Pain", description: "" },
-      { movie: "The Substance", description: "" },
-      { movie: "September 5", description: "" },
-    ],
-  },
-  {
-    category: "casting",
-    nominations: [],
   },
 ];
 
