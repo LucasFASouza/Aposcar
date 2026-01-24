@@ -134,8 +134,6 @@ export function WinningNominationCard({
                     let color = "hsl(var(--foreground))";
                     if (isWinner) {
                       color = "hsl(var(--primary))";
-                    } else if (isUserVote) {
-                      color = "hsl(var(--destructive))";
                     }
 
                     return (

@@ -53,7 +53,7 @@ export function HomeContent({
             <h2 className="pb-4 pl-4 text-2xl font-bold">Ranking</h2>
             <div className="rounded-md border p-3">
               <div className="space-y-4">
-                {[...Array(5)].map((_, i) => (
+                {Array.from({ length: 5 }).map((_, i) => (
                   <div key={i} className="flex items-center gap-2 lg:gap-4">
                     <Skeleton className="h-6 w-8" />
                     <Skeleton className="h-12 w-12 rounded-full" />
@@ -73,7 +73,7 @@ export function HomeContent({
           <div className="flex flex-col lg:w-1/3">
             <h2 className="pb-4 pl-4 text-2xl font-bold">Last updates</h2>
             <div className="space-y-4">
-              {[...Array(3)].map((_, i) => (
+              {Array.from({ length: 3 }).map((_, i) => (
                 <Skeleton key={i} className="h-48 w-full rounded-md" />
               ))}
             </div>

@@ -191,9 +191,10 @@ const ChartTooltipContent = React.forwardRef<
             .map((item, index) => {
               const key = `${nameKey ?? item.name ?? item.dataKey ?? "value"}`;
               const itemConfig = getPayloadConfigFromPayload(config, item, key);
-              const indicatorColor = (color ??
+              const indicatorColor =
+                color ??
                 (item.payload as Record<string, unknown> | undefined)?.fill ??
-                item.color) as string;
+                item.color;
 
               return (
                 <div
@@ -358,9 +359,7 @@ function getPayloadConfigFromPayload(
     key in payloadPayload &&
     typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
   ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string;
+    configLabelKey = payloadPayload[key as keyof typeof payloadPayload];
   }
 
   return configLabelKey in config
