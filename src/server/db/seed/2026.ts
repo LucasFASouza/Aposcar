@@ -1,4 +1,4 @@
-import { ne } from "drizzle-orm";
+import { eq, ne } from "drizzle-orm";
 import { db } from "@/server/db";
 import {
   dbtEdition,
@@ -815,7 +815,7 @@ const nominations = [
     nominations: [
       { movie: "Hamnet", receiver: "Jessie Buckley", description: "in" },
       {
-        movie: "If I Had Legs I’d Kick You",
+        movie: "If I Had Legs I'd Kick You",
         receiver: "Rose Byrne",
         description: "in",
       },
@@ -1068,8 +1068,8 @@ const nominations = [
       { movie: "Two People Exchanging Saliva", description: "" },
       { movie: "The Singers", description: "" },
       { movie: "A Friend of Dorothy", description: "" },
-      { movie: "Jane Austen’s Period Drama", description: "" },
-      { movie: "Butcher’s Stain", description: "" },
+      { movie: "Jane Austen's Period Drama", description: "" },
+      { movie: "Butcher's Stain", description: "" },
     ],
   },
   {
@@ -1118,11 +1118,26 @@ void (async () => {
     .onConflictDoNothing({ target: dbtMovie.slug });
   console.log("Inserted movies: ", { movies });
 
-  await db
-    .insert(dbtReceiver)
-    .values(receivers)
-    .onConflictDoNothing({ target: dbtReceiver.slug });
-  console.log("Inserted receivers: ", { receivers });
+  // Insert or update receivers
+  for (const receiver of receivers) {
+    const existing = await db.query.dbtReceiver.findFirst({
+      where: (r, { eq }) => eq(r.slug, receiver.slug),
+    });
+
+    if (existing) {
+      await db
+        .update(dbtReceiver)
+        .set({
+          name: receiver.name,
+          image: receiver.image,
+          letterboxd: receiver.letterboxd,
+        })
+        .where(eq(dbtReceiver.slug, receiver.slug));
+    } else {
+      await db.insert(dbtReceiver).values(receiver);
+    }
+  }
+  console.log("Inserted/updated receivers: ", { receivers });
 
   const dbCategories = await db.query.dbtCategory.findMany();
   const dbMovies = await db.query.dbtMovie.findMany();
