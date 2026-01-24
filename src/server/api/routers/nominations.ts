@@ -64,6 +64,14 @@ export type CategoryWithNavigation = z.infer<
 export type FullNomination = Unpacked<CategoryWithNavigation["nominations"]>;
 
 export const nominationsRouter = createTRPCRouter({
+  getAllEditions: publicProcedure.query(async ({ ctx }) => {
+    const editions = await ctx.db.query.dbtEdition.findMany({
+      orderBy: (editions, { desc }) => [desc(editions.year)],
+    });
+
+    return editions;
+  }),
+
   getCategoryWithNavigation: protectedProcedure
     .input(getCategoryInputSchema)
     .output(getCategoryWithNavigationSchema)
@@ -255,16 +263,23 @@ export const nominationsRouter = createTRPCRouter({
     }),
 
   getWinningNominations: publicProcedure
+    .input(z.object({ editionYear: z.number().optional() }).optional())
     .output(fullNominationSchema.extend({ categoryName: z.string() }).array())
-    .query(async ({ ctx }) => {
-      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-        where: eq(dbtEdition.isActive, true),
-      });
+    .query(async ({ ctx, input }) => {
+      const edition = input?.editionYear
+        ? await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.year, input.editionYear),
+          })
+        : await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.isActive, true),
+          });
 
-      if (!activeEdition) {
+      if (!edition) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "No active edition found",
+          message: input?.editionYear
+            ? `Edition ${input.editionYear} not found`
+            : "No active edition found",
         });
       }
 
@@ -300,7 +315,7 @@ export const nominationsRouter = createTRPCRouter({
         .where(
           and(
             eq(dbtNomination.isWinner, true),
-            eq(dbtNomination.edition, activeEdition.id),
+            eq(dbtNomination.edition, edition.id),
           ),
         )
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
@@ -426,16 +441,22 @@ export const nominationsRouter = createTRPCRouter({
     }),
 
   getCategoryVoteStats: protectedProcedure
-    .input(z.object({ categoryId: z.string() }))
+    .input(
+      z.object({ categoryId: z.string(), editionYear: z.number().optional() }),
+    )
     .query(async ({ ctx, input }) => {
-      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-        where: eq(dbtEdition.isActive, true),
-      });
+      const edition = input.editionYear
+        ? await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.year, input.editionYear),
+          })
+        : await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.isActive, true),
+          });
 
-      if (!activeEdition) {
+      if (!edition) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "No active edition found",
+          message: "No edition found",
         });
       }
 
@@ -452,7 +473,7 @@ export const nominationsRouter = createTRPCRouter({
         .where(
           and(
             eq(dbtNomination.category, input.categoryId),
-            eq(dbtNomination.edition, activeEdition.id),
+            eq(dbtNomination.edition, edition.id),
           ),
         )
         .innerJoin(dbtMovie, eq(dbtNomination.movie, dbtMovie.id))
@@ -461,7 +482,7 @@ export const nominationsRouter = createTRPCRouter({
           dbtVote,
           and(
             eq(dbtVote.nomination, dbtNomination.id),
-            eq(dbtVote.edition, activeEdition.id),
+            eq(dbtVote.edition, edition.id),
           ),
         )
         .groupBy(
@@ -482,7 +503,7 @@ export const nominationsRouter = createTRPCRouter({
           and(
             eq(dbtVote.user, ctx.session.user.id),
             eq(dbtNomination.category, input.categoryId),
-            eq(dbtVote.edition, activeEdition.id),
+            eq(dbtVote.edition, edition.id),
           ),
         )
         .limit(1);

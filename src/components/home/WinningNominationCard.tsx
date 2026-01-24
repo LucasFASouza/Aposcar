@@ -21,16 +21,18 @@ type WinningNominationCardProps = {
       name: string | null;
     };
   };
+  editionYear?: number;
 };
 
 export function WinningNominationCard({
   nomination,
+  editionYear,
 }: WinningNominationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const { data: voteData, isLoading } =
     api.nominations.getCategoryVoteStats.useQuery(
-      { categoryId: nomination.category },
+      { categoryId: nomination.category, editionYear },
       { enabled: isExpanded },
     );
 

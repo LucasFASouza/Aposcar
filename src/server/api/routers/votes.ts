@@ -90,95 +90,118 @@ export const votesRouter = createTRPCRouter({
       };
     }),
 
-  getUserRankings: publicProcedure.query(async ({ ctx }) => {
-    const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-      where: eq(dbtEdition.isActive, true),
-    });
+  getUserRankings: publicProcedure
+    .input(z.object({ editionYear: z.number().optional() }).optional())
+    .query(async ({ ctx, input }) => {
+      const edition = input?.editionYear
+        ? await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.year, input.editionYear),
+          })
+        : await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.isActive, true),
+          });
 
-    if (!activeEdition) {
-      throw new Error("No active edition found");
-    }
+      if (!edition) {
+        throw new Error(
+          input?.editionYear
+            ? `Edition ${input.editionYear} not found`
+            : "No active edition found",
+        );
+      }
 
-    const usersData = await ctx.db
-      .select({
-        role: users.role,
-        username: users.username,
-        image: users.image,
-        position:
-          sql<number>`RANK() OVER (ORDER BY COALESCE(SUM(CASE WHEN ${dbtNomination.isWinner} THEN ${dbtCategoryTypesPoints.points} ELSE 0 END), 0) DESC)`.as(
-            "position",
+      const usersData = await ctx.db
+        .select({
+          role: users.role,
+          username: users.username,
+          image: users.image,
+          position:
+            sql<number>`RANK() OVER (ORDER BY COALESCE(SUM(CASE WHEN ${dbtNomination.isWinner} THEN ${dbtCategoryTypesPoints.points} ELSE 0 END), 0) DESC)`.as(
+              "position",
+            ),
+          score:
+            sql<number>`COALESCE(SUM(CASE WHEN ${dbtNomination.isWinner} THEN ${dbtCategoryTypesPoints.points} ELSE 0 END), 0)`.as(
+              "score",
+            ),
+          correctAnswers:
+            sql<number>`COUNT(CASE WHEN ${dbtNomination.isWinner} THEN 1 ELSE NULL END)`.as(
+              "correctAnswers",
+            ),
+        })
+        .from(users)
+        .innerJoin(
+          dbtVote,
+          and(eq(dbtVote.user, users.id), eq(dbtVote.edition, edition.id)),
+        )
+        .innerJoin(
+          dbtNomination,
+          and(
+            eq(dbtVote.nomination, dbtNomination.id),
+            eq(dbtNomination.edition, edition.id),
           ),
-        score:
-          sql<number>`COALESCE(SUM(CASE WHEN ${dbtNomination.isWinner} THEN ${dbtCategoryTypesPoints.points} ELSE 0 END), 0)`.as(
-            "score",
-          ),
-        correctAnswers:
-          sql<number>`COUNT(CASE WHEN ${dbtNomination.isWinner} THEN 1 ELSE NULL END)`.as(
-            "correctAnswers",
-          ),
-      })
-      .from(users)
-      .innerJoin(
-        dbtVote,
-        and(eq(dbtVote.user, users.id), eq(dbtVote.edition, activeEdition.id)),
-      )
-      .innerJoin(
-        dbtNomination,
-        and(
-          eq(dbtVote.nomination, dbtNomination.id),
-          eq(dbtNomination.edition, activeEdition.id),
-        ),
-      )
-      .leftJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
-      .leftJoin(
-        dbtCategoryTypesPoints,
-        eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
-      )
-      .groupBy(users.id, users.email, users.role, users.name, users.image)
-      .orderBy(() => sql`position`);
+        )
+        .leftJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
+        .leftJoin(
+          dbtCategoryTypesPoints,
+          eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
+        )
+        .groupBy(users.id, users.email, users.role, users.name, users.image)
+        .orderBy(() => sql`position`);
 
-    const scoreData = await ctx.db
-      .select({
-        maxScore: sum(dbtCategoryTypesPoints.points),
-        maxCorrectAnswers:
-          sql<number>`COUNT(CASE WHEN ${dbtNomination.isWinner} THEN 1 ELSE NULL END)`.as(
-            "maxCorrectAnswers",
+      const scoreData = await ctx.db
+        .select({
+          maxScore: sum(dbtCategoryTypesPoints.points),
+          maxCorrectAnswers:
+            sql<number>`COUNT(CASE WHEN ${dbtNomination.isWinner} THEN 1 ELSE NULL END)`.as(
+              "maxCorrectAnswers",
+            ),
+        })
+        .from(dbtNomination)
+        .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
+        .innerJoin(
+          dbtCategoryTypesPoints,
+          eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
+        )
+        .where(
+          and(
+            dbtNomination.isWinner.getSQL(),
+            eq(dbtNomination.edition, edition.id),
           ),
-      })
-      .from(dbtNomination)
-      .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
-      .innerJoin(
-        dbtCategoryTypesPoints,
-        eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
-      )
-      .where(
-        and(
-          dbtNomination.isWinner.getSQL(),
-          eq(dbtNomination.edition, activeEdition.id),
-        ),
-      );
+        );
 
-    const maxData = {
-      maxScore: scoreData[0]?.maxScore ?? 0,
-      maxPosition:
-        usersData.length > 0
-          ? Math.max(...usersData.map((user) => user.position))
-          : 0,
-      maxCorrectAnswers: scoreData[0]?.maxCorrectAnswers ?? 0,
-    };
+      const maxData = {
+        maxScore: scoreData[0]?.maxScore ?? 0,
+        maxPosition:
+          usersData.length > 0
+            ? Math.max(...usersData.map((user) => user.position))
+            : 0,
+        maxCorrectAnswers: scoreData[0]?.maxCorrectAnswers ?? 0,
+      };
 
-    return { usersScores: usersData, maxData: maxData };
-  }),
+      return { usersScores: usersData, maxData: maxData };
+    }),
 
   getUserProfile: publicProcedure
-    .input(z.string())
+    .input(
+      z.object({
+        username: z.string(),
+        editionYear: z.number().optional(),
+      }),
+    )
     .query(async ({ ctx, input }) => {
-      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-        where: eq(dbtEdition.isActive, true),
-      });
+      const edition = input.editionYear
+        ? await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.year, input.editionYear),
+          })
+        : await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.isActive, true),
+          });
 
-      if (!activeEdition) {
-        throw new Error("No active edition found");
+      if (!edition) {
+        throw new Error(
+          input.editionYear
+            ? `Edition ${input.editionYear} not found`
+            : "No active edition found",
+        );
       }
 
       const allCategories = await ctx.db
@@ -201,7 +224,7 @@ export const votesRouter = createTRPCRouter({
         .where(
           and(
             eq(dbtNomination.isWinner, true),
-            eq(dbtNomination.edition, activeEdition.id),
+            eq(dbtNomination.edition, edition.id),
           ),
         )
         .innerJoin(dbtCategory, eq(dbtNomination.category, dbtCategory.id))
@@ -224,7 +247,10 @@ export const votesRouter = createTRPCRouter({
         .leftJoin(dbtReceiver, eq(dbtNomination.receiver, dbtReceiver.id))
         .innerJoin(users, eq(dbtVote.user, users.id))
         .where(
-          and(eq(users.username, input), eq(dbtVote.edition, activeEdition.id)),
+          and(
+            eq(users.username, input.username),
+            eq(dbtVote.edition, edition.id),
+          ),
         );
 
       const userNominations = allCategories.map((category) => {
@@ -258,7 +284,7 @@ export const votesRouter = createTRPCRouter({
           githubUsername: users.githubUsername,
         })
         .from(users)
-        .where(eq(users.username, input));
+        .where(eq(users.username, input.username));
 
       const favoriteMovieData = await ctx.db
         .select({
@@ -270,7 +296,7 @@ export const votesRouter = createTRPCRouter({
         .where(
           and(
             eq(userFavoriteMovies.user, userData[0]?.id ?? ""),
-            eq(userFavoriteMovies.edition, activeEdition.id),
+            eq(userFavoriteMovies.edition, edition.id),
           ),
         )
         .limit(1);
