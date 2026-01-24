@@ -160,9 +160,9 @@ export function WinningNominationCard({
                     payload,
                   }: {
                     active?: boolean;
-                    payload?: Array<{ payload: (typeof chartData)[0] }>;
+                    payload?: Array<{ payload?: (typeof chartData)[0] }>;
                   }) => {
-                    if (active && payload?.[0]) {
+                    if (active && payload?.[0]?.payload) {
                       const data = payload[0].payload;
                       return (
                         <div className="rounded-lg border bg-background p-2 shadow-sm">
