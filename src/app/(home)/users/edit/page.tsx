@@ -30,6 +30,7 @@ import {
 import { useSession } from "next-auth/react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useEdition } from "@/contexts/EditionContext";
 
 const formSchema = z.object({
   username: z
@@ -53,6 +54,7 @@ const EditUserPage = () => {
   const { toast } = useToast();
   const router = useRouter();
   const [previewUrl, setPreviewUrl] = useState("");
+  const { selectedYear } = useEdition();
 
   const { data: session, update } = useSession();
 
@@ -62,7 +64,10 @@ const EditUserPage = () => {
     });
 
   const { data: movies, isLoading: isMoviesLoading } =
-    api.nominations.getMovies.useQuery();
+    api.nominations.getMovies.useQuery(
+      { editionYear: selectedYear },
+      { enabled: !!selectedYear },
+    );
 
   const { mutate, isPending } = api.users.updateUser.useMutation({
     onSuccess: (data, { username, image }) => {

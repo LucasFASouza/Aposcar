@@ -327,23 +327,28 @@ export const nominationsRouter = createTRPCRouter({
     }),
 
   getMovies: publicProcedure
+    .input(z.object({ editionYear: z.number().optional() }).optional())
     .output(moviesSchema.array())
-    .query(async ({ ctx }) => {
-      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-        where: eq(dbtEdition.isActive, true),
-      });
+    .query(async ({ ctx, input }) => {
+      const edition = input?.editionYear
+        ? await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.year, input.editionYear),
+          })
+        : await ctx.db.query.dbtEdition.findFirst({
+            where: eq(dbtEdition.isActive, true),
+          });
 
-      if (!activeEdition) {
+      if (!edition) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "No active edition found",
+          message: "No edition found",
         });
       }
 
       return await ctx.db
         .select()
         .from(dbtMovie)
-        .where(eq(dbtMovie.edition, activeEdition.id));
+        .where(eq(dbtMovie.edition, edition.id));
     }),
 
   setWinner: protectedProcedure
