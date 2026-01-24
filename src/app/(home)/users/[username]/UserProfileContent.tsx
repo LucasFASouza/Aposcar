@@ -265,7 +265,9 @@ export function UserProfileContent({
 
       {/* Votes table */}
       <div className="pb-8 pt-2 lg:w-2/3 lg:p-0">
-        <h2 className="pb-4 pl-4 text-2xl font-bold">Your votes</h2>
+        <h2 className="pb-4 pl-4 text-2xl font-bold">
+          {username === sessionUsername ? "Your votes" : `${username}'s votes`}
+        </h2>
 
         <Table>
           <TableHeader>

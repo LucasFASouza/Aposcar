@@ -3,6 +3,7 @@
 import { AvatarDropdown } from "@/components/ProfileBadge";
 import Link from "next/link";
 import { useEdition } from "@/contexts/EditionContext";
+import { usePathname } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -14,6 +15,9 @@ import {
 export const NavbarClient = () => {
   const { selectedYear, setSelectedYear, activeEditionYear, editions } =
     useEdition();
+  const pathname = usePathname();
+
+  const isVotingPage = pathname?.startsWith("/votes");
 
   return (
     <nav className="z-50 flex w-full items-center justify-between bg-gradient-to-t from-transparent to-background px-6 py-4 lg:px-12 lg:py-6">
@@ -24,7 +28,7 @@ export const NavbarClient = () => {
           </h1>
         </Link>
 
-        {editions.length > 1 && (
+        {editions.length > 1 && !isVotingPage && (
           <Select
             value={selectedYear?.toString()}
             onValueChange={(value) => setSelectedYear(Number(value))}
