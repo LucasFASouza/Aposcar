@@ -1097,24 +1097,21 @@ void (async () => {
   const [edition] = await db
     .insert(dbtEdition)
     .values({ year: 2026, isActive: true })
-    .onConflictDoNothing({ target: dbtEdition.year })
+    .onConflictDoUpdate({
+      target: dbtEdition.year,
+      set: { isActive: true },
+    })
     .returning();
 
-  const editionData =
-    edition ??
-    (await db.query.dbtEdition.findFirst({
-      where: (e, { eq }) => eq(e.year, 2026),
-    }));
-
-  if (!editionData) {
+  if (!edition) {
     throw new Error("Failed to create or fetch 2026 edition");
   }
 
-  console.log("Edition created/fetched: ", { edition: editionData });
+  console.log("Edition created/fetched: ", { edition });
 
   await db
     .insert(dbtMovie)
-    .values(movies.map((m) => ({ ...m, edition: editionData.id })))
+    .values(movies.map((m) => ({ ...m, edition: edition.id })))
     .onConflictDoNothing({ target: dbtMovie.slug });
   console.log("Inserted movies: ", { movies });
 
@@ -1181,10 +1178,11 @@ void (async () => {
           receiver: receiverId,
           description: nom.description,
           isWinner: false,
-          edition: editionData.id,
+          edition: edition.id,
         })
         .onConflictDoNothing();
     }
   }
   console.log("Inserted nominations");
+  process.exit(0);
 })();

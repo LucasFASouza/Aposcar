@@ -9,7 +9,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "dotenv -- npx tsx src/server/db/seed/2025.ts",
+    "db:seed": "dotenv -- npx tsx src/server/db/seed/index.ts",
+    "db:seed:categories": "dotenv -- npx tsx src/server/db/seed/categories.ts",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
