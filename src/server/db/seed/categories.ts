@@ -66,6 +66,11 @@ const categories = [
       "The best feature-length film produced outside the United States with a predominantly non-English dialogue track.",
   },
   {
+    name: "Casting",
+    description:
+      "Honoring excellence in the selection of actors for a film.",
+  },
+  {
     name: "Music (Original Song)",
     description: "The best original song written specifically for a film.",
   },
