@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "paul-thomas-anderson",
+    "name": "Paul Thomas Anderson",
+    "image": "https://image.tmdb.org/t/p/w500/wKAs2LtLYSUzt3ZZ8pnxMwuEWuR.jpg",
+    "letterboxd": "https://letterboxd.com/director/paul-thomas-anderson/"
+  },
+  {
+    "slug": "ryan-coogler",
+    "name": "Ryan Coogler",
+    "image": "https://image.tmdb.org/t/p/w500/dux4DCDaL6c639DTXGiV7nm1wcN.jpg",
+    "letterboxd": "https://letterboxd.com/director/ryan-coogler/"
+  },
+  {
+    "slug": "chloe-zhao",
+    "name": "Chlo\u00e9 Zhao",
+    "image": "https://image.tmdb.org/t/p/w500/r8DmTdOqHbDUydCOVb277rncPTK.jpg",
+    "letterboxd": "https://letterboxd.com/director/chloe-zhao/"
+  },
+  {
+    "slug": "joachim-trier",
+    "name": "Joachim Trier",
+    "image": "https://image.tmdb.org/t/p/w500/o5KXJRWbzyGYSxDhXsBqbCiZnqU.jpg",
+    "letterboxd": "https://letterboxd.com/director/joachim-trier/"
+  },
+  {
+    "slug": "josh-safdie",
+    "name": "Josh Safdie",
+    "image": "https://image.tmdb.org/t/p/w500/iNyilK3Ag6qeOguc0zysxZXEIpJ.jpg",
+    "letterboxd": "https://letterboxd.com/director/josh-safdie/"
+  },
+  {
+    "slug": "jessie-buckley",
+    "name": "Jessie Buckley",
+    "image": "https://image.tmdb.org/t/p/w500/i8IlkFbZqKUgkypZKpdhrw00uqw.jpg",
+    "letterboxd": "https://letterboxd.com/actor/jessie-buckley/"
+  },
+  {
+    "slug": "rose-byrne",
+    "name": "Rose Byrne",
+    "image": "https://image.tmdb.org/t/p/w500/6YauDiiTBwRGC1xnwspPmNvPWUu.jpg",
+    "letterboxd": "https://letterboxd.com/actor/rose-byrne/"
+  },
+  {
+    "slug": "renate-reinsve",
+    "name": "Renate Reinsve",
+    "image": "https://image.tmdb.org/t/p/w500/4MGaghr6uXw6xc2lNCGIYy5aAwE.jpg",
+    "letterboxd": "https://letterboxd.com/actor/renate-reinsve/"
+  },
+  {
+    "slug": "emma-stone",
+    "name": "Emma Stone",
+    "image": "https://image.tmdb.org/t/p/w500/cZ8a3QvAnj2cgcgVL6g4XaqPzpL.jpg",
+    "letterboxd": "https://letterboxd.com/actor/emma-stone/"
+  },
+  {
+    "slug": "kate-hudson",
+    "name": "Kate Hudson",
+    "image": "https://image.tmdb.org/t/p/w500/s79lH1QzEg2fkXULKBxRmU9aNr8.jpg",
+    "letterboxd": "https://letterboxd.com/actor/kate-hudson/"
+  },
+  {
+    "slug": "timothee-chalamet",
+    "name": "Timoth\u00e9e Chalamet",
+    "image": "https://image.tmdb.org/t/p/w500/dFxpwRpmzpVfP1zjluH68DeQhyj.jpg",
+    "letterboxd": "https://letterboxd.com/actor/timothee-chalamet/"
+  },
+  {
+    "slug": "leonardo-dicaprio",
+    "name": "Leonardo DiCaprio",
+    "image": "https://image.tmdb.org/t/p/w500/iqPBAdsFdAVCdahQM29kTG6UgD7.jpg",
+    "letterboxd": "https://letterboxd.com/actor/leonardo-dicaprio/"
+  },
+  {
+    "slug": "ethan-hawke",
+    "name": "Ethan Hawke",
+    "image": "https://image.tmdb.org/t/p/w500/2LoTr6x0TEM7L5em4kSx1VmGDgG.jpg",
+    "letterboxd": "https://letterboxd.com/actor/ethan-hawke/"
+  },
+  {
+    "slug": "wagner-moura",
+    "name": "Wagner Moura",
+    "image": "https://image.tmdb.org/t/p/w500/yJjV1ZCQbCSSgRy05FncCKjyaY4.jpg",
+    "letterboxd": "https://letterboxd.com/actor/wagner-moura/"
+  },
+  {
+    "slug": "michael-b-jordan",
+    "name": "Michael B. Jordan",
+    "image": "https://image.tmdb.org/t/p/w500/515xNvaMC6xOEOlo0sFqW69ZqUH.jpg",
+    "letterboxd": "https://letterboxd.com/actor/michael-b-jordan/"
+  },
+  {
+    "slug": "teyana-taylor",
+    "name": "Teyana Taylor",
+    "image": "https://image.tmdb.org/t/p/w500/foj8l6GGlZxZXcW6pU5wnNxDjSx.jpg",
+    "letterboxd": "https://letterboxd.com/actor/teyana-taylor/"
+  },
+  {
+    "slug": "amy-madigan",
+    "name": "Amy Madigan",
+    "image": "https://image.tmdb.org/t/p/w500/xgtQOuPAmQZXWUO2PXetNpXm08A.jpg",
+    "letterboxd": "https://letterboxd.com/actor/amy-madigan/"
+  },
+  {
+    "slug": "wunmi-mosaku",
+    "name": "Wunmi Mosaku",
+    "image": "https://image.tmdb.org/t/p/w500/mWDsVCo9sBcekrsjUTsoCFLhtYt.jpg",
+    "letterboxd": "https://letterboxd.com/actor/wunmi-mosaku/"
+  },
+  {
+    "slug": "inga-ibsdotter-lilleaas",
+    "name": "Inga Ibsdotter Lilleaas",
+    "image": "https://image.tmdb.org/t/p/w500/c6JojXrAi9ZAiCA07epc3eLmF1r.jpg",
+    "letterboxd": "https://letterboxd.com/actor/inga-ibsdotter-lilleaas/"
+  },
+  {
+    "slug": "elle-fanning",
+    "name": "Elle Fanning",
+    "image": "https://image.tmdb.org/t/p/w500/e8CUyxQSE99y5IOfzSLtHC0B0Ch.jpg",
+    "letterboxd": "https://letterboxd.com/actor/elle-fanning/"
+  },
+  {
+    "slug": "stellan-skarsgard",
+    "name": "Stellan Skarsg\u00e5rd",
+    "image": "https://image.tmdb.org/t/p/w500/x78BtYHElirO7Iw8bL4m8CnzRDc.jpg",
+    "letterboxd": "https://letterboxd.com/actor/stellan-skarsgard/"
+  },
+  {
+    "slug": "benicio-del-toro",
+    "name": "Benicio del Toro",
+    "image": "https://image.tmdb.org/t/p/w500/aYomJWx0B2B8ra6Rmgt8lr0XCrw.jpg",
+    "letterboxd": "https://letterboxd.com/actor/benicio-del-toro/"
+  },
+  {
+    "slug": "jacob-elordi",
+    "name": "Jacob Elordi",
+    "image": "https://image.tmdb.org/t/p/w500/qZNRPWCP2c5d0YaYLTzHXU9Rdoe.jpg",
+    "letterboxd": "https://letterboxd.com/actor/jacob-elordi/"
+  },
+  {
+    "slug": "sean-penn",
+    "name": "Sean Penn",
+    "image": "https://image.tmdb.org/t/p/w500/9glqNTVpFpdN1nFklKaHPUyCwR6.jpg",
+    "letterboxd": "https://letterboxd.com/actor/sean-penn/"
+  },
+  {
+    "slug": "delroy-lindo",
+    "name": "Delroy Lindo",
+    "image": "https://image.tmdb.org/t/p/w500/kLwUBBmEIdchrLqwsYzgLB2B6q5.jpg",
+    "letterboxd": "https://letterboxd.com/actor/delroy-lindo/"
+  }
+]

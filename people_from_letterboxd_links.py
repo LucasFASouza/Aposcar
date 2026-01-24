@@ -26,7 +26,40 @@ options.add_experimental_option("prefs", {
 driver = webdriver.Chrome(options=options)
 
 hrefs = [
-    "https://letterboxd.com/actor/brady-corbet/",
+    # Best Director
+    "https://letterboxd.com/director/paul-thomas-anderson/",
+    "https://letterboxd.com/director/ryan-coogler/",
+    "https://letterboxd.com/director/chloe-zhao/",
+    "https://letterboxd.com/director/joachim-trier/",
+    "https://letterboxd.com/director/josh-safdie/",
+
+    # Best Actress
+    "https://letterboxd.com/actor/jessie-buckley/",
+    "https://letterboxd.com/actor/rose-byrne/",
+    "https://letterboxd.com/actor/renate-reinsve/",
+    "https://letterboxd.com/actor/emma-stone/",
+    "https://letterboxd.com/actor/kate-hudson/",
+
+    # Best Actor
+    "https://letterboxd.com/actor/timothee-chalamet/",
+    "https://letterboxd.com/actor/leonardo-dicaprio/",
+    "https://letterboxd.com/actor/ethan-hawke/",
+    "https://letterboxd.com/actor/wagner-moura/",
+    "https://letterboxd.com/actor/michael-b-jordan/",
+
+    # Best Supporting Actress
+    "https://letterboxd.com/actor/teyana-taylor/",
+    "https://letterboxd.com/actor/amy-madigan/",
+    "https://letterboxd.com/actor/wunmi-mosaku/",
+    "https://letterboxd.com/actor/inga-ibsdotter-lilleaas/",
+    "https://letterboxd.com/actor/elle-fanning/",
+
+    # Best Supporting Actor
+    "https://letterboxd.com/actor/stellan-skarsgard/",
+    "https://letterboxd.com/actor/benicio-del-toro/",
+    "https://letterboxd.com/actor/jacob-elordi/",
+    "https://letterboxd.com/actor/sean-penn/",
+    "https://letterboxd.com/actor/delroy-lindo/",
 ]
 
 # Load existing people from JSON file
