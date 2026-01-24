@@ -1,4 +1,4 @@
-const year = process.argv[2] || "2026";
+const year = process.argv[2] ?? "2026";
 
 const validYears = ["2025", "2026"];
 
