@@ -1,4 +1,5 @@
 import json
+import os
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -28,6 +29,26 @@ hrefs = [
     "https://letterboxd.com/actor/brady-corbet/",
 ]
 
+# Load existing people from JSON file
+json_file_path = 'json/people.json'
+if os.path.exists(json_file_path):
+    try:
+        with open(json_file_path, 'r') as f:
+            content = f.read()
+            if content.strip():  # Check if file is not empty
+                people = json.loads(content)
+                print(f'Loaded {len(people)} existing people')
+            else:
+                people = []
+                print('JSON file is empty, starting fresh')
+    except json.JSONDecodeError as e:
+        print(f'Error reading JSON file: {e}')
+        print('Starting with empty list')
+        people = []
+else:
+    people = []
+    print('No existing people found, starting fresh')
+
 
 def navigate_to_url(driver, url, retries=3):
     for attempt in range(retries):
@@ -44,9 +65,19 @@ def navigate_to_url(driver, url, retries=3):
                 raise
 
 
-people = []
 for href in hrefs:
-    time.sleep(2)
+    # Extract slug from URL to check if person already exists
+    slug_from_url = href.rstrip('/').split('/')[-1]
+
+    # Check if person already exists
+    if any(person.get('letterboxd') == href for person in people):
+        print(f'Person {slug_from_url} already exists, skipping...')
+        continue
+
+    # Close current browser and open a new one
+    driver.quit()
+    driver = webdriver.Chrome(options=options)
+
     navigate_to_url(driver, href)
     time.sleep(2)
 
@@ -78,21 +109,25 @@ for href in hrefs:
         print(f'Error finding poster URL: {e}')
         image_url = None
 
-    slug = href.rstrip('/').split('/')[-1]
+    print(f'Slug: {slug_from_url}')
 
-    print(f'Slug: {slug}')
-
-    people.append({
-        'slug': slug,
+    person_data = {
+        'slug': slug_from_url,
         'name': name,
         'image': image_url,
         'letterboxd': href,
-    })
+    }
 
-print(f'{len(people)} people found\n\n')
+    people.append(person_data)
+
+    # Save to JSON file immediately after each person
+    os.makedirs('json', exist_ok=True)
+    with open(json_file_path, 'w') as f:
+        json.dump(people, f, indent=2)
+
+    print(f'Saved {name} to JSON file')
+
+print(f'\n{len(people)} total people in database')
 print(people)
-
-with open('json/people.json', 'w') as f:
-    json.dump(people, f)
 
 driver.quit()
