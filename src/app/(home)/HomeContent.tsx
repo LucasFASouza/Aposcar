@@ -173,6 +173,7 @@ export function HomeContent({
                         <p className="text-sm">{user.score} points</p>
                       </div>
                       <Progress
+                        key={`${user.username}-${selectedYear}-${user.score}`}
                         value={maxData.maxScore ? Number(user.score) || 0 : 1}
                         max={Number(maxData.maxScore) || 0}
                         className="h-2"
