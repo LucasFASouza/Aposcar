@@ -133,7 +133,7 @@ export function HomeContent({
                     href={`/users/${user.username}`}
                     className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
                   >
-                    <div className="text-xl font-bold">{user.position}º</div>
+                    <div className={`text-xl font-bold ${user.username === username ? "text-primary" : ""}`}>{user.position}º</div>
                     <Avatar
                       className={
                         user.username === username
