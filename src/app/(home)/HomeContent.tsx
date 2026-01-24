@@ -56,7 +56,7 @@ export function HomeContent({
                 {Array.from({ length: 5 }).map((_, i) => (
                   <div key={i} className="flex items-center gap-2 lg:gap-4">
                     <Skeleton className="h-6 w-8" />
-                    <Skeleton className="h-12 w-12 rounded-full" />
+                    <Skeleton className="h-12 w-12 shrink-0 rounded-full" />
                     <div className="flex w-full flex-col gap-2">
                       <div className="flex w-full items-end justify-between">
                         <Skeleton className="h-4 w-24" />
@@ -133,7 +133,11 @@ export function HomeContent({
                     href={`/users/${user.username}`}
                     className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
                   >
-                    <div className={`text-xl font-bold ${user.username === username ? "text-primary" : ""}`}>{user.position}º</div>
+                    <div
+                      className={`text-xl font-bold ${user.username === username ? "text-primary" : ""}`}
+                    >
+                      {user.position}º
+                    </div>
                     <Avatar
                       className={
                         user.username === username
