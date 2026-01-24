@@ -94,7 +94,7 @@ export function HomeContent({
                   <div className="flex w-full justify-end">
                     <Link
                       className={buttonVariants({ variant: "outline" })}
-                      href="/votes/documentary-short-film"
+                      href="/votes"
                     >
                       Go vote
                     </Link>
@@ -192,7 +192,7 @@ export function HomeContent({
                     <div className="flex w-full justify-end">
                       <Link
                         className={buttonVariants({ variant: "outline" })}
-                        href="/votes/documentary-short-film"
+                        href="/votes"
                       >
                         Go vote
                       </Link>

@@ -3,7 +3,7 @@ import VotesPageSkeleton from "@/components/votes/VotesPageSkeleton";
 import { api } from "@/trpc/server";
 
 export default async function VotesPage() {
-  const categories = await api.nominations.getCategories({ ascending: false });
+  const categories = await api.nominations.getCategories({ ascending: true });
 
   if (!categories) {
     return <div>No categories found</div>;

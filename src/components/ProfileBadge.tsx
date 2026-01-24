@@ -74,7 +74,7 @@ export const AvatarDropdown: React.FC = () => {
 
         <DropdownMenuContent>
           <DropdownMenuItem asChild>
-            <Link href="/votes/documentary-short-film">Cast your vote!</Link>
+            <Link href="/votes">Cast your vote!</Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
