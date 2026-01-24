@@ -8,14 +8,16 @@ import { redirect } from "next/navigation";
 export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
-  const categories = await db.query.dbtCategory.findMany();
+  const categories = await db.query.dbtCategory.findMany({
+    orderBy: (categories, { asc }) => [asc(categories.ordering)],
+  });
   return categories.map((category) => ({
     slug: category.slug,
   }));
 };
 
 const VotePage = async ({ params }: { params: { slug: string } }) => {
-  const categories = await api.nominations.getCategories({ ascending: false });
+  const categories = await api.nominations.getCategories({ ascending: true });
   const winningNominations = await api.nominations.getWinningNominations();
 
   if (winningNominations.length !== 0) {

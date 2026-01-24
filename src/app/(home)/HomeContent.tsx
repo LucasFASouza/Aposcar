@@ -41,7 +41,14 @@ export function HomeContent({
   const maxData = rankingsData?.maxData ?? { maxScore: 0 };
 
   const isActiveEdition = selectedYear === activeEditionYear;
-  const shouldShowVotingReminder = showVotingReminder && isActiveEdition;
+
+  const { data: votingStatus } = api.votes.getUserVotingStatus.useQuery(
+    undefined,
+    { enabled: !!userId && isActiveEdition },
+  );
+
+  const shouldShowVotingReminder =
+    userId && votingStatus?.pendingVotes && activeEditionYear;
   const isLoading = isLoadingWinners || isLoadingRankings;
 
   return (
