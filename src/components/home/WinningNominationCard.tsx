@@ -47,7 +47,7 @@ export function WinningNominationCard({
       const isUserVote = stat.nominationId === voteData.userVoteNominationId;
 
       return {
-        name: stat.movieName || stat.receiverName || "Unknown",
+        name: stat.movieName ?? stat.receiverName ?? "Unknown",
         votes: percentage,
         voteCount: votes,
         isWinner: stat.isWinner,
@@ -111,13 +111,17 @@ export function WinningNominationCard({
               <BarChart data={chartData} layout="vertical" margin={{ left: 0 }}>
                 <XAxis
                   type="number"
-                  tickFormatter={(value) => `${value.toFixed(0)}%`}
+                  tickFormatter={(value: number) => `${value.toFixed(0)}%`}
                 />
                 <YAxis
                   type="category"
                   dataKey="name"
                   width={120}
-                  tick={(props) => {
+                  tick={(props: {
+                    x: number;
+                    y: number;
+                    payload: { value: string };
+                  }) => {
                     const { x, y, payload } = props;
                     const entry = chartData.find(
                       (d) => d.name === payload.value,
@@ -151,9 +155,15 @@ export function WinningNominationCard({
                   interval={0}
                 />
                 <ChartTooltip
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
-                      const data = payload[0]?.payload as (typeof chartData)[0];
+                  content={({
+                    active,
+                    payload,
+                  }: {
+                    active?: boolean;
+                    payload?: Array<{ payload: (typeof chartData)[0] }>;
+                  }) => {
+                    if (active && payload?.[0]) {
+                      const data = payload[0].payload;
                       return (
                         <div className="rounded-lg border bg-background p-2 shadow-sm">
                           <div className="text-sm font-semibold">
