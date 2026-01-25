@@ -50,7 +50,7 @@ export const usersRouter = createTRPCRouter({
       z.object({
         username: z.string(),
         image: z.string().optional(),
-        favoriteMovie: z.string().uuid().optional(),
+        favoriteMovie: z.string().uuid().optional().or(z.literal("")).transform(val => val === "" ? undefined : val),
         letterboxdUsername: z.string().optional(),
         twitterUsername: z.string().optional(),
         bskyUsername: z.string().optional(),
@@ -82,30 +82,30 @@ export const usersRouter = createTRPCRouter({
         .set(userData)
         .where(eq(users.id, ctx.session.user.id));
 
-      // Update favorite movie if provided
-      if (favoriteMovie) {
-        const activeEdition = await ctx.db.query.dbtEdition.findFirst({
-          where: eq(dbtEdition.isActive, true),
+      // Get active edition for favorite movie operations
+      const activeEdition = await ctx.db.query.dbtEdition.findFirst({
+        where: eq(dbtEdition.isActive, true),
+      });
+
+      if (!activeEdition) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No active edition found",
         });
+      }
 
-        if (!activeEdition) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: "No active edition found",
-          });
-        }
+      // Always delete existing favorite for this edition first
+      await ctx.db
+        .delete(userFavoriteMovies)
+        .where(
+          and(
+            eq(userFavoriteMovies.user, ctx.session.user.id),
+            eq(userFavoriteMovies.edition, activeEdition.id),
+          ),
+        );
 
-        // Delete existing favorite for this edition
-        await ctx.db
-          .delete(userFavoriteMovies)
-          .where(
-            and(
-              eq(userFavoriteMovies.user, ctx.session.user.id),
-              eq(userFavoriteMovies.edition, activeEdition.id),
-            ),
-          );
-
-        // Insert new favorite
+      // Insert new favorite if provided
+      if (favoriteMovie) {
         await ctx.db.insert(userFavoriteMovies).values({
           user: ctx.session.user.id,
           movie: favoriteMovie,
