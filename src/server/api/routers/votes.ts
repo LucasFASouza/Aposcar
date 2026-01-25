@@ -13,7 +13,7 @@ import {
   dbtReceiver,
 } from "@/server/db/schema/aposcar";
 import { users, userFavoriteMovies } from "@/server/db/schema/auth";
-import { eq, sql, sum, and } from "drizzle-orm";
+import { eq, sql, sum, and, or } from "drizzle-orm";
 import { z } from "zod";
 
 export type UserNomination = {
@@ -91,7 +91,14 @@ export const votesRouter = createTRPCRouter({
     }),
 
   getUserRankings: publicProcedure
-    .input(z.object({ editionYear: z.number().optional() }).optional())
+    .input(
+      z
+        .object({
+          editionYear: z.number().optional(),
+          followingOnly: z.boolean().optional(),
+        })
+        .optional(),
+    )
     .query(async ({ ctx, input }) => {
       const edition = input?.editionYear
         ? await ctx.db.query.dbtEdition.findFirst({
@@ -109,7 +116,8 @@ export const votesRouter = createTRPCRouter({
         );
       }
 
-      const usersData = await ctx.db
+      // Base query
+      let query = ctx.db
         .select({
           role: users.role,
           username: users.username,
@@ -143,7 +151,28 @@ export const votesRouter = createTRPCRouter({
         .leftJoin(
           dbtCategoryTypesPoints,
           eq(dbtCategory.type, dbtCategoryTypesPoints.categoryType),
-        )
+        );
+
+      // If following only mode is enabled and user is logged in
+      if (input?.followingOnly && ctx.session?.user?.id) {
+        const { userFollows } = await import("@/server/db/schema/auth");
+        query = query
+          .leftJoin(
+            userFollows,
+            and(
+              eq(userFollows.followingId, users.id),
+              eq(userFollows.followerId, ctx.session.user.id),
+            ),
+          )
+          .where(
+            or(
+              eq(userFollows.followerId, ctx.session.user.id),
+              eq(users.id, ctx.session.user.id),
+            ),
+          ) as typeof query;
+      }
+
+      const usersData = await query
         .groupBy(users.id, users.email, users.role, users.name, users.image)
         .orderBy(() => sql`position`);
 

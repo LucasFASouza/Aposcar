@@ -9,6 +9,8 @@ import { WinningNominationCard } from "@/components/home/WinningNominationCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/trpc/react";
 import { useEdition } from "@/contexts/EditionContext";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 
 type HomeContentProps = {
   userId?: string;
@@ -24,6 +26,9 @@ export function HomeContent({
   showVotingReminder,
 }: HomeContentProps) {
   const { selectedYear, activeEditionYear } = useEdition();
+  const [rankingFilter, setRankingFilter] = useState<"global" | "following">(
+    "global",
+  );
 
   const { data: winningNominations = [], isLoading: isLoadingWinners } =
     api.nominations.getWinningNominations.useQuery(
@@ -33,7 +38,10 @@ export function HomeContent({
 
   const { data: rankingsData, isLoading: isLoadingRankings } =
     api.votes.getUserRankings.useQuery(
-      { editionYear: selectedYear },
+      {
+        editionYear: selectedYear,
+        followingOnly: rankingFilter === "following",
+      },
       { enabled: !!selectedYear },
     );
 
@@ -128,7 +136,22 @@ export function HomeContent({
           )}
 
           <div className="lg:w-2/3">
-            <h2 className="pb-4 pl-4 text-2xl font-bold">Ranking</h2>
+            <div className="flex items-center justify-between pb-4 pl-4">
+              <h2 className="text-2xl font-bold">Ranking</h2>
+              {userId && (
+                <Tabs
+                  value={rankingFilter}
+                  onValueChange={(v) =>
+                    setRankingFilter(v as "global" | "following")
+                  }
+                >
+                  <TabsList>
+                    <TabsTrigger value="global">Global</TabsTrigger>
+                    <TabsTrigger value="following">Following</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              )}
+            </div>
 
             <ScrollArea
               className="flex flex-col gap-4 rounded-md border"
