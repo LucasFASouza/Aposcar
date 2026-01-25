@@ -14,10 +14,18 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import { api } from "@/trpc/react";
 import PhTrophy from "~icons/ph/trophy";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useEdition } from "@/contexts/EditionContext";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type UserProfileContentProps = {
   username: string;
@@ -31,6 +39,10 @@ export function UserProfileContent({
   sessionUsername,
 }: UserProfileContentProps) {
   const { selectedYear } = useEdition();
+  const [followDialogOpen, setFollowDialogOpen] = useState(false);
+  const [followDialogType, setFollowDialogType] = useState<
+    "followers" | "following"
+  >("followers");
 
   const { data: rankingsData, isLoading: isLoadingRankings } =
     api.votes.getUserRankings.useQuery(
@@ -43,6 +55,11 @@ export function UserProfileContent({
       { username, editionYear: selectedYear },
       { enabled: !!selectedYear },
     );
+
+  const { data: followCounts } = api.users.getFollowCounts.useQuery(
+    { userId: profileData?.userData.id ?? "" },
+    { enabled: !!profileData?.userData.id },
+  );
 
   const usersScores = rankingsData?.usersScores ?? [];
   const maxData = rankingsData?.maxData ?? {
@@ -154,16 +171,21 @@ export function UserProfileContent({
             </div>
 
             {/* Actions */}
-            {userData?.id === sessionUserId && (
-              <div className="flex flex-col items-end justify-end space-y-2">
+            <div className="flex flex-col items-end justify-end space-y-2">
+              {userData?.id === sessionUserId ? (
                 <Link
                   className={buttonVariants({ variant: "outline", size: "sm" })}
                   href="/users/edit"
                 >
                   Edit profile
                 </Link>
-              </div>
-            )}
+              ) : sessionUserId && userData?.id ? (
+                <FollowButton
+                  targetUserId={userData.id}
+                  currentUserId={sessionUserId}
+                />
+              ) : null}
+            </div>
           </div>
 
           {/* Social medias */}
@@ -259,9 +281,50 @@ export function UserProfileContent({
                 <p className="font-bold lg:text-lg">{userData.favoriteMovie}</p>
               </div>
             )}
+
+            {/* Follow stats */}
+            <div className="flex w-full gap-2 lg:gap-4">
+              <button
+                onClick={() => {
+                  setFollowDialogType("following");
+                  setFollowDialogOpen(true);
+                }}
+                className="w-1/2 rounded-sm border px-4 py-2 text-left transition-colors hover:bg-secondary"
+              >
+                <p className="text-xs text-muted-foreground lg:text-sm">
+                  Following
+                </p>
+                <div className="text-lg font-bold lg:text-xl">
+                  {followCounts?.following ?? 0}
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setFollowDialogType("followers");
+                  setFollowDialogOpen(true);
+                }}
+                className="w-1/2 rounded-sm border px-4 py-2 text-left transition-colors hover:bg-secondary"
+              >
+                <p className="text-xs text-muted-foreground lg:text-sm">
+                  Followers
+                </p>
+                <div className="text-lg font-bold lg:text-xl">
+                  {followCounts?.followers ?? 0}
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Follow Dialog */}
+      <FollowDialog
+        open={followDialogOpen}
+        onOpenChange={setFollowDialogOpen}
+        userId={profileData?.userData.id ?? ""}
+        type={followDialogType}
+      />
 
       {/* Votes table */}
       <div className="pb-8 pt-2 lg:w-2/3 lg:p-0">
@@ -337,5 +400,121 @@ export function UserProfileContent({
         </Table>
       </div>
     </div>
+  );
+}
+
+function FollowButton({
+  targetUserId,
+  currentUserId,
+}: {
+  targetUserId: string;
+  currentUserId: string;
+}) {
+  const utils = api.useUtils();
+  const { data: isFollowing, isLoading } = api.users.isFollowing.useQuery(
+    { targetUserId },
+    { enabled: !!targetUserId && !!currentUserId },
+  );
+
+  const followMutation = api.users.followUser.useMutation({
+    onSuccess: () => {
+      void utils.users.isFollowing.invalidate({ targetUserId });
+      void utils.users.getFollowCounts.invalidate({ userId: targetUserId });
+      void utils.users.getFollowCounts.invalidate({ userId: currentUserId });
+    },
+  });
+
+  const unfollowMutation = api.users.unfollowUser.useMutation({
+    onSuccess: () => {
+      void utils.users.isFollowing.invalidate({ targetUserId });
+      void utils.users.getFollowCounts.invalidate({ userId: targetUserId });
+      void utils.users.getFollowCounts.invalidate({ userId: currentUserId });
+    },
+  });
+
+  const handleClick = () => {
+    if (isFollowing) {
+      unfollowMutation.mutate({ targetUserId });
+    } else {
+      followMutation.mutate({ targetUserId });
+    }
+  };
+
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={handleClick}
+      disabled={
+        isLoading || followMutation.isPending || unfollowMutation.isPending
+      }
+    >
+      {isFollowing ? "Following" : "Follow"}
+    </Button>
+  );
+}
+
+
+function FollowDialog({
+  open,
+  onOpenChange,
+  userId,
+  type,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  userId: string;
+  type: "followers" | "following";
+}) {
+  const { data: users, isLoading } =
+    type === "followers"
+      ? api.users.getFollowers.useQuery({ userId }, { enabled: open && !!userId })
+      : api.users.getFollowing.useQuery({ userId }, { enabled: open && !!userId });
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>
+            {type === "followers" ? "Followers" : "Following"}
+          </DialogTitle>
+        </DialogHeader>
+        <ScrollArea className="max-h-[400px]">
+          {isLoading ? (
+            <div className="space-y-2 px-2">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <Skeleton className="h-10 w-10 rounded-full" />
+                  <Skeleton className="h-4 w-32" />
+                </div>
+              ))}
+            </div>
+          ) : users && users.length > 0 ? (
+            <div className="space-y-1 px-2">
+              {users.map((user) => (
+                <Link
+                  key={user.id}
+                  href={`/users/${user.username}`}
+                  onClick={() => onOpenChange(false)}
+                  className="flex items-center gap-3 rounded-md p-2 transition-colors hover:bg-secondary"
+                >
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage src={user.image ?? ""} />
+                    <AvatarFallback>
+                      {user.username?.[0]?.toUpperCase() ?? "@"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium">{user.username}</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="px-6 py-4 text-center text-sm text-muted-foreground">
+              No {type === "followers" ? "followers" : "following"} yet
+            </div>
+          )}
+        </ScrollArea>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -36,6 +36,13 @@
       "when": 1769115470211,
       "tag": "0004_early_lifeguard",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1769304194891,
+      "tag": "0005_lonely_redwing",
+      "breakpoints": true
     }
   ]
 }

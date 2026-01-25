@@ -51,6 +51,19 @@ export const userFavoriteMovies = pgTable("userFavoriteMovie", {
     .references(() => dbtEdition.id),
 });
 
+export const userFollows = pgTable("userFollow", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  followerId: text("followerId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  followingId: text("followingId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+});
+
 export const accounts = pgTable(
   "account",
   {
@@ -121,6 +134,21 @@ export const authenticators = pgTable(
 export const userVotesRelation = relations(users, ({ many }) => ({
   votes: many(dbtVote),
   favoriteMovies: many(userFavoriteMovies),
+  following: many(userFollows, { relationName: "follower" }),
+  followers: many(userFollows, { relationName: "following" }),
+}));
+
+export const userFollowsRelation = relations(userFollows, ({ one }) => ({
+  follower: one(users, {
+    fields: [userFollows.followerId],
+    references: [users.id],
+    relationName: "follower",
+  }),
+  following: one(users, {
+    fields: [userFollows.followingId],
+    references: [users.id],
+    relationName: "following",
+  }),
 }));
 
 export const userFavoriteMoviesRelation = relations(
