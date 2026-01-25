@@ -156,20 +156,21 @@ export const votesRouter = createTRPCRouter({
       // If following only mode is enabled and user is logged in
       if (input?.followingOnly && ctx.session?.user?.id) {
         const { userFollows } = await import("@/server/db/schema/auth");
-        query = query
-          .leftJoin(
-            userFollows,
-            and(
-              eq(userFollows.followingId, users.id),
-              eq(userFollows.followerId, ctx.session.user.id),
-            ),
-          )
-          .where(
-            or(
-              eq(userFollows.followerId, ctx.session.user.id),
-              eq(users.id, ctx.session.user.id),
-            ),
-          ) as typeof query;
+        query = query.leftJoin(
+          userFollows,
+          and(
+            eq(userFollows.followingId, users.id),
+            eq(userFollows.followerId, ctx.session.user.id),
+          ),
+        );
+        // Apply filtering after join, using a separate filter step
+        // @ts-expect-error: Drizzle ORM type limitation workaround
+        query = query.where(
+          or(
+            eq(userFollows.followerId, ctx.session.user.id),
+            eq(users.id, ctx.session.user.id),
+          ),
+        );
       }
 
       const usersData = await query
