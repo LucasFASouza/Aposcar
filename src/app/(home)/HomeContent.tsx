@@ -60,6 +60,8 @@ export function HomeContent({
   const isLoading = isLoadingWinners || isLoadingRankings;
 
   const showLoginForFollowing = !userId && rankingFilter === "following";
+  const showUsersForFollowing =
+    userId && rankingFilter === "following" && usersScores.length === 1;
 
   return (
     <div className="flex h-full flex-col gap-6 pt-4">
@@ -162,6 +164,13 @@ export function HomeContent({
                 </Link>
                 to see your following ranking.
               </div>
+            ) : showUsersForFollowing ? (
+              <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
+                You are not following anyone yet. <br />
+                <Link href="/users" className="underline hover:text-primary">
+                  Discover users to follow
+                </Link>
+              </div>
             ) : (
               <ScrollArea
                 className="flex flex-col gap-4 rounded-md border"
@@ -218,8 +227,7 @@ export function HomeContent({
                         className="ml-4"
                         onClick={(e) => e.stopPropagation()}
                         onMouseDown={(e) => e.stopPropagation()}
-                      >
-                      </div>
+                      ></div>
                     </Link>
                   </div>
                 ))}
