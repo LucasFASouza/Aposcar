@@ -454,7 +454,6 @@ function FollowButton({
   );
 }
 
-
 function FollowDialog({
   open,
   onOpenChange,
@@ -468,8 +467,14 @@ function FollowDialog({
 }) {
   const { data: users, isLoading } =
     type === "followers"
-      ? api.users.getFollowers.useQuery({ userId }, { enabled: open && !!userId })
-      : api.users.getFollowing.useQuery({ userId }, { enabled: open && !!userId });
+      ? api.users.getFollowers.useQuery(
+          { userId },
+          { enabled: open && !!userId },
+        )
+      : api.users.getFollowing.useQuery(
+          { userId },
+          { enabled: open && !!userId },
+        );
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
