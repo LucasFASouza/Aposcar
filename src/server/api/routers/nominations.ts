@@ -20,7 +20,7 @@ import {
   dbtVote,
 } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
-import { eq, isNotNull, and, desc, sql, count } from "drizzle-orm";
+import { eq, isNotNull, and, desc, sql, count, asc } from "drizzle-orm";
 import { z } from "zod";
 
 const getCategoryInputSchema = z.object({
@@ -152,7 +152,7 @@ export const nominationsRouter = createTRPCRouter({
           ordering: dbtCategory.ordering,
         })
         .from(dbtCategory)
-        .orderBy(desc(dbtCategory.ordering));
+        .orderBy(asc(dbtCategory.ordering));
 
       const currentIndex = categories.findIndex(
         (c) => c.slug === input.categorySlug,
