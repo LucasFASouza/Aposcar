@@ -81,6 +81,10 @@ export const AvatarDropdown: React.FC = () => {
             <Link href={`/users/${user?.username}`}>Your Profile</Link>
           </DropdownMenuItem>
 
+          <DropdownMenuItem asChild>
+            <Link href="/users">Find your people</Link>
+          </DropdownMenuItem>
+
           {user?.role === "admin" && (
             <DropdownMenuItem asChild>
               <Link href="/admin">Admin Tools</Link>

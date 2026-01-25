@@ -59,8 +59,23 @@ export function HomeContent({
     userId && votingStatus?.pendingVotes && activeEditionYear;
   const isLoading = isLoadingWinners || isLoadingRankings;
 
+  // Show message if following filter is selected and no users are found
+  const showFollowingEmpty =
+    rankingFilter === "following" && usersScores.length === 0;
+
   return (
     <div className="flex h-full flex-col gap-6 pt-4">
+      {/* Show message if following filter is empty */}
+      {showFollowingEmpty && (
+        <div className="mb-4 rounded border bg-muted/50 p-4 text-center text-sm text-muted-foreground">
+          You are not following anyone yet.{" "}
+          <Link href="/users" className="underline hover:text-primary">
+            Find users to follow
+          </Link>
+          .
+        </div>
+      )}
+
       {isLoading ? (
         // Loading skeleton
         <div className="flex flex-col justify-between gap-6 lg:flex-row">
