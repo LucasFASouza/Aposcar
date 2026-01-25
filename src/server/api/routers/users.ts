@@ -13,7 +13,7 @@ import {
 } from "@/server/db/schema/auth";
 import { dbtEdition } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
-import { eq, and, not, count } from "drizzle-orm";
+import { eq, and, not, count, like, or } from "drizzle-orm";
 import { z } from "zod";
 
 export const usersRouter = createTRPCRouter({
@@ -50,7 +50,12 @@ export const usersRouter = createTRPCRouter({
       z.object({
         username: z.string(),
         image: z.string().optional(),
-        favoriteMovie: z.string().uuid().optional().or(z.literal("")).transform(val => val === "" ? undefined : val),
+        favoriteMovie: z
+          .string()
+          .uuid()
+          .optional()
+          .or(z.literal(""))
+          .transform((val) => (val === "" ? undefined : val)),
         letterboxdUsername: z.string().optional(),
         twitterUsername: z.string().optional(),
         bskyUsername: z.string().optional(),
@@ -147,6 +152,36 @@ export const usersRouter = createTRPCRouter({
         ...user,
         favoriteMovie: user.favoriteMovies[0]?.movie ?? null,
       };
+    }),
+
+  getAllUsers: publicProcedure
+    .input(
+      z
+        .object({
+          search: z.string().optional(),
+        })
+        .optional(),
+    )
+    .query(async ({ ctx, input }) => {
+      const searchTerm = input?.search;
+
+      const allUsers = await ctx.db.query.users.findMany({
+        where: searchTerm
+          ? or(
+              like(users.username, `%${searchTerm}%`),
+              like(users.name, `%${searchTerm}%`),
+            )
+          : undefined,
+        columns: {
+          id: true,
+          username: true,
+          name: true,
+          image: true,
+        },
+        orderBy: (users, { asc }) => [asc(users.username)],
+      });
+
+      return allUsers;
     }),
 
   isFollowing: protectedProcedure

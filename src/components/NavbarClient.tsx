@@ -18,6 +18,7 @@ export const NavbarClient = () => {
   const pathname = usePathname();
 
   const isVotingPage = pathname?.startsWith("/votes");
+  const isUsersPage = pathname === "/users";
 
   return (
     <nav className="z-50 flex w-full items-center justify-between bg-gradient-to-t from-transparent to-background px-6 py-4 lg:px-12 lg:py-6">
@@ -28,7 +29,7 @@ export const NavbarClient = () => {
           </h1>
         </Link>
 
-        {editions.length > 1 && !isVotingPage && (
+        {editions.length > 1 && !isVotingPage && !isUsersPage && (
           <Select
             value={selectedYear?.toString()}
             onValueChange={(value) => setSelectedYear(Number(value))}
