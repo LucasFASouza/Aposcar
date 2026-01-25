@@ -59,23 +59,10 @@ export function HomeContent({
     userId && votingStatus?.pendingVotes && activeEditionYear;
   const isLoading = isLoadingWinners || isLoadingRankings;
 
-  // Show message if following filter is selected and no users are found
-  const showFollowingEmpty =
-    rankingFilter === "following" && usersScores.length === 0;
+  const showLoginForFollowing = !userId && rankingFilter === "following";
 
   return (
     <div className="flex h-full flex-col gap-6 pt-4">
-      {/* Show message if following filter is empty */}
-      {showFollowingEmpty && (
-        <div className="mb-4 rounded border bg-muted/50 p-4 text-center text-sm text-muted-foreground">
-          You are not following anyone yet.{" "}
-          <Link href="/users" className="underline hover:text-primary">
-            Find users to follow
-          </Link>
-          .
-        </div>
-      )}
-
       {isLoading ? (
         // Loading skeleton
         <div className="flex flex-col justify-between gap-6 lg:flex-row">
@@ -132,7 +119,7 @@ export function HomeContent({
                 </div>
               )}
 
-              {!userId && isActiveEdition && (
+              {!userId && (
                 <div className="flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 lg:hidden">
                   <p className="w-full text-primary-foreground">
                     Sign in to cast your votes and share your predictions!
@@ -153,74 +140,91 @@ export function HomeContent({
           <div className="lg:w-2/3">
             <div className="flex items-center justify-between pb-4 pl-4">
               <h2 className="text-2xl font-bold">Ranking</h2>
-              {userId && (
-                <Tabs
-                  value={rankingFilter}
-                  onValueChange={(v) =>
-                    setRankingFilter(v as "global" | "following")
-                  }
-                >
-                  <TabsList>
-                    <TabsTrigger value="global">Global</TabsTrigger>
-                    <TabsTrigger value="following">Following</TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              )}
+              <Tabs
+                value={rankingFilter}
+                onValueChange={(v) =>
+                  setRankingFilter(v as "global" | "following")
+                }
+              >
+                <TabsList>
+                  <TabsTrigger value="global">Global</TabsTrigger>
+                  <TabsTrigger value="following">Following</TabsTrigger>
+                </TabsList>
+              </Tabs>
             </div>
 
-            <ScrollArea
-              className="flex flex-col gap-4 rounded-md border"
-              style={{ maxHeight: "calc(100vh - 17rem)" }}
-            >
-              {usersScores.map((user) => (
-                <div key={user.username}>
-                  <Link
-                    href={`/users/${user.username}`}
-                    className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
-                  >
-                    <div
-                      className={`text-xl font-bold ${user.username === username ? "text-primary" : ""}`}
+            {showLoginForFollowing ? (
+              <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
+                You must
+                <Link href="/login" className="underline hover:text-primary">
+                  {" "}
+                  sign in{" "}
+                </Link>
+                to see your following ranking.
+              </div>
+            ) : (
+              <ScrollArea
+                className="flex flex-col gap-4 rounded-md border"
+                style={{ maxHeight: "calc(100vh - 17rem)" }}
+              >
+                {usersScores.map((user) => (
+                  <div key={user.username}>
+                    <Link
+                      href={`/users/${user.username}`}
+                      className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
                     >
-                      {user.position}º
-                    </div>
-                    <Avatar
-                      className={
-                        user.username === username
-                          ? "border-2 border-primary"
-                          : ""
-                      }
-                    >
-                      <AvatarImage src={user.image ?? ""} />
-                      <AvatarFallback>
-                        {user.username?.[0]?.toUpperCase() ?? "@"}
-                      </AvatarFallback>
-                    </Avatar>
-
-                    <div className="flex w-full flex-col gap-2">
-                      <div className="flex w-full items-end justify-between">
-                        <p className="font-sm">
-                          {user.username}
-
-                          {user.username === username && (
-                            <span className="pl-2 text-muted-foreground">
-                              (you)
-                            </span>
-                          )}
-                        </p>
-
-                        <p className="text-sm">{user.score} points</p>
+                      <div
+                        className={`text-xl font-bold ${
+                          user.username === username ? "text-primary" : ""
+                        }`}
+                      >
+                        {user.position}º
                       </div>
-                      <Progress
-                        key={`${user.username}-${selectedYear}-${user.score}`}
-                        value={maxData.maxScore ? Number(user.score) || 0 : 1}
-                        max={Number(maxData.maxScore) || 0}
-                        className="h-2"
-                      />
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </ScrollArea>
+                      <Avatar
+                        className={
+                          user.username === username
+                            ? "border-2 border-primary"
+                            : ""
+                        }
+                      >
+                        <AvatarImage src={user.image ?? ""} />
+                        <AvatarFallback>
+                          {user.username?.[0]?.toUpperCase() ?? "@"}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <div className="flex w-full flex-col gap-2">
+                        <div className="flex w-full items-end justify-between">
+                          <p className="font-sm">
+                            {user.username}
+
+                            {user.username === username && (
+                              <span className="pl-2 text-muted-foreground">
+                                (you)
+                              </span>
+                            )}
+                          </p>
+
+                          <p className="text-sm">{user.score} points</p>
+                        </div>
+                        <Progress
+                          key={`${user.username}-${selectedYear}-${user.score}`}
+                          value={maxData.maxScore ? Number(user.score) || 0 : 1}
+                          max={Number(maxData.maxScore) || 0}
+                          className="h-2"
+                        />
+                      </div>
+                      <div
+                        className="ml-4"
+                        onClick={(e) => e.stopPropagation()}
+                        onMouseDown={(e) => e.stopPropagation()}
+                      >
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </ScrollArea>
+            )}
           </div>
 
           <div className="flex flex-col lg:w-1/3">
