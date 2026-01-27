@@ -31,7 +31,6 @@ export function HomeContent({
     "global",
   );
 
-
   const { data: winningNominations = [], isLoading: isLoadingWinners } =
     api.nominations.getWinningNominations.useQuery(
       { editionYear: selectedYear },
@@ -66,7 +65,11 @@ export function HomeContent({
 
   const shouldShowVotingReminder =
     userId && votingStatus?.pendingVotes && activeEditionYear;
-  const isLoading = isLoadingWinners || isLoadingRankings || (winningNominations.length === 0 && isLoadingCategories);
+  // Only show full-page loading if winners/categories are loading (not when just switching ranking filter)
+  const isFeedLoading =
+    isLoadingWinners ||
+    (winningNominations.length === 0 && isLoadingCategories);
+  const isRankingLoading = isLoadingRankings;
 
   const showLoginForFollowing = !userId && rankingFilter === "following";
   const showUsersForFollowing =
@@ -74,210 +77,234 @@ export function HomeContent({
 
   return (
     <div className="flex h-full flex-col gap-6 pt-4">
-      {isLoading ? (
-        // Loading skeleton
-        <div className="flex flex-col justify-between gap-6 lg:flex-row">
-          <div className="lg:w-2/3">
-            <h2 className="pb-4 pl-4 text-2xl font-bold">Ranking</h2>
-            <div className="rounded-md border p-3">
-              <div className="space-y-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <div key={i} className="flex items-center gap-2 lg:gap-4">
-                    <Skeleton className="h-6 w-8" />
-                    <Skeleton className="h-12 w-12 shrink-0 rounded-full" />
-                    <div className="flex w-full flex-col gap-2">
-                      <div className="flex w-full items-end justify-between">
-                        <Skeleton className="h-4 w-24" />
-                        <Skeleton className="h-4 w-16" />
+      <div className="flex flex-col justify-between gap-6 lg:flex-row">
+        {isFeedLoading ? (
+          <>
+            <div className="lg:w-2/3">
+              <h2 className="pb-4 pl-4 text-2xl font-bold">Ranking</h2>
+              <div className="rounded-md border p-3">
+                <div className="space-y-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <div key={i} className="flex items-center gap-2 lg:gap-4">
+                      <Skeleton className="h-6 w-8" />
+                      <Skeleton className="h-12 w-12 shrink-0 rounded-full" />
+                      <div className="flex w-full flex-col gap-2">
+                        <div className="flex w-full items-end justify-between">
+                          <Skeleton className="h-4 w-24" />
+                          <Skeleton className="h-4 w-16" />
+                        </div>
+                        <Skeleton className="h-2 w-full" />
                       </div>
-                      <Skeleton className="h-2 w-full" />
                     </div>
-                  </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col lg:w-1/3">
+              <h2 className="pb-4 pl-4 text-2xl font-bold">Last updates</h2>
+              <div className="space-y-4">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <Skeleton key={i} className="h-48 w-full rounded-md" />
                 ))}
               </div>
             </div>
-          </div>
+          </>
+        ) : (
+          <>
+            {winningNominations.length === 0 && (
+              <>
+                {shouldShowVotingReminder && (
+                  <div className="flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:hidden">
+                    <p className="w-full text-primary-foreground">
+                      Don&apos;t forget to cast your votes and share your
+                      predictions!
+                      <br />
+                      You&apos;ll be able to change them until the awards begin.
+                    </p>
+                    <div className="flex w-full justify-end">
+                      <Link
+                        className={buttonVariants({ variant: "outline" })}
+                        href="/votes"
+                      >
+                        Go vote
+                      </Link>
+                    </div>
+                  </div>
+                )}
 
-          <div className="flex flex-col lg:w-1/3">
-            <h2 className="pb-4 pl-4 text-2xl font-bold">Last updates</h2>
-            <div className="space-y-4">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <Skeleton key={i} className="h-48 w-full rounded-md" />
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="flex flex-col justify-between gap-6 lg:flex-row">
-          {winningNominations.length === 0 && (
-            <>
-              {shouldShowVotingReminder && (
-                <div className="flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:hidden">
-                  <p className="w-full text-primary-foreground">
-                    Don&apos;t forget to cast your votes and share your
-                    predictions!
-                    <br />
-                    You&apos;ll be able to change them until the awards begin.
-                  </p>
-                  <div className="flex w-full justify-end">
-                    <Link
-                      className={buttonVariants({ variant: "outline" })}
-                      href="/votes"
-                    >
-                      Go vote
-                    </Link>
+                {!userId && (
+                  <div className="flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 lg:hidden">
+                    <p className="w-full text-primary-foreground">
+                      Sign in to cast your votes and share your predictions!
+                    </p>
+                    <div className="flex w-full justify-end">
+                      <Link
+                        className={buttonVariants({ variant: "outline" })}
+                        href="/login"
+                      >
+                        Sign in
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            <div className="lg:w-2/3">
+              <div className="flex items-center justify-between pb-4 pl-4">
+                <h2 className="text-2xl font-bold">Ranking</h2>
+                <Tabs
+                  value={rankingFilter}
+                  onValueChange={(v) =>
+                    setRankingFilter(v as "global" | "following")
+                  }
+                >
+                  <TabsList>
+                    <TabsTrigger value="global">Global</TabsTrigger>
+                    <TabsTrigger value="following">Following</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+
+              {/* Only ranking section shows loading when switching filter */}
+              {isRankingLoading ? (
+                <div className="rounded-md border p-3">
+                  <div className="space-y-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <div key={i} className="flex items-center gap-2 lg:gap-4">
+                        <Skeleton className="h-6 w-8" />
+                        <Skeleton className="h-12 w-12 shrink-0 rounded-full" />
+                        <div className="flex w-full flex-col gap-2">
+                          <div className="flex w-full items-end justify-between">
+                            <Skeleton className="h-4 w-24" />
+                            <Skeleton className="h-4 w-16" />
+                          </div>
+                          <Skeleton className="h-2 w-full" />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              )}
-
-              {!userId && (
-                <div className="flex flex-col items-center justify-between gap-4 rounded bg-primary p-4 lg:hidden">
-                  <p className="w-full text-primary-foreground">
-                    Sign in to cast your votes and share your predictions!
-                  </p>
-                  <div className="flex w-full justify-end">
-                    <Link
-                      className={buttonVariants({ variant: "outline" })}
-                      href="/login"
-                    >
-                      Sign in
-                    </Link>
-                  </div>
+              ) : showLoginForFollowing ? (
+                <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
+                  You must
+                  <Link href="/login" className="underline hover:text-primary">
+                    {" "}
+                    sign in{" "}
+                  </Link>
+                  to see your following ranking.
                 </div>
-              )}
-            </>
-          )}
+              ) : showUsersForFollowing ? (
+                <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
+                  You are not following anyone yet. <br />
+                  <Link href="/users" className="underline hover:text-primary">
+                    Discover users to follow
+                  </Link>
+                </div>
+              ) : (
+                <ScrollArea
+                  className="flex flex-col gap-4 rounded-md border"
+                  style={{ maxHeight: "calc(100vh - 17rem)" }}
+                >
+                  {usersScores.map((user) => (
+                    <div key={user.username}>
+                      <Link
+                        href={`/users/${user.username}`}
+                        className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
+                      >
+                        <div
+                          className={`text-xl font-bold ${
+                            user.username === username ? "text-primary" : ""
+                          }`}
+                        >
+                          {user.position}º
+                        </div>
+                        <Avatar
+                          className={
+                            user.username === username
+                              ? "border-2 border-primary"
+                              : ""
+                          }
+                        >
+                          <AvatarImage src={user.image ?? ""} />
+                          <AvatarFallback>
+                            {user.username?.[0]?.toUpperCase() ?? "@"}
+                          </AvatarFallback>
+                        </Avatar>
 
-          <div className="lg:w-2/3">
-            <div className="flex items-center justify-between pb-4 pl-4">
-              <h2 className="text-2xl font-bold">Ranking</h2>
-              <Tabs
-                value={rankingFilter}
-                onValueChange={(v) =>
-                  setRankingFilter(v as "global" | "following")
-                }
-              >
-                <TabsList>
-                  <TabsTrigger value="global">Global</TabsTrigger>
-                  <TabsTrigger value="following">Following</TabsTrigger>
-                </TabsList>
-              </Tabs>
+                        <div className="flex w-full flex-col gap-2">
+                          <div className="flex w-full items-end justify-between">
+                            <p className="font-sm">
+                              {user.username}
+
+                              {user.username === username && (
+                                <span className="pl-2 text-muted-foreground">
+                                  (you)
+                                </span>
+                              )}
+                            </p>
+
+                            <p className="text-sm">{user.score} points</p>
+                          </div>
+                          <Progress
+                            key={`${user.username}-${selectedYear}-${user.score}`}
+                            value={
+                              maxData.maxScore ? Number(user.score) || 0 : 1
+                            }
+                            max={Number(maxData.maxScore) || 0}
+                            className="h-2"
+                          />
+                        </div>
+                        <div
+                          className="ml-4"
+                          onClick={(e) => e.stopPropagation()}
+                          onMouseDown={(e) => e.stopPropagation()}
+                        ></div>
+                      </Link>
+                    </div>
+                  ))}
+                </ScrollArea>
+              )}
             </div>
 
-            {showLoginForFollowing ? (
-              <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
-                You must
-                <Link href="/login" className="underline hover:text-primary">
-                  {" "}
-                  sign in{" "}
-                </Link>
-                to see your following ranking.
-              </div>
-            ) : showUsersForFollowing ? (
-              <div className="flex items-center justify-center rounded-md border p-8 text-center text-muted-foreground">
-                You are not following anyone yet. <br />
-                <Link href="/users" className="underline hover:text-primary">
-                  Discover users to follow
-                </Link>
-              </div>
-            ) : (
+            <div className="flex flex-col lg:w-1/3">
+              <h2 className="pb-4 pl-4 text-2xl font-bold">
+                {winningNominations.length === 0
+                  ? "People's Predictions"
+                  : "Last updates"}
+              </h2>
+
               <ScrollArea
                 className="flex flex-col gap-4 rounded-md border"
                 style={{ maxHeight: "calc(100vh - 17rem)" }}
               >
-                {usersScores.map((user) => (
-                  <div key={user.username}>
-                    <Link
-                      href={`/users/${user.username}`}
-                      className="flex w-full items-center gap-2 border-b border-secondary p-3 hover:bg-secondary lg:gap-4 lg:px-6 lg:py-4"
-                    >
-                      <div
-                        className={`text-xl font-bold ${
-                          user.username === username ? "text-primary" : ""
-                        }`}
-                      >
-                        {user.position}º
-                      </div>
-                      <Avatar
-                        className={
-                          user.username === username
-                            ? "border-2 border-primary"
-                            : ""
-                        }
-                      >
-                        <AvatarImage src={user.image ?? ""} />
-                        <AvatarFallback>
-                          {user.username?.[0]?.toUpperCase() ?? "@"}
-                        </AvatarFallback>
-                      </Avatar>
-
-                      <div className="flex w-full flex-col gap-2">
-                        <div className="flex w-full items-end justify-between">
-                          <p className="font-sm">
-                            {user.username}
-
-                            {user.username === username && (
-                              <span className="pl-2 text-muted-foreground">
-                                (you)
-                              </span>
-                            )}
-                          </p>
-
-                          <p className="text-sm">{user.score} points</p>
-                        </div>
-                        <Progress
-                          key={`${user.username}-${selectedYear}-${user.score}`}
-                          value={maxData.maxScore ? Number(user.score) || 0 : 1}
-                          max={Number(maxData.maxScore) || 0}
-                          className="h-2"
-                        />
-                      </div>
-                      <div
-                        className="ml-4"
-                        onClick={(e) => e.stopPropagation()}
-                        onMouseDown={(e) => e.stopPropagation()}
-                      ></div>
-                    </Link>
-                  </div>
-                ))}
+                {winningNominations.length === 0
+                  ? allCategories.map((category) => (
+                      <WinningNominationCard
+                        key={category.id}
+                        nomination={{
+                          id: category.id,
+                          categoryName: category.name,
+                          category: category.id,
+                          isWinnerLastUpdate: null,
+                          movie: { name: null },
+                        }}
+                        editionYear={selectedYear}
+                      />
+                    ))
+                  : winningNominations.map((nomination) => (
+                      <WinningNominationCard
+                        key={nomination.id}
+                        nomination={nomination}
+                        editionYear={selectedYear}
+                      />
+                    ))}
               </ScrollArea>
-            )}
-          </div>
-
-          <div className="flex flex-col lg:w-1/3">
-            <h2 className="pb-4 pl-4 text-2xl font-bold">
-              {winningNominations.length === 0 ? "People's Predictions" : "Last updates"}
-            </h2>
-
-            <ScrollArea
-              className="flex flex-col gap-4 rounded-md border"
-              style={{ maxHeight: "calc(100vh - 17rem)" }}
-            >
-              {winningNominations.length === 0
-                ? allCategories.map((category) => (
-                    <WinningNominationCard
-                      key={category.id}
-                      nomination={{
-                        id: category.id,
-                        categoryName: category.name,
-                        category: category.id,
-                        isWinnerLastUpdate: null,
-                        movie: { name: null },
-                      }}
-                      editionYear={selectedYear}
-                    />
-                  ))
-                : winningNominations.map((nomination) => (
-                    <WinningNominationCard
-                      key={nomination.id}
-                      nomination={nomination}
-                      editionYear={selectedYear}
-                    />
-                  ))}
-            </ScrollArea>
-          </div>
-        </div>
-      )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
