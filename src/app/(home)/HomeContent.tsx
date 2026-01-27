@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { buttonVariants } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { WinningNominationCard } from "@/components/home/WinningNominationCard";
+import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/trpc/react";
 import { useEdition } from "@/contexts/EditionContext";
@@ -30,10 +31,18 @@ export function HomeContent({
     "global",
   );
 
+
   const { data: winningNominations = [], isLoading: isLoadingWinners } =
     api.nominations.getWinningNominations.useQuery(
       { editionYear: selectedYear },
       { enabled: !!selectedYear },
+    );
+
+  // Fetch all categories for predictions if no winners
+  const { data: allCategories = [], isLoading: isLoadingCategories } =
+    api.nominations.getCategories.useQuery(
+      { ascending: true },
+      { enabled: !!selectedYear && winningNominations.length === 0 },
     );
 
   const { data: rankingsData, isLoading: isLoadingRankings } =
@@ -57,7 +66,7 @@ export function HomeContent({
 
   const shouldShowVotingReminder =
     userId && votingStatus?.pendingVotes && activeEditionYear;
-  const isLoading = isLoadingWinners || isLoadingRankings;
+  const isLoading = isLoadingWinners || isLoadingRankings || (winningNominations.length === 0 && isLoadingCategories);
 
   const showLoginForFollowing = !userId && rankingFilter === "following";
   const showUsersForFollowing =
@@ -236,64 +245,35 @@ export function HomeContent({
           </div>
 
           <div className="flex flex-col lg:w-1/3">
-            <h2 className="pb-4 pl-4 text-2xl font-bold">Last updates</h2>
-
-            {winningNominations.length === 0 && (
-              <div className="space-y-4">
-                {shouldShowVotingReminder && (
-                  <div className="hidden flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:flex">
-                    <p className="w-full text-primary-foreground">
-                      Don&apos;t forget to cast your votes and share your
-                      predictions! You&apos;ll be able to change them until the
-                      awards begin.
-                    </p>
-                    <div className="flex w-full justify-end">
-                      <Link
-                        className={buttonVariants({ variant: "outline" })}
-                        href="/votes"
-                      >
-                        Go vote
-                      </Link>
-                    </div>
-                  </div>
-                )}
-
-                {!userId && isActiveEdition && (
-                  <div className="hidden flex-col items-center justify-between gap-4 rounded bg-primary p-4 text-sm lg:flex">
-                    <p className="w-full text-primary-foreground">
-                      Sign in to cast your votes and share your predictions!
-                    </p>
-                    <div className="flex w-full justify-end">
-                      <Link
-                        className={buttonVariants({ variant: "outline" })}
-                        href="/login"
-                      >
-                        Sign in
-                      </Link>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-1 rounded border p-4">
-                  <h3 className="text-sm">
-                    When the premiation starts you&apos;ll see the winners right
-                    here!
-                  </h3>
-                </div>
-              </div>
-            )}
+            <h2 className="pb-4 pl-4 text-2xl font-bold">
+              {winningNominations.length === 0 ? "People's Predictions" : "Last updates"}
+            </h2>
 
             <ScrollArea
               className="flex flex-col gap-4 rounded-md border"
               style={{ maxHeight: "calc(100vh - 17rem)" }}
             >
-              {winningNominations.map((nomination) => (
-                <WinningNominationCard
-                  key={nomination.id}
-                  nomination={nomination}
-                  editionYear={selectedYear}
-                />
-              ))}
+              {winningNominations.length === 0
+                ? allCategories.map((category) => (
+                    <WinningNominationCard
+                      key={category.id}
+                      nomination={{
+                        id: category.id,
+                        categoryName: category.name,
+                        category: category.id,
+                        isWinnerLastUpdate: null,
+                        movie: { name: null },
+                      }}
+                      editionYear={selectedYear}
+                    />
+                  ))
+                : winningNominations.map((nomination) => (
+                    <WinningNominationCard
+                      key={nomination.id}
+                      nomination={nomination}
+                      editionYear={selectedYear}
+                    />
+                  ))}
             </ScrollArea>
           </div>
         </div>

@@ -46,14 +46,12 @@ export function WinningNominationCard({
     voteData?.voteStats.map((stat) => {
       const votes = Number(stat.voteCount);
       const percentage = totalVotes > 0 ? (votes / totalVotes) * 100 : 0;
-      const isUserVote = stat.nominationId === voteData.userVoteNominationId;
 
       return {
         name: stat.movieName ?? stat.receiverName ?? "Unknown",
         votes: percentage,
         voteCount: votes,
         isWinner: stat.isWinner,
-        isUserVote,
         nominationId: stat.nominationId,
       };
     }) ?? [];
@@ -65,14 +63,15 @@ export function WinningNominationCard({
     },
   };
 
-  const getBarColor = (isWinner: boolean, isUserVote: boolean) => {
+  const hasWinner = chartData.some((d) => d.isWinner);
+  const getBarColor = (isWinner: boolean) => {
+    if (!hasWinner) {
+      return "hsl(var(--primary))";
+    }
     if (isWinner) {
       return "hsl(var(--primary))";
     }
-    if (isUserVote) {
-      return "hsl(var(--destructive))";
-    }
-    return "hsl(var(--secondary))";
+    return "hsl(var(--contrasting-secondary))";
   };
 
   return (
@@ -109,8 +108,16 @@ export function WinningNominationCard({
           {isLoading ? (
             <p className="text-sm text-muted-foreground">Loading votes...</p>
           ) : chartData.length > 0 ? (
-            <ChartContainer config={chartConfig} className="h-[250px] w-full">
-              <BarChart data={chartData} layout="vertical" margin={{ left: 0 }}>
+            <ChartContainer
+              config={chartConfig}
+              className="w-full"
+              style={{ height: `${25 * chartData.length + 25}px` }}
+            >
+              <BarChart
+                data={chartData}
+                layout="vertical"
+                margin={{ left: 20, right: 60 }}
+              >
                 <XAxis
                   type="number"
                   tickFormatter={(value: number) => `${value.toFixed(0)}%`}
@@ -129,7 +136,6 @@ export function WinningNominationCard({
                       (d) => d.name === payload.value,
                     );
                     const isWinner = entry?.isWinner ?? false;
-                    const isUserVote = entry?.isUserVote ?? false;
 
                     let color = "hsl(var(--foreground))";
                     if (isWinner) {
@@ -183,7 +189,7 @@ export function WinningNominationCard({
                   {chartData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={getBarColor(entry.isWinner, entry.isUserVote)}
+                      fill={getBarColor(entry.isWinner)}
                     />
                   ))}
                 </Bar>
