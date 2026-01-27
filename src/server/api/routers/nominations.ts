@@ -445,7 +445,7 @@ export const nominationsRouter = createTRPCRouter({
       return await ctx.db.select().from(dbtReceiver);
     }),
 
-  getCategoryVoteStats: protectedProcedure
+  getCategoryVoteStats: publicProcedure
     .input(
       z.object({ categoryId: z.string(), editionYear: z.number().optional() }),
     )
@@ -498,24 +498,8 @@ export const nominationsRouter = createTRPCRouter({
           dbtNomination.isWinner,
         );
 
-      const userVote = await ctx.db
-        .select({
-          nominationId: dbtVote.nomination,
-        })
-        .from(dbtVote)
-        .innerJoin(dbtNomination, eq(dbtVote.nomination, dbtNomination.id))
-        .where(
-          and(
-            eq(dbtVote.user, ctx.session.user.id),
-            eq(dbtNomination.category, input.categoryId),
-            eq(dbtVote.edition, edition.id),
-          ),
-        )
-        .limit(1);
-
       return {
         voteStats,
-        userVoteNominationId: userVote[0]?.nominationId ?? null,
       };
     }),
 });
