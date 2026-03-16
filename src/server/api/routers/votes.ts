@@ -22,9 +22,11 @@ export type UserNomination = {
   votedReceiverName: string | null;
   votedDescription: string | null;
   isWinner: boolean;
-  winnerMovieName: string | null;
-  winnerReceiverName: string | null;
-  winnerDescription: string | null;
+  winners: {
+    winnerMovieName: string | null;
+    winnerReceiverName: string | null;
+    winnerDescription: string | null;
+  }[];
 };
 
 const getCurrentUserVotesSchema = z.object({
@@ -287,18 +289,21 @@ export const votesRouter = createTRPCRouter({
         const voted = votedNominations.find(
           (vote) => vote.categoryName === category.categoryName,
         );
-        const winner = winningNominations.find(
+        const winners = winningNominations.filter(
           (win) => win.categoryName === category.categoryName,
         );
+
         return {
           categoryName: category.categoryName,
           votedMovieName: voted?.votedMovieName ?? null,
           votedReceiverName: voted?.votedReceiverName ?? null,
           votedDescription: voted?.votedDescription ?? null,
           isWinner: voted?.isWinner ?? false,
-          winnerMovieName: winner?.winnerMovieName ?? null,
-          winnerReceiverName: winner?.winnerReceiverName ?? null,
-          winnerDescription: winner?.winnerDescription ?? null,
+          winners: winners.map((winner) => ({
+            winnerMovieName: winner.winnerMovieName ?? null,
+            winnerReceiverName: winner.winnerReceiverName ?? null,
+            winnerDescription: winner.winnerDescription ?? null,
+          })),
         };
       });
 

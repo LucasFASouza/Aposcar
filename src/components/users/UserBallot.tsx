@@ -58,6 +58,10 @@ export function UserBallot({
     }
   };
 
+  const hasWinnerColumn = userNominations.some(
+    (nomination) => nomination.winners.length > 0 || nomination.isWinner,
+  );
+
   return (
     <div className="flex flex-col items-center space-y-4">
       <Button onClick={handleExport}>Download</Button>
@@ -102,9 +106,9 @@ export function UserBallot({
               <TableRow className="font-bold">
                 <TableHead className="px-2 py-2">Category</TableHead>
                 <TableHead className="px-2 py-2">Vote</TableHead>
-                {userNominations.some(
-                  (n) => n.winnerMovieName ?? n.isWinner,
-                ) && <TableHead className="px-2 py-2">Winner</TableHead>}
+                {hasWinnerColumn && (
+                  <TableHead className="px-2 py-2">Winner</TableHead>
+                )}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -132,23 +136,33 @@ export function UserBallot({
                       ))
                     )}
                   </TableCell>
-                  {userNominations.some(
-                    (n) => n.winnerMovieName ?? n.isWinner,
-                  ) && (
+                  {hasWinnerColumn && (
                     <TableCell className="px-2 py-2 text-sm">
                       {nomination.isWinner ? (
                         <PhTrophy className="text-primary" />
-                      ) : nomination.winnerReceiverName ? (
-                        <span>
-                          {nomination.winnerReceiverName} (
-                          {nomination.winnerMovieName})
-                        </span>
+                      ) : nomination.winners.length > 0 ? (
+                        <div className="space-y-1">
+                          {nomination.winners.map((winner) => (
+                            <div
+                              key={`${nomination.categoryName}-${winner.winnerReceiverName ?? ""}-${winner.winnerMovieName ?? ""}`}
+                            >
+                              {winner.winnerReceiverName ? (
+                                <span>
+                                  {winner.winnerReceiverName} (
+                                  {winner.winnerMovieName})
+                                </span>
+                              ) : (
+                                (winner.winnerMovieName ?? (
+                                  <span className="text-sm text-muted-foreground">
+                                    -
+                                  </span>
+                                ))
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       ) : (
-                        (nomination.winnerMovieName ?? (
-                          <span className="text-sm text-muted-foreground">
-                            -
-                          </span>
-                        ))
+                        <span className="text-sm text-muted-foreground">-</span>
                       )}
                     </TableCell>
                   )}

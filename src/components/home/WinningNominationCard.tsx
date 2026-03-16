@@ -21,11 +21,13 @@ type WinningNominationCardProps = {
       name: string | null;
     };
   };
+  winnerTitles?: string[];
   editionYear?: number;
 };
 
 export function WinningNominationCard({
   nomination,
+  winnerTitles,
   editionYear,
 }: WinningNominationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -99,7 +101,9 @@ export function WinningNominationCard({
         </div>
 
         <h2 className="text-lg font-semibold text-primary">
-          {nomination.movie.name}
+          {winnerTitles && winnerTitles.length > 0
+            ? winnerTitles.join(" / ")
+            : nomination.movie.name}
         </h2>
       </button>
 

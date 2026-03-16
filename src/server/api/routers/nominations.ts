@@ -20,7 +20,16 @@ import {
   dbtVote,
 } from "@/server/db/schema/aposcar";
 import { TRPCError } from "@trpc/server";
-import { eq, isNotNull, and, desc, sql, count, asc } from "drizzle-orm";
+import {
+  eq,
+  isNotNull,
+  and,
+  desc,
+  sql,
+  count,
+  asc,
+  inArray,
+} from "drizzle-orm";
 import { z } from "zod";
 
 const getCategoryInputSchema = z.object({
@@ -351,10 +360,10 @@ export const nominationsRouter = createTRPCRouter({
         .where(eq(dbtMovie.edition, edition.id));
     }),
 
-  setWinner: protectedProcedure
+  setWinners: protectedProcedure
     .input(
       z.object({
-        nominationId: z.string(),
+        nominationIds: z.array(z.string()).min(1),
         categoryId: z.string(),
       }),
     )
@@ -380,10 +389,28 @@ export const nominationsRouter = createTRPCRouter({
           ),
         );
 
+      const selectedNominations = await ctx.db
+        .select({ id: dbtNomination.id })
+        .from(dbtNomination)
+        .where(
+          and(
+            inArray(dbtNomination.id, input.nominationIds),
+            eq(dbtNomination.category, input.categoryId),
+            eq(dbtNomination.edition, activeEdition.id),
+          ),
+        );
+
+      if (selectedNominations.length !== input.nominationIds.length) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Some selected nominations are invalid for this category",
+        });
+      }
+
       await ctx.db
         .update(dbtNomination)
         .set({ isWinner: true, isWinnerLastUpdate: new Date() })
-        .where(eq(dbtNomination.id, input.nominationId));
+        .where(inArray(dbtNomination.id, input.nominationIds));
 
       return { success: true };
     }),

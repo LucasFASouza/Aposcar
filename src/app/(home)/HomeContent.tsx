@@ -63,6 +63,47 @@ export function HomeContent({
     { enabled: !!userId && isActiveEdition },
   );
 
+  const groupedWinningNominations = Array.from(
+    winningNominations
+      .reduce(
+        (map, nomination) => {
+          const key = nomination.category;
+          const existing = map.get(key);
+          const winnerTitle = nomination.receiver
+            ? `${nomination.receiver.name} (${nomination.movie.name})`
+            : (nomination.movie.name ?? "Unknown");
+
+          if (!existing) {
+            map.set(key, {
+              nomination,
+              winnerTitles: [winnerTitle],
+            });
+            return map;
+          }
+
+          existing.winnerTitles.push(winnerTitle);
+          if (
+            nomination.isWinnerLastUpdate &&
+            (!existing.nomination.isWinnerLastUpdate ||
+              nomination.isWinnerLastUpdate >
+                existing.nomination.isWinnerLastUpdate)
+          ) {
+            existing.nomination = nomination;
+          }
+
+          return map;
+        },
+        new Map<
+          string,
+          {
+            nomination: (typeof winningNominations)[number];
+            winnerTitles: string[];
+          }
+        >(),
+      )
+      .values(),
+  );
+
   const shouldShowVotingReminder =
     userId && votingStatus?.pendingVotes && activeEditionYear;
   // Only show full-page loading if winners/categories are loading (not when just switching ranking filter)
@@ -293,13 +334,16 @@ export function HomeContent({
                         editionYear={selectedYear}
                       />
                     ))
-                  : winningNominations.map((nomination) => (
-                      <WinningNominationCard
-                        key={nomination.id}
-                        nomination={nomination}
-                        editionYear={selectedYear}
-                      />
-                    ))}
+                  : groupedWinningNominations.map(
+                      ({ nomination, winnerTitles }) => (
+                        <WinningNominationCard
+                          key={nomination.id}
+                          nomination={nomination}
+                          winnerTitles={winnerTitles}
+                          editionYear={selectedYear}
+                        />
+                      ),
+                    )}
               </ScrollArea>
             </div>
           </>

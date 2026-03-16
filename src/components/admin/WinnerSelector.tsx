@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "@/trpc/react";
 import {
   Select,
@@ -9,15 +9,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Category } from "@/server/api/zod/schema";
 
 export function WinnerSelector({ categories }: { categories: Category[] }) {
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedNomination, setSelectedNomination] = useState("");
+  const [selectedNominations, setSelectedNominations] = useState<string[]>([]);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -27,10 +26,26 @@ export function WinnerSelector({ categories }: { categories: Category[] }) {
       { enabled: !!selectedCategory },
     );
 
-  const { mutate } = api.nominations.setWinner.useMutation({
+  useEffect(() => {
+    setSelectedNominations(
+      nominations?.nominations
+        .filter((nomination) => nomination.isWinner)
+        .map((nomination) => nomination.id) ?? [],
+    );
+  }, [nominations]);
+
+  const toggleNomination = (nominationId: string) => {
+    setSelectedNominations((current) =>
+      current.includes(nominationId)
+        ? current.filter((id) => id !== nominationId)
+        : [...current, nominationId],
+    );
+  };
+
+  const { mutate } = api.nominations.setWinners.useMutation({
     onSuccess: () => {
       toast({
-        title: "Winner updated successfully!",
+        title: "Winners updated successfully!",
       });
       router.push("/");
     },
@@ -52,28 +67,37 @@ export function WinnerSelector({ categories }: { categories: Category[] }) {
       </Select>
 
       {nominations && (
-        <RadioGroup
-          value={selectedNomination}
-          onValueChange={setSelectedNomination}
-        >
+        <div className="space-y-2">
           {nominations.nominations.map((nomination) => (
             <div key={nomination.id} className="flex items-center space-x-2">
-              <RadioGroupItem value={nomination.id} />
-              <label>
+              <button
+                type="button"
+                aria-pressed={selectedNominations.includes(nomination.id)}
+                onClick={() => toggleNomination(nomination.id)}
+                className="h-4 w-4 rounded-sm border"
+              >
+                {selectedNominations.includes(nomination.id) && (
+                  <span className="block h-full w-full bg-primary" />
+                )}
+              </button>
+              <label
+                className="cursor-pointer"
+                onClick={() => toggleNomination(nomination.id)}
+              >
                 {nomination.movie.name}
                 {nomination.receiver && ` - ${nomination.receiver.name}`}
               </label>
             </div>
           ))}
-        </RadioGroup>
+        </div>
       )}
 
       <Button
-        disabled={!selectedNomination}
+        disabled={selectedNominations.length < 1}
         onClick={() => {
-          if (nominations && selectedNomination) {
+          if (nominations && selectedNominations.length > 0) {
             mutate({
-              nominationId: selectedNomination,
+              nominationIds: selectedNominations,
               categoryId: nominations.currentCategory.id,
             });
           }
